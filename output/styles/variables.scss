@@ -1,0 +1,29 @@
+$color-primary: #f27334; 
+$color-warning: #ff0000; 
+$color-info: #23c2c4; 
+$color-accent: #fd4b1b; 
+$color-accent-light: #f8b834; 
+$color-background-default: #e7ece1; 
+@mixin font-paragraph{
+            font-family: Roboto;
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+ 
+@mixin font-heading{
+            font-family: Montserrat;
+            font-size: 4rem;
+            font-weight: 400;
+        }
+ 
+:root{ 
+    --color-primary: #f27334; 
+    --color-warning: #ff0000; 
+    --color-info: #23c2c4; 
+    --color-accent: #fd4b1b; 
+    --color-accent-light: #f8b834; 
+    --color-background-default: #e7ece1; 
+}
+ // NOT GENERATED CODE
+
+$colors-list: $color-accent $color-accent-light $color-primary $color-warning $color-info;
