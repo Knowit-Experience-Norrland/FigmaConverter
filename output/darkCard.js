@@ -14,24 +14,32 @@ let darkCard = class darkCard extends LitElement {
         this.gap = '';
         this.flexDirection = '';
         this.backgroundColor = '';
+        this.backgroundImage = '';
+        this.backgroundSize = '';
+        this.backgroundRepeat = '';
         this.paddingTop = '';
         this.paddingLeft = '';
         this.paddingBottom = '';
         this.paddingRight = '';
         this.justifyContent = '';
         this.alignItems = '';
+        this.Frame1FlexBasis = '';
         this.Frame1Width = '';
         this.Frame1Height = '';
         this.Frame1BorderRadius = '';
         this.Frame1Gap = '';
         this.Frame1FlexDirection = '';
         this.Frame1BackgroundColor = '';
+        this.Frame1BackgroundImage = '';
+        this.Frame1BackgroundSize = '';
+        this.Frame1BackgroundRepeat = '';
         this.Frame1PaddingTop = '';
         this.Frame1PaddingLeft = '';
         this.Frame1PaddingBottom = '';
         this.Frame1PaddingRight = '';
         this.Frame1JustifyContent = '';
         this.Frame1AlignItems = '';
+        this.TodaytrainingtimeFlexBasis = '';
         this.TodaytrainingtimeWidth = '';
         this.TodaytrainingtimeHeight = '';
         this.TodaytrainingtimeBorderRadius = '';
@@ -42,6 +50,9 @@ let darkCard = class darkCard extends LitElement {
         this.TodaytrainingtimeFontFamily = '';
         this.TodaytrainingtimeFontWeight = '';
         this.TodaytrainingtimeLetterSpacing = '';
+        this.TodaytrainingtimeTextAlign = '';
+        this.TodaytrainingtimeLineHeight = '';
+        this.minutesFlexBasis = '';
         this.minutesWidth = '';
         this.minutesHeight = '';
         this.minutesBorderRadius = '';
@@ -52,12 +63,18 @@ let darkCard = class darkCard extends LitElement {
         this.minutesFontFamily = '';
         this.minutesFontWeight = '';
         this.minutesLetterSpacing = '';
+        this.minutesTextAlign = '';
+        this.minutesLineHeight = '';
+        this.Rectangle22FlexBasis = '';
         this.Rectangle22Width = '';
         this.Rectangle22Height = '';
         this.Rectangle22BorderRadius = '';
         this.Rectangle22Gap = '';
         this.Rectangle22FlexDirection = '';
         this.Rectangle22BackgroundColor = '';
+        this.Rectangle22BackgroundImage = '';
+        this.Rectangle22BackgroundSize = '';
+        this.Rectangle22BackgroundRepeat = '';
         this.Rectangle22PaddingTop = '';
         this.Rectangle22PaddingLeft = '';
         this.Rectangle22PaddingBottom = '';
@@ -91,31 +108,37 @@ align-items: ${this.alignItems ? this.alignItems : 'center'};
 
 .Frame1 {
 display: flex;
+flex-basis:  ${this.Frame1FlexBasis ? this.Frame1FlexBasis : '44.27609427609428%'};
 width: 100%;
-flex-basis:44.27609427609428%;
 height: 100%;
 flex-direction: ${this.Frame1FlexDirection ? this.Frame1FlexDirection : 'column'};
 }
 
 .Todaytrainingtime {
+flex-basis:  ${this.TodaytrainingtimeFlexBasis ? this.TodaytrainingtimeFlexBasis : '42.857142857142854%'};
 color: ${this.TodaytrainingtimeBackgroundColor ? this.TodaytrainingtimeBackgroundColor : '#ffffff'};
 font-size: ${this.TodaytrainingtimeFontSize ? this.TodaytrainingtimeFontSize : '1.5rem'};
 font-family: ${this.TodaytrainingtimeFontFamily ? this.TodaytrainingtimeFontFamily : 'Open Sans'};
 font-weight: ${this.TodaytrainingtimeFontWeight ? this.TodaytrainingtimeFontWeight : '400'};
 letter-spacing: ${this.TodaytrainingtimeLetterSpacing ? this.TodaytrainingtimeLetterSpacing : '0'};
+text-align: ${this.TodaytrainingtimeTextAlign ? this.TodaytrainingtimeTextAlign : 'left'};
+line-height: ${this.TodaytrainingtimeLineHeight ? this.TodaytrainingtimeLineHeight : '1.7578125rem'};
 }
 
 .minutes {
+flex-basis:  ${this.minutesFlexBasis ? this.minutesFlexBasis : '57.14285714285714%'};
 color: ${this.minutesBackgroundColor ? this.minutesBackgroundColor : '#ffffff'};
 font-size: ${this.minutesFontSize ? this.minutesFontSize : '2rem'};
 font-family: ${this.minutesFontFamily ? this.minutesFontFamily : 'Open Sans'};
 font-weight: ${this.minutesFontWeight ? this.minutesFontWeight : '600'};
 letter-spacing: ${this.minutesLetterSpacing ? this.minutesLetterSpacing : '0'};
+text-align: ${this.minutesTextAlign ? this.minutesTextAlign : 'left'};
+line-height: ${this.minutesLineHeight ? this.minutesLineHeight : '2.34375rem'};
 }
 
 .Rectangle22 {
+flex-basis:  ${this.Rectangle22FlexBasis ? this.Rectangle22FlexBasis : '41.582491582491585%'};
 width: 100%;
-flex-basis:41.582491582491585%;
 height: 100%;
 border-radius: ${this.Rectangle22BorderRadius ? this.Rectangle22BorderRadius : '28px'};
 background-color: ${this.Rectangle22BackgroundColor ? this.Rectangle22BackgroundColor : '#446d52'};
@@ -157,6 +180,15 @@ __decorate([
 ], darkCard.prototype, "backgroundColor", void 0);
 __decorate([
     property({ type: String })
+], darkCard.prototype, "backgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "backgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "backgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], darkCard.prototype, "paddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -173,6 +205,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], darkCard.prototype, "alignItems", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Frame1FlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], darkCard.prototype, "Frame1Width", void 0);
@@ -193,6 +228,15 @@ __decorate([
 ], darkCard.prototype, "Frame1BackgroundColor", void 0);
 __decorate([
     property({ type: String })
+], darkCard.prototype, "Frame1BackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Frame1BackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Frame1BackgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], darkCard.prototype, "Frame1PaddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -209,6 +253,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], darkCard.prototype, "Frame1AlignItems", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "TodaytrainingtimeFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], darkCard.prototype, "TodaytrainingtimeWidth", void 0);
@@ -241,6 +288,15 @@ __decorate([
 ], darkCard.prototype, "TodaytrainingtimeLetterSpacing", void 0);
 __decorate([
     property({ type: String })
+], darkCard.prototype, "TodaytrainingtimeTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "TodaytrainingtimeLineHeight", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "minutesFlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], darkCard.prototype, "minutesWidth", void 0);
 __decorate([
     property({ type: String })
@@ -271,6 +327,15 @@ __decorate([
 ], darkCard.prototype, "minutesLetterSpacing", void 0);
 __decorate([
     property({ type: String })
+], darkCard.prototype, "minutesTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "minutesLineHeight", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Rectangle22FlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], darkCard.prototype, "Rectangle22Width", void 0);
 __decorate([
     property({ type: String })
@@ -287,6 +352,15 @@ __decorate([
 __decorate([
     property({ type: String })
 ], darkCard.prototype, "Rectangle22BackgroundColor", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Rectangle22BackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Rectangle22BackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], darkCard.prototype, "Rectangle22BackgroundRepeat", void 0);
 __decorate([
     property({ type: String })
 ], darkCard.prototype, "Rectangle22PaddingTop", void 0);

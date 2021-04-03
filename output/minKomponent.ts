@@ -20,6 +20,15 @@ flexDirection = '';
 backgroundColor = '';
 
 @property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
+
+@property({type: String})
 paddingTop = '';
 
 @property({type: String})
@@ -36,6 +45,9 @@ justifyContent = '';
 
 @property({type: String})
 alignItems = '';
+
+@property({type: String})
+textFlexBasis = '';
 
 @property({type: String})
 textWidth = '';
@@ -68,6 +80,15 @@ textFontWeight = '';
 textLetterSpacing = '';
 
 @property({type: String})
+textTextAlign = '';
+
+@property({type: String})
+textLineHeight = '';
+
+@property({type: String})
+containerFlexBasis = '';
+
+@property({type: String})
 containerWidth = '';
 
 @property({type: String})
@@ -84,6 +105,15 @@ containerFlexDirection = '';
 
 @property({type: String})
 containerBackgroundColor = '';
+
+@property({type: String})
+containerBackgroundImage = '';
+
+@property({type: String})
+containerBackgroundSize = '';
+
+@property({type: String})
+containerBackgroundRepeat = '';
 
 @property({type: String})
 containerPaddingTop = '';
@@ -104,6 +134,9 @@ containerJustifyContent = '';
 containerAlignItems = '';
 
 @property({type: String})
+leftRectangleFlexBasis = '';
+
+@property({type: String})
 leftRectangleWidth = '';
 
 @property({type: String})
@@ -120,6 +153,15 @@ leftRectangleFlexDirection = '';
 
 @property({type: String})
 leftRectangleBackgroundColor = '';
+
+@property({type: String})
+leftRectangleBackgroundImage = '';
+
+@property({type: String})
+leftRectangleBackgroundSize = '';
+
+@property({type: String})
+leftRectangleBackgroundRepeat = '';
 
 @property({type: String})
 leftRectanglePaddingTop = '';
@@ -140,6 +182,9 @@ leftRectangleJustifyContent = '';
 leftRectangleAlignItems = '';
 
 @property({type: String})
+rightRectangleFlexBasis = '';
+
+@property({type: String})
 rightRectangleWidth = '';
 
 @property({type: String})
@@ -156,6 +201,15 @@ rightRectangleFlexDirection = '';
 
 @property({type: String})
 rightRectangleBackgroundColor = '';
+
+@property({type: String})
+rightRectangleBackgroundImage = '';
+
+@property({type: String})
+rightRectangleBackgroundSize = '';
+
+@property({type: String})
+rightRectangleBackgroundRepeat = '';
 
 @property({type: String})
 rightRectanglePaddingTop = '';
@@ -203,17 +257,20 @@ align-items: ${this.alignItems  ? this.alignItems:  'center' };
 }
 
 .text {
+flex-basis:  ${this.textFlexBasis ? this.textFlexBasis : '25.570776255707763%'};
 color: ${this.textBackgroundColor ? this.textBackgroundColor : '#0b1021'};
 font-size: ${this.textFontSize  ? this.textFontSize:  '1rem' };
 font-family: ${this.textFontFamily  ? this.textFontFamily:  'Montserrat' };
 font-weight: ${this.textFontWeight  ? this.textFontWeight:  '400' };
 letter-spacing: ${this.textLetterSpacing  ? this.textLetterSpacing:  '0' };
+text-align: ${this.textTextAlign  ? this.textTextAlign:  'center' };
+line-height: ${this.textLineHeight  ? this.textLineHeight:  '1.171875rem' };
 }
 
 .container {
 display: flex;
+flex-basis:  ${this.containerFlexBasis ? this.containerFlexBasis : '54.5662100456621%'};
 width: 100%;
-flex-basis:54.5662100456621%;
 height: 100%;
 border-radius: ${this.containerBorderRadius  ? this.containerBorderRadius:  '15px' };
 gap: ${this.containerGap  ? this.containerGap:  '25px' };
@@ -227,15 +284,15 @@ align-items: ${this.containerAlignItems  ? this.containerAlignItems:  'center' }
 }
 
 .leftRectangle {
+flex-basis:  ${this.leftRectangleFlexBasis ? this.leftRectangleFlexBasis : '44.76987447698745%'};
 width: 100%;
-flex-basis:44.76987447698745%;
 height: 100%;
 background-color: ${this.leftRectangleBackgroundColor  ? this.leftRectangleBackgroundColor:  '#bcbcbc' };
 }
 
 .rightRectangle {
+flex-basis:  ${this.rightRectangleFlexBasis ? this.rightRectangleFlexBasis : '44.76987447698745%'};
 width: 100%;
-flex-basis:44.76987447698745%;
 height: 100%;
 background-color: ${this.rightRectangleBackgroundColor  ? this.rightRectangleBackgroundColor:  '#bcbcbc' };
 }

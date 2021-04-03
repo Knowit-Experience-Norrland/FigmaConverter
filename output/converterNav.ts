@@ -20,6 +20,15 @@ flexDirection = '';
 backgroundColor = '';
 
 @property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
+
+@property({type: String})
 paddingTop = '';
 
 @property({type: String})

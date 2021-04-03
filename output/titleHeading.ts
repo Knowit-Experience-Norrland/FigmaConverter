@@ -20,6 +20,15 @@ flexDirection = '';
 backgroundColor = '';
 
 @property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
+
+@property({type: String})
 paddingTop = '';
 
 @property({type: String})
@@ -36,6 +45,9 @@ justifyContent = '';
 
 @property({type: String})
 alignItems = '';
+
+@property({type: String})
+FigmaConverterFlexBasis = '';
 
 @property({type: String})
 FigmaConverterWidth = '';
@@ -68,6 +80,15 @@ FigmaConverterFontWeight = '';
 FigmaConverterLetterSpacing = '';
 
 @property({type: String})
+FigmaConverterTextAlign = '';
+
+@property({type: String})
+FigmaConverterLineHeight = '';
+
+@property({type: String})
+AutomatetocomunicateFlexBasis = '';
+
+@property({type: String})
 AutomatetocomunicateWidth = '';
 
 @property({type: String})
@@ -98,6 +119,12 @@ AutomatetocomunicateFontWeight = '';
 AutomatetocomunicateLetterSpacing = '';
 
 @property({type: String})
+AutomatetocomunicateTextAlign = '';
+
+@property({type: String})
+AutomatetocomunicateLineHeight = '';
+
+@property({type: String})
 FigmaConverterText = '';
 
 @property({type: String})
@@ -113,26 +140,32 @@ AutomatetocomunicateText = '';
             }
             :host {
 display: flex;
-width: ${this.width  ? `calc(${this.width} - NaNpx)`:  '546px' };
-height: ${this.height  ? `calc(${this.height} - NaNpx)`:  '118px' };
+width: ${this.width  ? this.width:  '546px' };
+height: ${this.height  ? this.height:  '118px' };
 gap: ${this.gap  ? this.gap:  '5px' };
 flex-direction: ${this.flexDirection  ? this.flexDirection:  'column' };
 }
 
 .FigmaConverter {
+flex-basis:  ${this.FigmaConverterFlexBasis ? this.FigmaConverterFlexBasis : '66.10169491525424%'};
 color: ${this.FigmaConverterBackgroundColor ? this.FigmaConverterBackgroundColor : '#000000'};
 font-size: ${this.FigmaConverterFontSize  ? this.FigmaConverterFontSize:  '4rem' };
 font-family: ${this.FigmaConverterFontFamily  ? this.FigmaConverterFontFamily:  'Montserrat' };
 font-weight: ${this.FigmaConverterFontWeight  ? this.FigmaConverterFontWeight:  '500' };
 letter-spacing: ${this.FigmaConverterLetterSpacing  ? this.FigmaConverterLetterSpacing:  '0' };
+text-align: ${this.FigmaConverterTextAlign  ? this.FigmaConverterTextAlign:  'left' };
+line-height: ${this.FigmaConverterLineHeight  ? this.FigmaConverterLineHeight:  '4.6875rem' };
 }
 
 .Automatetocomunicate {
+flex-basis:  ${this.AutomatetocomunicateFlexBasis ? this.AutomatetocomunicateFlexBasis : '29.66101694915254%'};
 color: ${this.AutomatetocomunicateBackgroundColor ? this.AutomatetocomunicateBackgroundColor : '#000000'};
 font-size: ${this.AutomatetocomunicateFontSize  ? this.AutomatetocomunicateFontSize:  '1.8125rem' };
 font-family: ${this.AutomatetocomunicateFontFamily  ? this.AutomatetocomunicateFontFamily:  'Montserrat' };
 font-weight: ${this.AutomatetocomunicateFontWeight  ? this.AutomatetocomunicateFontWeight:  '400' };
 letter-spacing: ${this.AutomatetocomunicateLetterSpacing  ? this.AutomatetocomunicateLetterSpacing:  '0' };
+text-align: ${this.AutomatetocomunicateTextAlign  ? this.AutomatetocomunicateTextAlign:  'left' };
+line-height: ${this.AutomatetocomunicateLineHeight  ? this.AutomatetocomunicateLineHeight:  '2.1240234375rem' };
 }
 
 

@@ -14,48 +14,63 @@ let flexComp = class flexComp extends LitElement {
         this.gap = '';
         this.flexDirection = '';
         this.backgroundColor = '';
+        this.backgroundImage = '';
+        this.backgroundSize = '';
+        this.backgroundRepeat = '';
         this.paddingTop = '';
         this.paddingLeft = '';
         this.paddingBottom = '';
         this.paddingRight = '';
         this.justifyContent = '';
         this.alignItems = '';
+        this.leftFlexBasis = '';
         this.leftWidth = '';
         this.leftHeight = '';
         this.leftBorderRadius = '';
         this.leftGap = '';
         this.leftFlexDirection = '';
         this.leftBackgroundColor = '';
+        this.leftBackgroundImage = '';
+        this.leftBackgroundSize = '';
+        this.leftBackgroundRepeat = '';
         this.leftPaddingTop = '';
         this.leftPaddingLeft = '';
         this.leftPaddingBottom = '';
         this.leftPaddingRight = '';
         this.leftJustifyContent = '';
         this.leftAlignItems = '';
+        this.middleFlexBasis = '';
+        this.middleWidth = '';
+        this.middleHeight = '';
+        this.middleBorderRadius = '';
+        this.middleGap = '';
+        this.middleFlexDirection = '';
+        this.middleBackgroundColor = '';
+        this.middleBackgroundImage = '';
+        this.middleBackgroundSize = '';
+        this.middleBackgroundRepeat = '';
+        this.middlePaddingTop = '';
+        this.middlePaddingLeft = '';
+        this.middlePaddingBottom = '';
+        this.middlePaddingRight = '';
+        this.middleJustifyContent = '';
+        this.middleAlignItems = '';
+        this.rightFlexBasis = '';
         this.rightWidth = '';
         this.rightHeight = '';
         this.rightBorderRadius = '';
         this.rightGap = '';
         this.rightFlexDirection = '';
         this.rightBackgroundColor = '';
+        this.rightBackgroundImage = '';
+        this.rightBackgroundSize = '';
+        this.rightBackgroundRepeat = '';
         this.rightPaddingTop = '';
         this.rightPaddingLeft = '';
         this.rightPaddingBottom = '';
         this.rightPaddingRight = '';
         this.rightJustifyContent = '';
         this.rightAlignItems = '';
-        this.Rectangle23Width = '';
-        this.Rectangle23Height = '';
-        this.Rectangle23BorderRadius = '';
-        this.Rectangle23Gap = '';
-        this.Rectangle23FlexDirection = '';
-        this.Rectangle23BackgroundColor = '';
-        this.Rectangle23PaddingTop = '';
-        this.Rectangle23PaddingLeft = '';
-        this.Rectangle23PaddingBottom = '';
-        this.Rectangle23PaddingRight = '';
-        this.Rectangle23JustifyContent = '';
-        this.Rectangle23AlignItems = '';
     }
     render() {
         return html `
@@ -67,10 +82,11 @@ let flexComp = class flexComp extends LitElement {
             :host {
 display: flex;
 width: ${this.width ? `calc(${this.width} - 60px)` : '757px'};
-height: ${this.height ? `calc(${this.height} - 60px)` : '233px'};
+height: ${this.height ? `calc(${this.height} - 60px)` : '209px'};
+border-radius: ${this.borderRadius ? this.borderRadius : '35px'};
 gap: ${this.gap ? this.gap : '30px'};
 flex-direction: ${this.flexDirection ? this.flexDirection : 'row'};
-background-color: ${this.backgroundColor ? this.backgroundColor : '#b8c0d6'};
+background-color: ${this.backgroundColor ? this.backgroundColor : '#0e359a'};
 padding-top: ${this.paddingTop ? this.paddingTop : '30px'};
 padding-left: ${this.paddingLeft ? this.paddingLeft : '30px'};
 padding-bottom: ${this.paddingBottom ? this.paddingBottom : '30px'};
@@ -80,33 +96,33 @@ align-items: ${this.alignItems ? this.alignItems : 'center'};
 }
 
 .left {
+flex-basis:  ${this.leftFlexBasis ? this.leftFlexBasis : '30.647291941875825%'};
 width: 100%;
-flex-basis:19.815059445178335%;
 height: 100%;
 background-color: ${this.leftBackgroundColor ? this.leftBackgroundColor : '#e1e1e1'};
 }
 
-.right {
+.middle {
+flex-basis:  ${this.middleFlexBasis ? this.middleFlexBasis : '30.647291941875825%'};
 width: 100%;
-flex-basis:39.63011889035667%;
 height: 100%;
-background-color: ${this.rightBackgroundColor ? this.rightBackgroundColor : '#762525'};
+background-color: ${this.middleBackgroundColor ? this.middleBackgroundColor : '#447d50'};
 }
 
-.Rectangle23 {
+.right {
+flex-basis:  ${this.rightFlexBasis ? this.rightFlexBasis : '30.647291941875825%'};
 width: 100%;
-flex-basis:19.815059445178335%;
 height: 100%;
-background-color: ${this.Rectangle23BackgroundColor ? this.Rectangle23BackgroundColor : '#447d50'};
+background-color: ${this.rightBackgroundColor ? this.rightBackgroundColor : '#66e983'};
 }
 
 
             </style> 
             <div class="left">
 </div>
-<div class="right">
+<div class="middle">
 </div>
-<div class="Rectangle23">
+<div class="right">
 </div>
 
         `;
@@ -132,6 +148,15 @@ __decorate([
 ], flexComp.prototype, "backgroundColor", void 0);
 __decorate([
     property({ type: String })
+], flexComp.prototype, "backgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "backgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "backgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], flexComp.prototype, "paddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -148,6 +173,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], flexComp.prototype, "alignItems", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "leftFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], flexComp.prototype, "leftWidth", void 0);
@@ -168,6 +196,15 @@ __decorate([
 ], flexComp.prototype, "leftBackgroundColor", void 0);
 __decorate([
     property({ type: String })
+], flexComp.prototype, "leftBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "leftBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "leftBackgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], flexComp.prototype, "leftPaddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -184,6 +221,57 @@ __decorate([
 __decorate([
     property({ type: String })
 ], flexComp.prototype, "leftAlignItems", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleFlexBasis", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleWidth", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleHeight", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleBorderRadius", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleGap", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleFlexDirection", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleBackgroundColor", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleBackgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middlePaddingTop", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middlePaddingLeft", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middlePaddingBottom", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middlePaddingRight", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleJustifyContent", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "middleAlignItems", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "rightFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], flexComp.prototype, "rightWidth", void 0);
@@ -204,6 +292,15 @@ __decorate([
 ], flexComp.prototype, "rightBackgroundColor", void 0);
 __decorate([
     property({ type: String })
+], flexComp.prototype, "rightBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "rightBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], flexComp.prototype, "rightBackgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], flexComp.prototype, "rightPaddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -220,42 +317,6 @@ __decorate([
 __decorate([
     property({ type: String })
 ], flexComp.prototype, "rightAlignItems", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23Width", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23Height", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23BorderRadius", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23Gap", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23FlexDirection", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23BackgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23PaddingTop", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23PaddingLeft", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23PaddingBottom", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23PaddingRight", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23JustifyContent", void 0);
-__decorate([
-    property({ type: String })
-], flexComp.prototype, "Rectangle23AlignItems", void 0);
 flexComp = __decorate([
     customElement('flex-comp')
 ], flexComp);

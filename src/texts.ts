@@ -8,6 +8,8 @@ export default class Typography {
     fontWeight: string;
     letterSpacing: string;
     fontStyle: string;
+    textAlign: string;
+    // lineHeight: string;
 
     constructor(styleElement: PurpleChild) {
         if (styleElement.style) {
@@ -19,7 +21,13 @@ export default class Typography {
             this.fontSize = this.pxToRem(style.fontSize);
             this.fontFamily = style.fontFamily;
             this.fontWeight = `${style.fontWeight}`;
-            this.letterSpacing = `${style.letterSpacing}`;
+            if (style.letterSpacing)
+                this.letterSpacing = this.pxToRem(style.letterSpacing);
+            this.textAlign = style.textAlignHorizontal.toLocaleLowerCase();
+            // if (style.lineHeightPx) {
+            //     console.log(style.lineHeightPx);
+            //     this.lineHeight = this.pxToRem(style.lineHeightPx);
+            // }
             if (style.italic) this.fontStyle = 'italic';
         }
     }
@@ -38,9 +46,15 @@ export default class Typography {
 
     getTextMixin(): string {
         return `@mixin font-${this.name}{
-            font-family: ${this.fontFamily};
-            font-size: ${this.fontSize};
-            font-weight: ${this.fontWeight};
+            ${this.fontFamily ? `font-family: ${this.fontFamily}` : ''};
+            ${this.fontSize ? `font-size: ${this.fontSize}` : ''};
+            ${this.fontWeight ? `font-weight: ${this.fontWeight}` : ''};
+            ${this.letterSpacing ? `letter-spacing: ${this.letterSpacing}` : ''};
         }\n`;
+        // text-align: ${this.textAlign};
+
+        // font-size: ${this.fontSize};
+        // font-weight: ${this.fontWeight};
+        // letter-spacing: ${this.letterSpacing};
     }
 }

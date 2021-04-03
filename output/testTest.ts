@@ -1,6 +1,9 @@
 import { LitElement, html, customElement, property } from 'lit-element';
-@customElement('test-button')
-export class testButton extends LitElement { 
+@customElement('test-test')
+export class testTest extends LitElement { 
+@property({type: String})
+externalStyleSheet = '';
+
 @property({type: String})
 width = '';
 
@@ -47,50 +50,45 @@ justifyContent = '';
 alignItems = '';
 
 @property({type: String})
-ButtonFlexBasis = '';
+testFlexBasis = '';
 
 @property({type: String})
-ButtonWidth = '';
+testWidth = '';
 
 @property({type: String})
-ButtonHeight = '';
+testHeight = '';
 
 @property({type: String})
-ButtonBorderRadius = '';
+testBorderRadius = '';
 
 @property({type: String})
-ButtonGap = '';
+testGap = '';
 
 @property({type: String})
-ButtonFlexDirection = '';
+testFlexDirection = '';
 
 @property({type: String})
-ButtonBackgroundColor = '';
+testBackgroundColor = '';
 
 @property({type: String})
-ButtonFontSize = '';
+testFontSize = '';
 
 @property({type: String})
-ButtonFontFamily = '';
+testFontFamily = '';
 
 @property({type: String})
-ButtonFontWeight = '';
+testFontWeight = '';
 
 @property({type: String})
-ButtonLetterSpacing = '';
+testTextAlign = '';
 
 @property({type: String})
-ButtonTextAlign = '';
-
-@property({type: String})
-ButtonLineHeight = '';
-
-@property({type: String})
-ButtonText = '';
+testText = '';
 
 
     render(){
         return html`
+            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
@@ -98,35 +96,32 @@ ButtonText = '';
             }
             :host {
 display: flex;
-width: ${this.width  ? `calc(${this.width} - 20px)`:  '165px' };
-height: ${this.height  ? `calc(${this.height} - 20px)`:  '59px' };
-border-radius: ${this.borderRadius  ? this.borderRadius:  '12px' };
+width: ${this.width  ? `calc(${this.width} - 125px)`:  '24px' };
+height: ${this.height  ? `calc(${this.height} - 125px)`:  '17px' };
 gap: ${this.gap  ? this.gap:  '10px' };
 flex-direction: ${this.flexDirection  ? this.flexDirection:  'row' };
 background-color: ${this.backgroundColor  ? this.backgroundColor:  '#ffffff' };
-padding-top: ${this.paddingTop  ? this.paddingTop:  '10px' };
-padding-left: ${this.paddingLeft  ? this.paddingLeft:  '10px' };
-padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '10px' };
-padding-right: ${this.paddingRight  ? this.paddingRight:  '10px' };
+padding-top: ${this.paddingTop  ? this.paddingTop:  '62.5px' };
+padding-left: ${this.paddingLeft  ? this.paddingLeft:  '62.5px' };
+padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '62.5px' };
+padding-right: ${this.paddingRight  ? this.paddingRight:  '62.5px' };
 justify-content: ${this.justifyContent  ? this.justifyContent:  'center' };
 align-items: ${this.alignItems  ? this.alignItems:  'center' };
 }
 
-.Button {
-flex-basis:  ${this.ButtonFlexBasis ? this.ButtonFlexBasis : '100%'};
-color: ${this.ButtonBackgroundColor ? this.ButtonBackgroundColor : '#000000'};
-font-size: ${this.ButtonFontSize  ? this.ButtonFontSize:  '3rem' };
-font-family: ${this.ButtonFontFamily  ? this.ButtonFontFamily:  'Montserrat' };
-font-weight: ${this.ButtonFontWeight  ? this.ButtonFontWeight:  '100' };
-letter-spacing: ${this.ButtonLetterSpacing  ? this.ButtonLetterSpacing:  '0' };
-text-align: ${this.ButtonTextAlign  ? this.ButtonTextAlign:  'center' };
-line-height: ${this.ButtonLineHeight  ? this.ButtonLineHeight:  '3.515625rem' };
+.test {
+flex-basis:  ${this.testFlexBasis ? this.testFlexBasis : '100%'};
+color: ${this.testBackgroundColor ? this.testBackgroundColor : '#000000'};
+font-size: ${this.testFontSize  ? this.testFontSize:  '0.8805068731307983rem' };
+font-family: ${this.testFontFamily  ? this.testFontFamily:  'Roboto' };
+font-weight: ${this.testFontWeight  ? this.testFontWeight:  '400' };
+text-align: ${this.testTextAlign  ? this.testTextAlign:  'left' };
 }
 
 
             </style> 
-            <p class="Button">
-   ${this.ButtonText  ? this.ButtonText:  'Button'
+            <p class="test">
+   ${this.testText  ? this.testText:  'test'
             }
 </p>
 

@@ -14,12 +14,16 @@ let minKomponent = class minKomponent extends LitElement {
         this.gap = '';
         this.flexDirection = '';
         this.backgroundColor = '';
+        this.backgroundImage = '';
+        this.backgroundSize = '';
+        this.backgroundRepeat = '';
         this.paddingTop = '';
         this.paddingLeft = '';
         this.paddingBottom = '';
         this.paddingRight = '';
         this.justifyContent = '';
         this.alignItems = '';
+        this.textFlexBasis = '';
         this.textWidth = '';
         this.textHeight = '';
         this.textBorderRadius = '';
@@ -30,36 +34,50 @@ let minKomponent = class minKomponent extends LitElement {
         this.textFontFamily = '';
         this.textFontWeight = '';
         this.textLetterSpacing = '';
+        this.textTextAlign = '';
+        this.textLineHeight = '';
+        this.containerFlexBasis = '';
         this.containerWidth = '';
         this.containerHeight = '';
         this.containerBorderRadius = '';
         this.containerGap = '';
         this.containerFlexDirection = '';
         this.containerBackgroundColor = '';
+        this.containerBackgroundImage = '';
+        this.containerBackgroundSize = '';
+        this.containerBackgroundRepeat = '';
         this.containerPaddingTop = '';
         this.containerPaddingLeft = '';
         this.containerPaddingBottom = '';
         this.containerPaddingRight = '';
         this.containerJustifyContent = '';
         this.containerAlignItems = '';
+        this.leftRectangleFlexBasis = '';
         this.leftRectangleWidth = '';
         this.leftRectangleHeight = '';
         this.leftRectangleBorderRadius = '';
         this.leftRectangleGap = '';
         this.leftRectangleFlexDirection = '';
         this.leftRectangleBackgroundColor = '';
+        this.leftRectangleBackgroundImage = '';
+        this.leftRectangleBackgroundSize = '';
+        this.leftRectangleBackgroundRepeat = '';
         this.leftRectanglePaddingTop = '';
         this.leftRectanglePaddingLeft = '';
         this.leftRectanglePaddingBottom = '';
         this.leftRectanglePaddingRight = '';
         this.leftRectangleJustifyContent = '';
         this.leftRectangleAlignItems = '';
+        this.rightRectangleFlexBasis = '';
         this.rightRectangleWidth = '';
         this.rightRectangleHeight = '';
         this.rightRectangleBorderRadius = '';
         this.rightRectangleGap = '';
         this.rightRectangleFlexDirection = '';
         this.rightRectangleBackgroundColor = '';
+        this.rightRectangleBackgroundImage = '';
+        this.rightRectangleBackgroundSize = '';
+        this.rightRectangleBackgroundRepeat = '';
         this.rightRectanglePaddingTop = '';
         this.rightRectanglePaddingLeft = '';
         this.rightRectanglePaddingBottom = '';
@@ -92,17 +110,20 @@ align-items: ${this.alignItems ? this.alignItems : 'center'};
 }
 
 .text {
+flex-basis:  ${this.textFlexBasis ? this.textFlexBasis : '25.570776255707763%'};
 color: ${this.textBackgroundColor ? this.textBackgroundColor : '#0b1021'};
 font-size: ${this.textFontSize ? this.textFontSize : '1rem'};
 font-family: ${this.textFontFamily ? this.textFontFamily : 'Montserrat'};
 font-weight: ${this.textFontWeight ? this.textFontWeight : '400'};
 letter-spacing: ${this.textLetterSpacing ? this.textLetterSpacing : '0'};
+text-align: ${this.textTextAlign ? this.textTextAlign : 'center'};
+line-height: ${this.textLineHeight ? this.textLineHeight : '1.171875rem'};
 }
 
 .container {
 display: flex;
+flex-basis:  ${this.containerFlexBasis ? this.containerFlexBasis : '54.5662100456621%'};
 width: 100%;
-flex-basis:54.5662100456621%;
 height: 100%;
 border-radius: ${this.containerBorderRadius ? this.containerBorderRadius : '15px'};
 gap: ${this.containerGap ? this.containerGap : '25px'};
@@ -116,15 +137,15 @@ align-items: ${this.containerAlignItems ? this.containerAlignItems : 'center'};
 }
 
 .leftRectangle {
+flex-basis:  ${this.leftRectangleFlexBasis ? this.leftRectangleFlexBasis : '44.76987447698745%'};
 width: 100%;
-flex-basis:44.76987447698745%;
 height: 100%;
 background-color: ${this.leftRectangleBackgroundColor ? this.leftRectangleBackgroundColor : '#bcbcbc'};
 }
 
 .rightRectangle {
+flex-basis:  ${this.rightRectangleFlexBasis ? this.rightRectangleFlexBasis : '44.76987447698745%'};
 width: 100%;
-flex-basis:44.76987447698745%;
 height: 100%;
 background-color: ${this.rightRectangleBackgroundColor ? this.rightRectangleBackgroundColor : '#bcbcbc'};
 }
@@ -164,6 +185,15 @@ __decorate([
 ], minKomponent.prototype, "backgroundColor", void 0);
 __decorate([
     property({ type: String })
+], minKomponent.prototype, "backgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "backgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "backgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], minKomponent.prototype, "paddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -180,6 +210,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "alignItems", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "textFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "textWidth", void 0);
@@ -212,6 +245,15 @@ __decorate([
 ], minKomponent.prototype, "textLetterSpacing", void 0);
 __decorate([
     property({ type: String })
+], minKomponent.prototype, "textTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "textLineHeight", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "containerFlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], minKomponent.prototype, "containerWidth", void 0);
 __decorate([
     property({ type: String })
@@ -228,6 +270,15 @@ __decorate([
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "containerBackgroundColor", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "containerBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "containerBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "containerBackgroundRepeat", void 0);
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "containerPaddingTop", void 0);
@@ -248,6 +299,9 @@ __decorate([
 ], minKomponent.prototype, "containerAlignItems", void 0);
 __decorate([
     property({ type: String })
+], minKomponent.prototype, "leftRectangleFlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], minKomponent.prototype, "leftRectangleWidth", void 0);
 __decorate([
     property({ type: String })
@@ -264,6 +318,15 @@ __decorate([
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "leftRectangleBackgroundColor", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "leftRectangleBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "leftRectangleBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "leftRectangleBackgroundRepeat", void 0);
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "leftRectanglePaddingTop", void 0);
@@ -284,6 +347,9 @@ __decorate([
 ], minKomponent.prototype, "leftRectangleAlignItems", void 0);
 __decorate([
     property({ type: String })
+], minKomponent.prototype, "rightRectangleFlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], minKomponent.prototype, "rightRectangleWidth", void 0);
 __decorate([
     property({ type: String })
@@ -300,6 +366,15 @@ __decorate([
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "rightRectangleBackgroundColor", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "rightRectangleBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "rightRectangleBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], minKomponent.prototype, "rightRectangleBackgroundRepeat", void 0);
 __decorate([
     property({ type: String })
 ], minKomponent.prototype, "rightRectanglePaddingTop", void 0);

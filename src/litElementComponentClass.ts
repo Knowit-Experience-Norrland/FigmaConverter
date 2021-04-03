@@ -1,5 +1,6 @@
 import { PurpleChild, StrokeAlign } from './apiTypes';
 import { rgbToHex, torgbString } from './colors';
+import axios from 'axios';
 import Color from './newColors';
 import Typography from './texts';
 interface cssAttributes {
@@ -10,6 +11,9 @@ interface cssAttributes {
     gap: string;
     flexDirection: string;
     backgroundColor: string;
+    backgroundImage: string;
+    backgroundSize: string;
+    backgroundRepeat: string;
     paddingTop: string;
     paddingLeft: string;
     paddingBottom: string;
@@ -20,7 +24,7 @@ interface cssAttributes {
 export class LitElementFromFigmaComponent {
     private componentFromAPI;
     private colorObjects;
-    private colorStyleObject;
+    // private colorStyleObject;
     hasColorVariable = false;
     type: string;
     cssAttributes: cssAttributes;
@@ -31,10 +35,18 @@ export class LitElementFromFigmaComponent {
     characters: string;
     layoutAlign: string;
     hasParent: boolean;
+    hasImage: boolean;
     parentCssAttributes: cssAttributes;
     typography: Typography;
     leftRightOffset: number;
     topBottomOffset: number;
+
+    /**
+     * TODO:
+     * Typing for images
+     */
+
+    images: any;
 
     // fix for placing smaller than container
     //  "primaryAxisSizingMode": "FIXED",
@@ -43,7 +55,9 @@ export class LitElementFromFigmaComponent {
     // primaryAxisAlignItems == justify-content?
     // counterAxisAlignItems == align-items?
 
-    constructor(component, colorObjects, parentCssAttributes?: cssAttributes) {
+    constructor(component, colorObjects, images, parentCssAttributes?: cssAttributes) {
+        this.images = images;
+
         this.componentFromAPI = component;
         this.colorObjects = colorObjects;
         this.name = component.name;
@@ -71,6 +85,9 @@ export class LitElementFromFigmaComponent {
                     ? 'column'
                     : component.layoutMode,
             backgroundColor: this.setBackgroundColor(),
+            backgroundImage: this.setBackgroundImage(),
+            backgroundSize: this.hasImage ? 'cover' : '',
+            backgroundRepeat: this.hasImage ? 'no-repeat' : '',
             paddingTop: component.paddingTop ? `${component.paddingTop}px` : '',
             paddingLeft: component.paddingLeft ? `${component.paddingLeft}px` : '',
             paddingBottom: component.paddingBottom ? `${component.paddingBottom}px` : '',
@@ -91,6 +108,7 @@ export class LitElementFromFigmaComponent {
                     new LitElementFromFigmaComponent(
                         child,
                         colorObjects,
+                        this.images,
                         this.cssAttributes
                     )
                 );
@@ -127,67 +145,55 @@ export class LitElementFromFigmaComponent {
         return `${this.componentFromAPI.absoluteBoundingBox.height - toRemove}px`;
     }
     private setBackgroundColor(): string {
-        if (this.color) {
-            if (this.color.styleId) {
-                return this.color.cssVariableName;
-            } else {
-                return this.color.rgbaOrHex();
+        if (this.componentFromAPI.fills.type !== 'IMAGE') {
+            if (this.color) {
+                if (this.color.styleId) {
+                    return this.color.cssVariableName;
+                } else {
+                    return this.color.rgbaOrHex();
+                }
             }
         }
     }
 
+    private setBackgroundImage(): string {
+        if (this.componentFromAPI.fills.length > 0) {
+            if (this.componentFromAPI.fills[0].type === 'IMAGE') {
+                const imageURL = this.images[this.componentFromAPI.fills[0].imageRef];
+                this.hasImage = true;
+                return `url(${imageURL})`;
+            }
+        }
+        return '';
+    }
+
     private setComponentColorFromAPI() {
-        // console.log(this.componentFromAPI.fills);
         if (this.componentFromAPI.styles) {
             this.color = this.colorObjects.filter(
                 (color: Color) => color.styleId === this.componentFromAPI.styles.fills
             )[0];
         } else {
             if (this.componentFromAPI.fills.length > 0)
-                if (!(this.componentFromAPI.fills[0].visible === false))
-                    this.color = new Color(this.componentFromAPI.fills[0].color);
+                if (this.componentFromAPI.fills[0].visible !== false)
+                    if (this.componentFromAPI.fills[0].type !== 'IMAGE')
+                        if (this.componentFromAPI.fills[0].type !== 'GRADIENT_LINEAR')
+                            // The application does not yet support gradients. The above if-statement can be removed when gradient support is added
+                            this.color = new Color(this.componentFromAPI.fills[0].color);
         }
-
-        // if (this.componentFromAPI.fills.length > 0) {
-        //     console.log(this.componentFromAPI);
-        //     if (this.componentFromAPI.fills[0].type === 'SOLID') {
-        //         if (this.componentFromAPI.fills[0].visible === false) return 'none';
-        //         if (this.componentFromAPI.styles) {
-        //             this.colorStyleObject = this.colorObjects.filter(
-        //                 (color) => color.styleID === this.componentFromAPI.styles.fills
-        //             )[0];
-        //             this.color =
-        //                 this.colorStyleObject.a < 1
-        //                     ? this.colorStyleObject.rgba
-        //                     : this.colorStyleObject.hex;
-        //             return this.colorStyleObject.cssVariableName;
-        //         } else if (this.componentFromAPI.fills[0].opacity) {
-        //             const { r, g, b } = this.componentFromAPI.fills[0].color;
-        //             const a = this.componentFromAPI.fills[0].opacity;
-        //             this.color = torgbString(r, g, b, a);
-        //             return this.color;
-        //         } else {
-        //             const { r, g, b } = this.componentFromAPI.fills[0].color;
-        //             this.color = rgbToHex(r, g, b);
-        //             return this.color;
-        //         }
-        //     }
-        // }
     }
 
     private setBorderRadius(): string {
+        if (this.componentFromAPI.type === 'ELLIPSE') return '50%';
         var tempString: string | string[];
         // checks is all values in the cornerRadii array is the same and determines if the border-radius should be one or four values.
-        if (this.componentFromAPI.cornerRadius) {
-            if (this.componentFromAPI.cornerRadii) {
-                tempString = this.componentFromAPI.rectangleCornerRadii.every(
-                    (val: string, i, arr: string[]) => val === arr[0]
-                )
-                    ? this.componentFromAPI.cornerRadius + 'px'
-                    : this.componentFromAPI.rectangleCornerRadii;
-            } else {
-                tempString = this.componentFromAPI.cornerRadius + 'px';
-            }
+        if (this.componentFromAPI.rectangleCornerRadii) {
+            tempString = this.componentFromAPI.rectangleCornerRadii.every(
+                (val: string, i, arr: string[]) => val === arr[0]
+            )
+                ? this.componentFromAPI.cornerRadius + 'px'
+                : this.componentFromAPI.rectangleCornerRadii;
+        } else if (this.componentFromAPI.cornerRadius) {
+            tempString = this.componentFromAPI.cornerRadius + 'px';
         } else {
             tempString = '0';
         }

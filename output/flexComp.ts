@@ -20,6 +20,15 @@ flexDirection = '';
 backgroundColor = '';
 
 @property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
+
+@property({type: String})
 paddingTop = '';
 
 @property({type: String})
@@ -36,6 +45,9 @@ justifyContent = '';
 
 @property({type: String})
 alignItems = '';
+
+@property({type: String})
+leftFlexBasis = '';
 
 @property({type: String})
 leftWidth = '';
@@ -56,6 +68,15 @@ leftFlexDirection = '';
 leftBackgroundColor = '';
 
 @property({type: String})
+leftBackgroundImage = '';
+
+@property({type: String})
+leftBackgroundSize = '';
+
+@property({type: String})
+leftBackgroundRepeat = '';
+
+@property({type: String})
 leftPaddingTop = '';
 
 @property({type: String})
@@ -72,6 +93,57 @@ leftJustifyContent = '';
 
 @property({type: String})
 leftAlignItems = '';
+
+@property({type: String})
+middleFlexBasis = '';
+
+@property({type: String})
+middleWidth = '';
+
+@property({type: String})
+middleHeight = '';
+
+@property({type: String})
+middleBorderRadius = '';
+
+@property({type: String})
+middleGap = '';
+
+@property({type: String})
+middleFlexDirection = '';
+
+@property({type: String})
+middleBackgroundColor = '';
+
+@property({type: String})
+middleBackgroundImage = '';
+
+@property({type: String})
+middleBackgroundSize = '';
+
+@property({type: String})
+middleBackgroundRepeat = '';
+
+@property({type: String})
+middlePaddingTop = '';
+
+@property({type: String})
+middlePaddingLeft = '';
+
+@property({type: String})
+middlePaddingBottom = '';
+
+@property({type: String})
+middlePaddingRight = '';
+
+@property({type: String})
+middleJustifyContent = '';
+
+@property({type: String})
+middleAlignItems = '';
+
+@property({type: String})
+rightFlexBasis = '';
 
 @property({type: String})
 rightWidth = '';
@@ -92,6 +164,15 @@ rightFlexDirection = '';
 rightBackgroundColor = '';
 
 @property({type: String})
+rightBackgroundImage = '';
+
+@property({type: String})
+rightBackgroundSize = '';
+
+@property({type: String})
+rightBackgroundRepeat = '';
+
+@property({type: String})
 rightPaddingTop = '';
 
 @property({type: String})
@@ -109,42 +190,6 @@ rightJustifyContent = '';
 @property({type: String})
 rightAlignItems = '';
 
-@property({type: String})
-Rectangle23Width = '';
-
-@property({type: String})
-Rectangle23Height = '';
-
-@property({type: String})
-Rectangle23BorderRadius = '';
-
-@property({type: String})
-Rectangle23Gap = '';
-
-@property({type: String})
-Rectangle23FlexDirection = '';
-
-@property({type: String})
-Rectangle23BackgroundColor = '';
-
-@property({type: String})
-Rectangle23PaddingTop = '';
-
-@property({type: String})
-Rectangle23PaddingLeft = '';
-
-@property({type: String})
-Rectangle23PaddingBottom = '';
-
-@property({type: String})
-Rectangle23PaddingRight = '';
-
-@property({type: String})
-Rectangle23JustifyContent = '';
-
-@property({type: String})
-Rectangle23AlignItems = '';
-
 
     render(){
         return html`
@@ -156,10 +201,11 @@ Rectangle23AlignItems = '';
             :host {
 display: flex;
 width: ${this.width  ? `calc(${this.width} - 60px)`:  '757px' };
-height: ${this.height  ? `calc(${this.height} - 60px)`:  '233px' };
+height: ${this.height  ? `calc(${this.height} - 60px)`:  '209px' };
+border-radius: ${this.borderRadius  ? this.borderRadius:  '35px' };
 gap: ${this.gap  ? this.gap:  '30px' };
 flex-direction: ${this.flexDirection  ? this.flexDirection:  'row' };
-background-color: ${this.backgroundColor  ? this.backgroundColor:  '#b8c0d6' };
+background-color: ${this.backgroundColor  ? this.backgroundColor:  '#0e359a' };
 padding-top: ${this.paddingTop  ? this.paddingTop:  '30px' };
 padding-left: ${this.paddingLeft  ? this.paddingLeft:  '30px' };
 padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '30px' };
@@ -169,33 +215,33 @@ align-items: ${this.alignItems  ? this.alignItems:  'center' };
 }
 
 .left {
+flex-basis:  ${this.leftFlexBasis ? this.leftFlexBasis : '30.647291941875825%'};
 width: 100%;
-flex-basis:19.815059445178335%;
 height: 100%;
 background-color: ${this.leftBackgroundColor  ? this.leftBackgroundColor:  '#e1e1e1' };
 }
 
-.right {
+.middle {
+flex-basis:  ${this.middleFlexBasis ? this.middleFlexBasis : '30.647291941875825%'};
 width: 100%;
-flex-basis:39.63011889035667%;
 height: 100%;
-background-color: ${this.rightBackgroundColor  ? this.rightBackgroundColor:  '#762525' };
+background-color: ${this.middleBackgroundColor  ? this.middleBackgroundColor:  '#447d50' };
 }
 
-.Rectangle23 {
+.right {
+flex-basis:  ${this.rightFlexBasis ? this.rightFlexBasis : '30.647291941875825%'};
 width: 100%;
-flex-basis:19.815059445178335%;
 height: 100%;
-background-color: ${this.Rectangle23BackgroundColor  ? this.Rectangle23BackgroundColor:  '#447d50' };
+background-color: ${this.rightBackgroundColor  ? this.rightBackgroundColor:  '#66e983' };
 }
 
 
             </style> 
             <div class="left">
 </div>
-<div class="right">
+<div class="middle">
 </div>
-<div class="Rectangle23">
+<div class="right">
 </div>
 
         `;

@@ -2,6 +2,9 @@ import { LitElement, html, customElement, property } from 'lit-element';
 @customElement('test-comp')
 export class testComp extends LitElement { 
 @property({type: String})
+externalStyleSheet = '';
+
+@property({type: String})
 width = '';
 
 @property({type: String})
@@ -11,9 +14,6 @@ height = '';
 borderRadius = '';
 
 @property({type: String})
-flex = '';
-
-@property({type: String})
 gap = '';
 
 @property({type: String})
@@ -21,6 +21,15 @@ flexDirection = '';
 
 @property({type: String})
 backgroundColor = '';
+
+@property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
 
 @property({type: String})
 paddingTop = '';
@@ -41,76 +50,94 @@ justifyContent = '';
 alignItems = '';
 
 @property({type: String})
-Frame1Width = '';
+textBoxFlexBasis = '';
 
 @property({type: String})
-Frame1Height = '';
+textBoxWidth = '';
 
 @property({type: String})
-Frame1BorderRadius = '';
+textBoxHeight = '';
 
 @property({type: String})
-Frame1Flex = '';
+textBoxBorderRadius = '';
 
 @property({type: String})
-Frame1Gap = '';
+textBoxGap = '';
 
 @property({type: String})
-Frame1FlexDirection = '';
+textBoxFlexDirection = '';
 
 @property({type: String})
-Frame1BackgroundColor = '';
+textBoxBackgroundColor = '';
 
 @property({type: String})
-Frame1PaddingTop = '';
+textBoxBackgroundImage = '';
 
 @property({type: String})
-Frame1PaddingLeft = '';
+textBoxBackgroundSize = '';
 
 @property({type: String})
-Frame1PaddingBottom = '';
+textBoxBackgroundRepeat = '';
 
 @property({type: String})
-Frame1PaddingRight = '';
+textBoxPaddingTop = '';
 
 @property({type: String})
-Frame1JustifyContent = '';
+textBoxPaddingLeft = '';
 
 @property({type: String})
-Frame1AlignItems = '';
+textBoxPaddingBottom = '';
 
 @property({type: String})
-TitleWidth = '';
+textBoxPaddingRight = '';
 
 @property({type: String})
-TitleHeight = '';
+textBoxJustifyContent = '';
 
 @property({type: String})
-TitleBorderRadius = '';
+textBoxAlignItems = '';
 
 @property({type: String})
-TitleFlex = '';
+titleFlexBasis = '';
 
 @property({type: String})
-TitleGap = '';
+titleWidth = '';
 
 @property({type: String})
-TitleFlexDirection = '';
+titleHeight = '';
 
 @property({type: String})
-TitleBackgroundColor = '';
+titleBorderRadius = '';
 
 @property({type: String})
-TitleFontSize = '';
+titleGap = '';
 
 @property({type: String})
-TitleFontFamily = '';
+titleFlexDirection = '';
 
 @property({type: String})
-TitleFontWeight = '';
+titleBackgroundColor = '';
 
 @property({type: String})
-TitleLetterSpacing = '';
+titleFontSize = '';
+
+@property({type: String})
+titleFontFamily = '';
+
+@property({type: String})
+titleFontWeight = '';
+
+@property({type: String})
+titleLetterSpacing = '';
+
+@property({type: String})
+titleTextAlign = '';
+
+@property({type: String})
+titleLineHeight = '';
+
+@property({type: String})
+BrödtextFlexBasis = '';
 
 @property({type: String})
 BrödtextWidth = '';
@@ -120,9 +147,6 @@ BrödtextHeight = '';
 
 @property({type: String})
 BrödtextBorderRadius = '';
-
-@property({type: String})
-BrödtextFlex = '';
 
 @property({type: String})
 BrödtextGap = '';
@@ -146,46 +170,61 @@ BrödtextFontWeight = '';
 BrödtextLetterSpacing = '';
 
 @property({type: String})
-squareWidth = '';
+BrödtextTextAlign = '';
 
 @property({type: String})
-squareHeight = '';
+BrödtextLineHeight = '';
 
 @property({type: String})
-squareBorderRadius = '';
+hildaFlexBasis = '';
 
 @property({type: String})
-squareFlex = '';
+hildaWidth = '';
 
 @property({type: String})
-squareGap = '';
+hildaHeight = '';
 
 @property({type: String})
-squareFlexDirection = '';
+hildaBorderRadius = '';
 
 @property({type: String})
-squareBackgroundColor = '';
+hildaGap = '';
 
 @property({type: String})
-squarePaddingTop = '';
+hildaFlexDirection = '';
 
 @property({type: String})
-squarePaddingLeft = '';
+hildaBackgroundColor = '';
 
 @property({type: String})
-squarePaddingBottom = '';
+hildaBackgroundImage = '';
 
 @property({type: String})
-squarePaddingRight = '';
+hildaBackgroundSize = '';
 
 @property({type: String})
-squareJustifyContent = '';
+hildaBackgroundRepeat = '';
 
 @property({type: String})
-squareAlignItems = '';
+hildaPaddingTop = '';
 
 @property({type: String})
-TitleText = '';
+hildaPaddingLeft = '';
+
+@property({type: String})
+hildaPaddingBottom = '';
+
+@property({type: String})
+hildaPaddingRight = '';
+
+@property({type: String})
+hildaJustifyContent = '';
+
+@property({type: String})
+hildaAlignItems = '';
+
+@property({type: String})
+titleText = '';
 
 @property({type: String})
 BrödtextText = '';
@@ -193,6 +232,7 @@ BrödtextText = '';
 
     render(){
         return html`
+            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
@@ -213,43 +253,54 @@ padding-right: ${this.paddingRight  ? this.paddingRight:  '10px' };
 align-items: ${this.alignItems  ? this.alignItems:  'center' };
 }
 
-.Frame1 {
+.textBox {
 display: flex;
-width: ${this.Frame1Width  ? this.Frame1Width:  '48%' };
-height: ${this.Frame1Height  ? this.Frame1Height:  '100%' };
-flex: ${this.Frame1Flex  ? this.Frame1Flex:  '1' };
-flex-direction: ${this.Frame1FlexDirection  ? this.Frame1FlexDirection:  'column' };
-justify-content: ${this.Frame1JustifyContent  ? this.Frame1JustifyContent:  'flex-end' };
+flex-basis:  ${this.textBoxFlexBasis ? this.textBoxFlexBasis : '44.91525423728814%'};
+width: ${this.textBoxWidth  ? this.textBoxWidth:  '45%' };
+height: ${this.textBoxHeight  ? this.textBoxHeight:  '91%' };
+flex-direction: ${this.textBoxFlexDirection  ? this.textBoxFlexDirection:  'column' };
+padding-top: ${this.textBoxPaddingTop  ? this.textBoxPaddingTop:  '3.5px' };
+padding-left: ${this.textBoxPaddingLeft  ? this.textBoxPaddingLeft:  '3.5px' };
+padding-bottom: ${this.textBoxPaddingBottom  ? this.textBoxPaddingBottom:  '3.5px' };
+padding-right: ${this.textBoxPaddingRight  ? this.textBoxPaddingRight:  '3.5px' };
 }
 
-.Title {
-color: ${this.TitleBackgroundColor ? this.TitleBackgroundColor : '#ffe7e7'};
-font-size: ${this.TitleFontSize  ? this.TitleFontSize:  '1.5rem' };
-font-family: ${this.TitleFontFamily  ? this.TitleFontFamily:  'Montserrat' };
-font-weight: ${this.TitleFontWeight  ? this.TitleFontWeight:  '600' };
-letter-spacing: ${this.TitleLetterSpacing  ? this.TitleLetterSpacing:  '0' };
+.title {
+flex-basis:  ${this.titleFlexBasis ? this.titleFlexBasis : '43.28358208955223%'};
+color: ${this.titleBackgroundColor ? this.titleBackgroundColor : '#ffe7e7'};
+font-size: ${this.titleFontSize  ? this.titleFontSize:  '1.5rem' };
+font-family: ${this.titleFontFamily  ? this.titleFontFamily:  'Montserrat' };
+font-weight: ${this.titleFontWeight  ? this.titleFontWeight:  '600' };
+letter-spacing: ${this.titleLetterSpacing  ? this.titleLetterSpacing:  '0rem' };
+text-align: ${this.titleTextAlign  ? this.titleTextAlign:  'left' };
+line-height: ${this.titleLineHeight  ? this.titleLineHeight:  '1.7578125rem' };
 }
 
 .Brödtext {
+flex-basis:  ${this.BrödtextFlexBasis ? this.BrödtextFlexBasis : '22.388059701492537%'};
 color: ${this.BrödtextBackgroundColor ? this.BrödtextBackgroundColor : '#000000'};
 font-size: ${this.BrödtextFontSize  ? this.BrödtextFontSize:  '0.75rem' };
 font-family: ${this.BrödtextFontFamily  ? this.BrödtextFontFamily:  'Montserrat' };
 font-weight: ${this.BrödtextFontWeight  ? this.BrödtextFontWeight:  '400' };
-letter-spacing: ${this.BrödtextLetterSpacing  ? this.BrödtextLetterSpacing:  '0' };
+letter-spacing: ${this.BrödtextLetterSpacing  ? this.BrödtextLetterSpacing:  '0rem' };
+text-align: ${this.BrödtextTextAlign  ? this.BrödtextTextAlign:  'left' };
+line-height: ${this.BrödtextLineHeight  ? this.BrödtextLineHeight:  '0.87890625rem' };
 }
 
-.square {
-width: ${this.squareWidth  ? this.squareWidth:  '48%' };
-height: ${this.squareHeight  ? this.squareHeight:  '100%' };
-flex: ${this.squareFlex  ? this.squareFlex:  '1' };
-background-color: ${this.squareBackgroundColor  ? this.squareBackgroundColor:  '#c5c5c5' };
+.hilda {
+flex-basis:  ${this.hildaFlexBasis ? this.hildaFlexBasis : '47.88135593220339%'};
+width: ${this.hildaWidth  ? this.hildaWidth:  '48%' };
+height: ${this.hildaHeight  ? this.hildaHeight:  '100%' };
+background-image: ${this.hildaBackgroundImage  ? this.hildaBackgroundImage:  'url(https://s3-alpha-sig.figma.com/img/22bd/2d41/d562fe02234f42c2e2efa41c3c3e240c?Expires=1618185600&Signature=e-ZWrb4XaFtRUfpyNr-EqkOGsgB8LSTWlsfNKLYUDYmCm0CYTjrofFpdpH-dbkQ712QckQgrpK5QOucBtVxKZKO3DmoP~brFet6cdFBkRybAM8nzFpi0ImHcM2ejCPB3zpqIkZz23X~SqRaPC353QRQ6zTUzR6PCd7mUt7dzIDkgcZNtJ9VhkDae5lto1e67zocOOEl5bCmZK~5EIkceMPKCCj57aHgboluGoENIgwOXvjNaXEaUVaa4zt9wxbWTK6K5Jz-5sWPgISJh~FJtWC~9AyzlQkbpVOVhym4JJ2KZwiVsB8Nm91V9l-yetvNoYp9Fc0hfhQ3jG~eEGjV70A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)' };
+background-size: ${this.hildaBackgroundSize  ? this.hildaBackgroundSize:  'cover' };
+background-repeat: ${this.hildaBackgroundRepeat  ? this.hildaBackgroundRepeat:  'no-repeat' };
 }
 
 
             </style> 
-            <div class="Frame1">
-<p class="Title">
-   ${this.TitleText  ? this.TitleText:  'Title'
+            <div class="textBox">
+<p class="title">
+   ${this.titleText  ? this.titleText:  'Title'
             }
 </p>
 <p class="Brödtext">
@@ -257,7 +308,7 @@ background-color: ${this.squareBackgroundColor  ? this.squareBackgroundColor:  '
             }
 </p>
 </div>
-<div class="square">
+<div class="hilda">
 </div>
 
         `;
