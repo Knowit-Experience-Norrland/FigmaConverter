@@ -1,6 +1,139 @@
+/**
+ * TODO: Insert Css rules into Maps instead of strings
+ * TODO: could all cssSelectors be put into an array? then that could power the rules generation.
+ *
+ */
 import { LitElementFromFigmaComponent } from './litElementComponentClass';
 
 var properties = [];
+var propertyMaps = [];
+var cssRules = [];
+
+const createInputProperties = (name: string) => {
+    properties.push(`@property({type: String})\n${name} = '';\n\n`);
+    propertyMaps.push(`var ${name}Map = new Map(); \n`);
+};
+
+const setNameForElement = (element: LitElementFromFigmaComponent): string => {
+    var name = element.name.replace(/\s/g, '');
+    if (element.name.includes('-'))
+        name = element.stringToCamelCase(element.name.replace(/\s/g, ''), '-');
+    return name;
+};
+
+const createCssSelectors = (
+    element: LitElementFromFigmaComponent,
+    outString: string
+): string => {
+    var name = setNameForElement(element);
+
+    if (element.type !== 'INSTANCE') {
+        if (!element.hasParent) {
+            outString += `:host {\n`;
+            createInputProperties(name);
+        } else {
+            outString += `.${element.name.replace(/\s/g, '')} {\n`;
+            createInputProperties(name);
+        }
+        createCssRules(element);
+        outString += `\${this.renderCssString(${name}Map, this.${name})};\n}\n`;
+        if (element.children) {
+            element.children.forEach((child) => {
+                outString += createCssSelectors(child, '');
+            });
+        }
+    }
+    return outString;
+};
+
+/**
+ * Create css rules for all elements in the component.
+ * These rules are put in to maps for easy modifications.
+ *
+ * @param {LitElementFromFigmaComponent} element
+ * @param {string} outString
+ */
+const createCssRules = (element: LitElementFromFigmaComponent) => {
+    var flexUsed = false;
+    var name = setNameForElement(element);
+    if (element.cssAttributes.flexDirection)
+        cssRules.push(`${name}Map.set('display', 'flex');\n`);
+    if (element.hasParent) {
+        if (element.parentCssAttributes.flexDirection) {
+            cssRules.push(setFlexBasis(element, flexUsed));
+        }
+    }
+    for (var prop in element.cssAttributes) {
+        if (Object.prototype.hasOwnProperty.call(element.cssAttributes, prop)) {
+            if (element.cssAttributes[prop] && element.cssAttributes[prop] !== '0') {
+                if (element.type === 'TEXT' && prop == 'backgroundColor') {
+                    cssRules.push(
+                        `${name}Map.set('color', '${element.cssAttributes[prop]}');\n`
+                    );
+                    break;
+                }
+                // if (!(element.type === 'TEXT' && (prop == 'height' || prop == 'width'))) {
+                //     if (element.hasParent && (prop == 'width' || prop == 'height')) {
+                //         // if (element.parentCssAttributes.flexDirection) {
+                //         //     outString += `${element.camelCaseToDash(prop)}: 100%;\n`;
+                //         // } else {
+                //         outString += `${element.camelCaseToDash(
+                //             prop
+                //         )}: \${this.${propertyName}  ? this.${propertyName}:  '${Math.round(
+                //             (parseInt(element.cssAttributes[prop]) /
+                //                 parseInt(element.parentCssAttributes[prop])) *
+                //                 100
+                //         )}%' };\n`;
+                //         // }
+                //     } else if (
+                //         !element.hasParent &&
+                //         (prop == 'width' || prop == 'height') &&
+                //         (element.topBottomOffset || element.leftRightOffset)
+                //     ) {
+                //         var offset = '';
+                //         if (prop == 'width') offset = element.leftRightOffset + 'px';
+                //         if (prop == 'height') offset = element.topBottomOffset + 'px';
+                //         outString += `${element.camelCaseToDash(
+                //             prop
+                //         )}: \${this.${propertyName}  ? \`calc(\${this.${propertyName}} - ${offset})\`:  '${
+                //             element.cssAttributes[prop]
+                //         }' };\n`;
+                //     } else {
+
+                // projectCardMap.set('align-items', 'center');
+                cssRules.push(
+                    `${name}Map.set('${element.camelCaseToDash(prop)}', '${
+                        element.cssAttributes[prop]
+                    }');\n`
+                );
+                // outString += `${element.camelCaseToDash(
+                //     prop
+                // )}: \${this.${propertyName}  ? this.${propertyName}:  '${
+                //     element.cssAttributes[prop]
+                // }' };\n`;
+                //     }
+                // }
+            }
+        }
+    }
+    // if (
+    //     !(
+    //         Object.keys(element.typography).length === 0 &&
+    //         element.typography.constructor === Object
+    //     )
+    // ) {
+    //     for (var prop in element.typography) {
+    //         if (prop !== 'setName' && prop !== 'styleId') {
+    //             var propertyName = createInputProperty(element, prop, properties);
+    //             outString += `${element.camelCaseToDash(
+    //                 prop
+    //             )}: \${this.${propertyName}  ? this.${propertyName}:  '${
+    //                 element.typography[prop]
+    //             }' };\n`;
+    //         }
+    //     }
+    // }
+};
 
 export const litElementComponent = (
     name: string,
@@ -10,35 +143,68 @@ export const litElementComponent = (
         ? component.stringToCamelCase(component.name, '-')
         : component.stringToCamelCase(component.name, '=');
 
-    var elementString = `import { LitElement, html, customElement, property } from 'lit-element';
-@customElement('${
+    var elementString = `import { LitElement, html, customElement, property } from 'lit-element';\n`;
+
+    var classStartString = `@customElement('${
         component.name.includes('=') ? component.name.replace('=', '-') : component.name
     }')
 export class ${camelCasedName} extends LitElement { \n`;
 
-    // ${createInputProperties(component)}
+    // createInputProperties(component);
 
-    properties.push(`@property({type: String})\nexternalStyleSheet = '';\n\n`);
+    // properties.push(`@property({type: String})\nexternalStyleSheet = '';\n\n`);
 
     var renderString = `
-        render(){
-            return html\`
-                <link rel="stylesheet" href="\${this.externalStyleSheet}" />
-                <style> 
-                * {
-                    margin: 0;
-                    padding: 0;
+
+    propertyToMap = (cssRules: Map<string, string>, property: string) => {
+        if (property) {
+            var rules = property.split(', ');
+            rules.forEach((rule) => {
+                var key = rule.split(': ')[0];
+                var value = rule.split(': ')[1];
+                if (cssRules.has(key)) {
+                    cssRules.delete(key);
                 }
-                ${createCSSRules(component, '', properties)}
-                </style> 
-                ${createHTMLElements(component, '')}
-            \`;
-        }    
+                cssRules.set(key, value);
+            });
+        }
+    };
+
+    renderCssString = (cssRules: Map<string, string>, property: string): string => {
+        this.propertyToMap(cssRules, property);
+        var cssString = '';
+        for (let [key, value] of cssRules.entries()) {
+            cssString += \`\${key}: \${value};\\n\`;
+        }
+        return cssString;
+    };
+
+    render(){
+        return html\`
+            <style> 
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            
+            ${createCssSelectors(component, '')}
+            </style> 
+            ${createHTMLElements(component, '')}
+        \`;
+    }    
     }`;
 
-    elementString += properties.join('') + renderString;
+    // ${createCSSRules(component, '', properties)}
 
+    elementString +=
+        propertyMaps.join('') +
+        cssRules.join('') +
+        classStartString +
+        properties.join('') +
+        renderString;
     properties = [];
+    propertyMaps = [];
+    cssRules = [];
     return elementString;
 };
 
@@ -87,28 +253,27 @@ const createHTMLElements = (
     return outString;
 };
 
-const setFlexBasis = (
-    element: LitElementFromFigmaComponent,
-    flexUsed: boolean,
-    outString: string
-): string => {
-    var propertyName = createInputProperty(element, 'flexBasis', properties);
+const setFlexBasis = (element: LitElementFromFigmaComponent, flexUsed: boolean) => {
+    var name = setNameForElement(element);
     if (element.parentCssAttributes.flexDirection == 'row' && !flexUsed) {
         flexUsed = true;
-        outString += `flex-basis:  \${this.${propertyName} ? this.${propertyName} : '${
-            (parseInt(element.cssAttributes.width) /
-                parseInt(element.parentCssAttributes.width)) *
-            100
-        }%'};\n`;
+        cssRules.push(
+            `${name}Map.set('flex-basis', '${
+                (parseInt(element.cssAttributes.width) /
+                    parseInt(element.parentCssAttributes.width)) *
+                100
+            }%');\n`
+        );
     } else if (element.parentCssAttributes.flexDirection == 'column' && !flexUsed) {
         flexUsed = true;
-        outString += `flex-basis:  \${this.${propertyName} ? this.${propertyName} : '${
-            (parseInt(element.cssAttributes.height) /
-                parseInt(element.parentCssAttributes.height)) *
-            100
-        }%'};\n`;
+        cssRules.push(
+            `${name}Map.set('flex-basis', '${
+                (parseInt(element.cssAttributes.height) /
+                    parseInt(element.parentCssAttributes.height)) *
+                100
+            }%');\n`
+        );
     }
-    return outString;
 };
 
 // For keeping the same aspect ration for with and height if only width is changed
@@ -128,108 +293,108 @@ const setFlexBasis = (
  * @param {string[]} properties
  * @return {*}  {string}
  */
-const createCSSRules = (
-    element: LitElementFromFigmaComponent,
-    outString: string,
-    properties: string[]
-): string => {
-    var flexUsed = false;
-    if (element.name.split(' ')[0] === 'SLOT') {
-        return outString;
-    }
-    if (element.type !== 'INSTANCE') {
-        if (!element.hasParent) {
-            outString += `:host {\n`;
-        } else {
-            outString += `.${element.name.replace(/\s/g, '')} {\n`;
-        }
-        if (element.cssAttributes.flexDirection) outString += `display: flex;\n`;
+// const createCSSRules = (
+//     element: LitElementFromFigmaComponent,
+//     outString: string,
+//     properties: string[]
+// ): string => {
+//     var flexUsed = false;
+//     if (element.name.split(' ')[0] === 'SLOT') {
+//         return outString;
+//     }
+//     if (element.type !== 'INSTANCE') {
+//         if (!element.hasParent) {
+//             outString += `:host {\n`;
+//         } else {
+//             outString += `.${element.name.replace(/\s/g, '')} {\n`;
+//         }
+//         if (element.cssAttributes.flexDirection) outString += `display: flex;\n`;
 
-        if (element.hasParent) {
-            if (element.parentCssAttributes.flexDirection) {
-                outString = setFlexBasis(element, flexUsed, outString);
-            }
-        }
-        for (var prop in element.cssAttributes) {
-            var propertyName = createInputProperty(element, prop, properties);
-            if (Object.prototype.hasOwnProperty.call(element.cssAttributes, prop)) {
-                if (element.cssAttributes[prop] && element.cssAttributes[prop] !== '0') {
-                    if (element.type === 'TEXT' && prop == 'backgroundColor') {
-                        outString += `color: \${this.${propertyName} ? this.${propertyName} : '${element.cssAttributes[prop]}'};\n`;
-                        break;
-                    }
-                    if (
-                        !(
-                            element.type === 'TEXT' &&
-                            (prop == 'height' || prop == 'width')
-                        )
-                    ) {
-                        if (element.hasParent && (prop == 'width' || prop == 'height')) {
-                            // if (element.parentCssAttributes.flexDirection) {
-                            //     outString += `${element.camelCaseToDash(prop)}: 100%;\n`;
-                            // } else {
-                            outString += `${element.camelCaseToDash(
-                                prop
-                            )}: \${this.${propertyName}  ? this.${propertyName}:  '${Math.round(
-                                (parseInt(element.cssAttributes[prop]) /
-                                    parseInt(element.parentCssAttributes[prop])) *
-                                    100
-                            )}%' };\n`;
-                            // }
-                        } else if (
-                            !element.hasParent &&
-                            (prop == 'width' || prop == 'height') &&
-                            (element.topBottomOffset || element.leftRightOffset)
-                        ) {
-                            var offset = '';
-                            if (prop == 'width') offset = element.leftRightOffset + 'px';
+//         if (element.hasParent) {
+//             if (element.parentCssAttributes.flexDirection) {
+//                 outString = setFlexBasis(element, flexUsed, outString);
+//             }
+//         }
+//         for (var prop in element.cssAttributes) {
+//             var propertyName = createInputProperty(element, prop, properties);
+//             if (Object.prototype.hasOwnProperty.call(element.cssAttributes, prop)) {
+//                 if (element.cssAttributes[prop] && element.cssAttributes[prop] !== '0') {
+//                     if (element.type === 'TEXT' && prop == 'backgroundColor') {
+//                         outString += `color: \${this.${propertyName} ? this.${propertyName} : '${element.cssAttributes[prop]}'};\n`;
+//                         break;
+//                     }
+//                     if (
+//                         !(
+//                             element.type === 'TEXT' &&
+//                             (prop == 'height' || prop == 'width')
+//                         )
+//                     ) {
+//                         if (element.hasParent && (prop == 'width' || prop == 'height')) {
+//                             // if (element.parentCssAttributes.flexDirection) {
+//                             //     outString += `${element.camelCaseToDash(prop)}: 100%;\n`;
+//                             // } else {
+//                             outString += `${element.camelCaseToDash(
+//                                 prop
+//                             )}: \${this.${propertyName}  ? this.${propertyName}:  '${Math.round(
+//                                 (parseInt(element.cssAttributes[prop]) /
+//                                     parseInt(element.parentCssAttributes[prop])) *
+//                                     100
+//                             )}%' };\n`;
+//                             // }
+//                         } else if (
+//                             !element.hasParent &&
+//                             (prop == 'width' || prop == 'height') &&
+//                             (element.topBottomOffset || element.leftRightOffset)
+//                         ) {
+//                             var offset = '';
+//                             if (prop == 'width') offset = element.leftRightOffset + 'px';
 
-                            if (prop == 'height') offset = element.topBottomOffset + 'px';
+//                             if (prop == 'height') offset = element.topBottomOffset + 'px';
 
-                            outString += `${element.camelCaseToDash(
-                                prop
-                            )}: \${this.${propertyName}  ? \`calc(\${this.${propertyName}} - ${offset})\`:  '${
-                                element.cssAttributes[prop]
-                            }' };\n`;
-                        } else {
-                            outString += `${element.camelCaseToDash(
-                                prop
-                            )}: \${this.${propertyName}  ? this.${propertyName}:  '${
-                                element.cssAttributes[prop]
-                            }' };\n`;
-                        }
-                    }
-                }
-            }
-        }
+//                             outString += `${element.camelCaseToDash(
+//                                 prop
+//                             )}: \${this.${propertyName}  ? \`calc(\${this.${propertyName}} - ${offset})\`:  '${
+//                                 element.cssAttributes[prop]
+//                             }' };\n`;
+//                         } else {
+//                             outString += `${element.camelCaseToDash(
+//                                 prop
+//                             )}: \${this.${propertyName}  ? this.${propertyName}:  '${
+//                                 element.cssAttributes[prop]
+//                             }' };\n`;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
 
-        if (
-            !(
-                Object.keys(element.typography).length === 0 &&
-                element.typography.constructor === Object
-            )
-        ) {
-            for (var prop in element.typography) {
-                if (prop !== 'setName' && prop !== 'styleId') {
-                    var propertyName = createInputProperty(element, prop, properties);
-                    outString += `${element.camelCaseToDash(
-                        prop
-                    )}: \${this.${propertyName}  ? this.${propertyName}:  '${
-                        element.typography[prop]
-                    }' };\n`;
-                }
-            }
-        }
-        outString += `}\n\n`;
+//         if (
+//             !(
+//                 Object.keys(element.typography).length === 0 &&
+//                 element.typography.constructor === Object
+//             )
+//         ) {
+//             for (var prop in element.typography) {
+//                 if (prop !== 'setName' && prop !== 'styleId') {
+//                     var propertyName = createInputProperty(element, prop, properties);
+//                     outString += `${element.camelCaseToDash(
+//                         prop
+//                     )}: \${this.${propertyName}  ? this.${propertyName}:  '${
+//                         element.typography[prop]
+//                     }' };\n`;
+//                 }
+//             }
+//         }
+//         outString += `}\n\n`;
 
-        if (element.children) {
-            element.children.forEach((child) => {
-                outString += createCSSRules(child, '', properties);
-            });
-        }
-    }
-    return outString;
-};
+//         if (element.children) {
+//             element.children.forEach((child) => {
+//                 outString += createCSSRules(child, '', properties);
+//             });
+//         }
+//     }
+//     return outString;
+// };
 
 const createInputProperty = (
     element: LitElementFromFigmaComponent,

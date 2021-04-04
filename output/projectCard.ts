@@ -1,18 +1,12 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 import { LitElement, html, customElement, property } from 'lit-element';
-var projectCardMap = new Map();
-var textBoxMap = new Map();
-var titleMap = new Map();
-var descriptionMap = new Map();
-var imgBoxMap = new Map();
-var ImgFigmaMap = new Map();
-var ImgTypescriptMap = new Map();
-var ImgLitMap = new Map();
+var projectCardMap = new Map(); 
+var textBoxMap = new Map(); 
+var titleMap = new Map(); 
+var descriptionMap = new Map(); 
+var imgBoxMap = new Map(); 
+var ImgFigmaMap = new Map(); 
+var ImgTypescriptMap = new Map(); 
+var ImgLitMap = new Map(); 
 projectCardMap.set('display', 'flex');
 projectCardMap.set('width', '320px');
 projectCardMap.set('height', '130px');
@@ -70,43 +64,65 @@ ImgLitMap.set('height', '26px');
 ImgLitMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/5ca4/c0ea/216205032c86f406ef729e730356bf9c?Expires=1618185600&Signature=gvprYE2vFEmZCUi5UPoyhUSAbXDZzaZSN9y7bz9mKmHvgOOfKYjr8sqQJlOmhv2pgMh72IFIBUcSqUvsvcN6qSbCcvimj0uYyLsRt96nF6iAAoYW23P~pEZG3RT6JYGUWsXxYhcSsNoCSKrkZvRKy910prQt0WaNo3OV0dKoeIjhn8EA-vVc0yVuJ6SeJIh88muGBHxMfITisjuu65ALE4FgBLT6igOolWm8FZfP523kJHOgod~VuU6yicG6gWS2aDcAnxMmlT2dnOfDrRnsL2FET8Zamtu7i~wTG0v-6IVWmSC9NkbAMpYxAaEkpjFfjH62LErmpU5IHs7q-9xvgA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgLitMap.set('background-size', 'cover');
 ImgLitMap.set('background-repeat', 'no-repeat');
-let projectCard = class projectCard extends LitElement {
-    constructor() {
-        super(...arguments);
-        this.projectCard = '';
-        this.textBox = '';
-        this.title = '';
-        this.description = '';
-        this.imgBox = '';
-        this.ImgFigma = '';
-        this.ImgTypescript = '';
-        this.ImgLit = '';
-        this.titleText = '';
-        this.descriptionText = '';
-        this.propertyToMap = (cssRules, property) => {
-            if (property) {
-                var rules = property.split(', ');
-                rules.forEach((rule) => {
-                    var key = rule.split(': ')[0];
-                    var value = rule.split(': ')[1];
-                    if (cssRules.has(key)) {
-                        cssRules.delete(key);
-                    }
-                    cssRules.set(key, value);
-                });
-            }
-        };
-        this.renderCssString = (cssRules, property) => {
-            this.propertyToMap(cssRules, property);
-            var cssString = '';
-            for (let [key, value] of cssRules.entries()) {
-                cssString += `${key}: ${value};\n`;
-            }
-            return cssString;
-        };
-    }
-    render() {
-        return html `
+@customElement('project-card')
+export class projectCard extends LitElement { 
+@property({type: String})
+projectCard = '';
+
+@property({type: String})
+textBox = '';
+
+@property({type: String})
+title = '';
+
+@property({type: String})
+description = '';
+
+@property({type: String})
+imgBox = '';
+
+@property({type: String})
+ImgFigma = '';
+
+@property({type: String})
+ImgTypescript = '';
+
+@property({type: String})
+ImgLit = '';
+
+@property({type: String})
+titleText = '';
+
+@property({type: String})
+descriptionText = '';
+
+
+
+    propertyToMap = (cssRules: Map<string, string>, property: string) => {
+        if (property) {
+            var rules = property.split(', ');
+            rules.forEach((rule) => {
+                var key = rule.split(': ')[0];
+                var value = rule.split(': ')[1];
+                if (cssRules.has(key)) {
+                    cssRules.delete(key);
+                }
+                cssRules.set(key, value);
+            });
+        }
+    };
+
+    renderCssString = (cssRules: Map<string, string>, property: string): string => {
+        this.propertyToMap(cssRules, property);
+        var cssString = '';
+        for (let [key, value] of cssRules.entries()) {
+            cssString += `${key}: ${value};\n`;
+        }
+        return cssString;
+    };
+
+    render(){
+        return html`
             <style> 
             * {
                 margin: 0;
@@ -141,10 +157,12 @@ ${this.renderCssString(ImgLitMap, this.ImgLit)};
             </style> 
             <div class="textBox">
 <p class="title">
-   ${this.titleText ? this.titleText : 'FigmaConverter'}
+   ${this.titleText  ? this.titleText:  'FigmaConverter'
+            }
 </p>
 <p class="description">
-   ${this.descriptionText ? this.descriptionText : 'Ett verktyg som jag utvecklade under mitt examensarbete'}
+   ${this.descriptionText  ? this.descriptionText:  'Ett verktyg som jag utvecklade under mitt examensarbete'
+            }
 </p>
 </div>
 <div class="imgBox">
@@ -157,40 +175,6 @@ ${this.renderCssString(ImgLitMap, this.ImgLit)};
 </div>
 
         `;
+    }    
     }
-};
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "projectCard", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "textBox", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "title", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "description", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "imgBox", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "ImgFigma", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "ImgTypescript", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "ImgLit", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "titleText", void 0);
-__decorate([
-    property({ type: String })
-], projectCard.prototype, "descriptionText", void 0);
-projectCard = __decorate([
-    customElement('project-card')
-], projectCard);
-export { projectCard };
-// NOT GENERATED CODE
+ // NOT GENERATED CODE

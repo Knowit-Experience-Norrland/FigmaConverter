@@ -5,110 +5,84 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { LitElement, html, customElement, property } from 'lit-element';
+var aboutMeMap = new Map();
+var titleMap = new Map();
+var firstParagraphMap = new Map();
+var secondParagraphMap = new Map();
+aboutMeMap.set('display', 'flex');
+aboutMeMap.set('width', '293px');
+aboutMeMap.set('height', '388px');
+aboutMeMap.set('gap', '41px');
+aboutMeMap.set('flex-direction', 'column');
+aboutMeMap.set('background-color', '#0c0c0c');
+aboutMeMap.set('padding-top', '13.5px');
+aboutMeMap.set('padding-left', '13.5px');
+aboutMeMap.set('padding-bottom', '13.5px');
+aboutMeMap.set('padding-right', '13.5px');
+titleMap.set('flex-basis', '7.474226804123711%');
+titleMap.set('width', '47px');
+titleMap.set('height', '29px');
+titleMap.set('color', '#f5fdff');
+firstParagraphMap.set('flex-basis', '35.56701030927835%');
+firstParagraphMap.set('width', '293px');
+firstParagraphMap.set('height', '138.5px');
+firstParagraphMap.set('color', '#f5fdff');
+secondParagraphMap.set('flex-basis', '35.56701030927835%');
+secondParagraphMap.set('width', '293px');
+secondParagraphMap.set('height', '138.5px');
+secondParagraphMap.set('color', '#f5fdff');
 let aboutMe = class aboutMe extends LitElement {
     constructor() {
         super(...arguments);
-        this.externalStyleSheet = '';
-        this.width = '';
-        this.height = '';
-        this.borderRadius = '';
-        this.gap = '';
-        this.flexDirection = '';
-        this.backgroundColor = '';
-        this.backgroundImage = '';
-        this.backgroundSize = '';
-        this.backgroundRepeat = '';
-        this.paddingTop = '';
-        this.paddingLeft = '';
-        this.paddingBottom = '';
-        this.paddingRight = '';
-        this.justifyContent = '';
-        this.alignItems = '';
-        this.titleFlexBasis = '';
-        this.titleWidth = '';
-        this.titleHeight = '';
-        this.titleBorderRadius = '';
-        this.titleGap = '';
-        this.titleFlexDirection = '';
-        this.titleBackgroundColor = '';
-        this.titleFontSize = '';
-        this.titleFontFamily = '';
-        this.titleFontWeight = '';
-        this.titleTextAlign = '';
-        this.firstParagraphFlexBasis = '';
-        this.firstParagraphWidth = '';
-        this.firstParagraphHeight = '';
-        this.firstParagraphBorderRadius = '';
-        this.firstParagraphGap = '';
-        this.firstParagraphFlexDirection = '';
-        this.firstParagraphBackgroundColor = '';
-        this.firstParagraphFontSize = '';
-        this.firstParagraphFontFamily = '';
-        this.firstParagraphFontWeight = '';
-        this.firstParagraphTextAlign = '';
-        this.secondParagraphFlexBasis = '';
-        this.secondParagraphWidth = '';
-        this.secondParagraphHeight = '';
-        this.secondParagraphBorderRadius = '';
-        this.secondParagraphGap = '';
-        this.secondParagraphFlexDirection = '';
-        this.secondParagraphBackgroundColor = '';
-        this.secondParagraphFontSize = '';
-        this.secondParagraphFontFamily = '';
-        this.secondParagraphFontWeight = '';
-        this.secondParagraphTextAlign = '';
+        this.aboutMe = '';
+        this.title = '';
+        this.firstParagraph = '';
+        this.secondParagraph = '';
         this.titleText = '';
         this.firstParagraphText = '';
         this.secondParagraphText = '';
+        this.propertyToMap = (cssRules, property) => {
+            if (property) {
+                var rules = property.split(', ');
+                rules.forEach((rule) => {
+                    var key = rule.split(': ')[0];
+                    var value = rule.split(': ')[1];
+                    if (cssRules.has(key)) {
+                        cssRules.delete(key);
+                    }
+                    cssRules.set(key, value);
+                });
+            }
+        };
+        this.renderCssString = (cssRules, property) => {
+            this.propertyToMap(cssRules, property);
+            var cssString = '';
+            for (let [key, value] of cssRules.entries()) {
+                cssString += `${key}: ${value};\n`;
+            }
+            return cssString;
+        };
     }
     render() {
         return html `
-            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
                 padding: 0;
             }
+            
             :host {
-display: flex;
-width: ${this.width ? `calc(${this.width} - 27px)` : '293px'};
-height: ${this.height ? `calc(${this.height} - 27px)` : '388px'};
-gap: ${this.gap ? this.gap : '41px'};
-flex-direction: ${this.flexDirection ? this.flexDirection : 'column'};
-background-color: ${this.backgroundColor ? this.backgroundColor : '#0c0c0c'};
-padding-top: ${this.paddingTop ? this.paddingTop : '13.5px'};
-padding-left: ${this.paddingLeft ? this.paddingLeft : '13.5px'};
-padding-bottom: ${this.paddingBottom ? this.paddingBottom : '13.5px'};
-padding-right: ${this.paddingRight ? this.paddingRight : '13.5px'};
+${this.renderCssString(aboutMeMap, this.aboutMe)};
 }
-
 .title {
-flex-basis:  ${this.titleFlexBasis ? this.titleFlexBasis : '7.474226804123711%'};
-color: ${this.titleBackgroundColor ? this.titleBackgroundColor : '#f5fdff'};
-font-size: ${this.titleFontSize ? this.titleFontSize : '1.5rem'};
-font-family: ${this.titleFontFamily ? this.titleFontFamily : 'Montserrat'};
-font-weight: ${this.titleFontWeight ? this.titleFontWeight : '400'};
-text-align: ${this.titleTextAlign ? this.titleTextAlign : 'left'};
+${this.renderCssString(titleMap, this.title)};
 }
-
 .firstParagraph {
-flex-basis:  ${this.firstParagraphFlexBasis ? this.firstParagraphFlexBasis : '35.56701030927835%'};
-color: ${this.firstParagraphBackgroundColor ? this.firstParagraphBackgroundColor : '#f5fdff'};
-font-size: ${this.firstParagraphFontSize ? this.firstParagraphFontSize : '0.875rem'};
-font-family: ${this.firstParagraphFontFamily ? this.firstParagraphFontFamily : 'Montserrat'};
-font-weight: ${this.firstParagraphFontWeight ? this.firstParagraphFontWeight : '400'};
-text-align: ${this.firstParagraphTextAlign ? this.firstParagraphTextAlign : 'left'};
+${this.renderCssString(firstParagraphMap, this.firstParagraph)};
 }
-
 .secondParagraph {
-flex-basis:  ${this.secondParagraphFlexBasis ? this.secondParagraphFlexBasis : '35.56701030927835%'};
-color: ${this.secondParagraphBackgroundColor ? this.secondParagraphBackgroundColor : '#f5fdff'};
-font-size: ${this.secondParagraphFontSize ? this.secondParagraphFontSize : '0.875rem'};
-font-family: ${this.secondParagraphFontFamily ? this.secondParagraphFontFamily : 'Montserrat'};
-font-weight: ${this.secondParagraphFontWeight ? this.secondParagraphFontWeight : '400'};
-text-align: ${this.secondParagraphTextAlign ? this.secondParagraphTextAlign : 'left'};
+${this.renderCssString(secondParagraphMap, this.secondParagraph)};
 }
-
 
             </style> 
             <p class="title">
@@ -126,151 +100,16 @@ text-align: ${this.secondParagraphTextAlign ? this.secondParagraphTextAlign : 'l
 };
 __decorate([
     property({ type: String })
-], aboutMe.prototype, "externalStyleSheet", void 0);
+], aboutMe.prototype, "aboutMe", void 0);
 __decorate([
     property({ type: String })
-], aboutMe.prototype, "width", void 0);
+], aboutMe.prototype, "title", void 0);
 __decorate([
     property({ type: String })
-], aboutMe.prototype, "height", void 0);
+], aboutMe.prototype, "firstParagraph", void 0);
 __decorate([
     property({ type: String })
-], aboutMe.prototype, "borderRadius", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "gap", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "flexDirection", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "backgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "backgroundImage", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "backgroundSize", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "backgroundRepeat", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "paddingTop", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "paddingLeft", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "paddingBottom", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "paddingRight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "justifyContent", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "alignItems", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleFlexBasis", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleWidth", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleHeight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleBorderRadius", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleGap", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleFlexDirection", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleBackgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleFontSize", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleFontFamily", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleFontWeight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "titleTextAlign", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphFlexBasis", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphWidth", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphHeight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphBorderRadius", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphGap", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphFlexDirection", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphBackgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphFontSize", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphFontFamily", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphFontWeight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "firstParagraphTextAlign", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphFlexBasis", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphWidth", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphHeight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphBorderRadius", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphGap", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphFlexDirection", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphBackgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphFontSize", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphFontFamily", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphFontWeight", void 0);
-__decorate([
-    property({ type: String })
-], aboutMe.prototype, "secondParagraphTextAlign", void 0);
+], aboutMe.prototype, "secondParagraph", void 0);
 __decorate([
     property({ type: String })
 ], aboutMe.prototype, "titleText", void 0);

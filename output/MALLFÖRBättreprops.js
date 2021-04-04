@@ -50,7 +50,7 @@ let projectCard = class projectCard extends LitElement {
             this.propertyToMap(cssRules, property);
             var cssString = '';
             for (let [key, value] of cssRules.entries()) {
-                cssString += key + ': ' + value + ';\n';
+                cssString += `${key} : ${value};\n`;
             }
             return cssString;
         };

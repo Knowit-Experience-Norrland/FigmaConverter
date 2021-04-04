@@ -1,152 +1,43 @@
 import { LitElement, html, customElement, property } from 'lit-element';
+var aboutMeMap = new Map(); 
+var titleMap = new Map(); 
+var firstParagraphMap = new Map(); 
+var secondParagraphMap = new Map(); 
+aboutMeMap.set('display', 'flex');
+aboutMeMap.set('width', '293px');
+aboutMeMap.set('height', '388px');
+aboutMeMap.set('gap', '41px');
+aboutMeMap.set('flex-direction', 'column');
+aboutMeMap.set('background-color', '#0c0c0c');
+aboutMeMap.set('padding-top', '13.5px');
+aboutMeMap.set('padding-left', '13.5px');
+aboutMeMap.set('padding-bottom', '13.5px');
+aboutMeMap.set('padding-right', '13.5px');
+titleMap.set('flex-basis', '7.474226804123711%');
+titleMap.set('width', '47px');
+titleMap.set('height', '29px');
+titleMap.set('color', '#f5fdff');
+firstParagraphMap.set('flex-basis', '35.56701030927835%');
+firstParagraphMap.set('width', '293px');
+firstParagraphMap.set('height', '138.5px');
+firstParagraphMap.set('color', '#f5fdff');
+secondParagraphMap.set('flex-basis', '35.56701030927835%');
+secondParagraphMap.set('width', '293px');
+secondParagraphMap.set('height', '138.5px');
+secondParagraphMap.set('color', '#f5fdff');
 @customElement('about-me')
 export class aboutMe extends LitElement { 
 @property({type: String})
-externalStyleSheet = '';
+aboutMe = '';
 
 @property({type: String})
-width = '';
+title = '';
 
 @property({type: String})
-height = '';
+firstParagraph = '';
 
 @property({type: String})
-borderRadius = '';
-
-@property({type: String})
-gap = '';
-
-@property({type: String})
-flexDirection = '';
-
-@property({type: String})
-backgroundColor = '';
-
-@property({type: String})
-backgroundImage = '';
-
-@property({type: String})
-backgroundSize = '';
-
-@property({type: String})
-backgroundRepeat = '';
-
-@property({type: String})
-paddingTop = '';
-
-@property({type: String})
-paddingLeft = '';
-
-@property({type: String})
-paddingBottom = '';
-
-@property({type: String})
-paddingRight = '';
-
-@property({type: String})
-justifyContent = '';
-
-@property({type: String})
-alignItems = '';
-
-@property({type: String})
-titleFlexBasis = '';
-
-@property({type: String})
-titleWidth = '';
-
-@property({type: String})
-titleHeight = '';
-
-@property({type: String})
-titleBorderRadius = '';
-
-@property({type: String})
-titleGap = '';
-
-@property({type: String})
-titleFlexDirection = '';
-
-@property({type: String})
-titleBackgroundColor = '';
-
-@property({type: String})
-titleFontSize = '';
-
-@property({type: String})
-titleFontFamily = '';
-
-@property({type: String})
-titleFontWeight = '';
-
-@property({type: String})
-titleTextAlign = '';
-
-@property({type: String})
-firstParagraphFlexBasis = '';
-
-@property({type: String})
-firstParagraphWidth = '';
-
-@property({type: String})
-firstParagraphHeight = '';
-
-@property({type: String})
-firstParagraphBorderRadius = '';
-
-@property({type: String})
-firstParagraphGap = '';
-
-@property({type: String})
-firstParagraphFlexDirection = '';
-
-@property({type: String})
-firstParagraphBackgroundColor = '';
-
-@property({type: String})
-firstParagraphFontSize = '';
-
-@property({type: String})
-firstParagraphFontFamily = '';
-
-@property({type: String})
-firstParagraphFontWeight = '';
-
-@property({type: String})
-firstParagraphTextAlign = '';
-
-@property({type: String})
-secondParagraphFlexBasis = '';
-
-@property({type: String})
-secondParagraphWidth = '';
-
-@property({type: String})
-secondParagraphHeight = '';
-
-@property({type: String})
-secondParagraphBorderRadius = '';
-
-@property({type: String})
-secondParagraphGap = '';
-
-@property({type: String})
-secondParagraphFlexDirection = '';
-
-@property({type: String})
-secondParagraphBackgroundColor = '';
-
-@property({type: String})
-secondParagraphFontSize = '';
-
-@property({type: String})
-secondParagraphFontFamily = '';
-
-@property({type: String})
-secondParagraphFontWeight = '';
-
-@property({type: String})
-secondParagraphTextAlign = '';
+secondParagraph = '';
 
 @property({type: String})
 titleText = '';
@@ -158,54 +49,50 @@ firstParagraphText = '';
 secondParagraphText = '';
 
 
+
+    propertyToMap = (cssRules: Map<string, string>, property: string) => {
+        if (property) {
+            var rules = property.split(', ');
+            rules.forEach((rule) => {
+                var key = rule.split(': ')[0];
+                var value = rule.split(': ')[1];
+                if (cssRules.has(key)) {
+                    cssRules.delete(key);
+                }
+                cssRules.set(key, value);
+            });
+        }
+    };
+
+    renderCssString = (cssRules: Map<string, string>, property: string): string => {
+        this.propertyToMap(cssRules, property);
+        var cssString = '';
+        for (let [key, value] of cssRules.entries()) {
+            cssString += `${key}: ${value};\n`;
+        }
+        return cssString;
+    };
+
     render(){
         return html`
-            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
                 padding: 0;
             }
+            
             :host {
-display: flex;
-width: ${this.width  ? `calc(${this.width} - 27px)`:  '293px' };
-height: ${this.height  ? `calc(${this.height} - 27px)`:  '388px' };
-gap: ${this.gap  ? this.gap:  '41px' };
-flex-direction: ${this.flexDirection  ? this.flexDirection:  'column' };
-background-color: ${this.backgroundColor  ? this.backgroundColor:  '#0c0c0c' };
-padding-top: ${this.paddingTop  ? this.paddingTop:  '13.5px' };
-padding-left: ${this.paddingLeft  ? this.paddingLeft:  '13.5px' };
-padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '13.5px' };
-padding-right: ${this.paddingRight  ? this.paddingRight:  '13.5px' };
+${this.renderCssString(aboutMeMap, this.aboutMe)};
 }
-
 .title {
-flex-basis:  ${this.titleFlexBasis ? this.titleFlexBasis : '7.474226804123711%'};
-color: ${this.titleBackgroundColor ? this.titleBackgroundColor : '#f5fdff'};
-font-size: ${this.titleFontSize  ? this.titleFontSize:  '1.5rem' };
-font-family: ${this.titleFontFamily  ? this.titleFontFamily:  'Montserrat' };
-font-weight: ${this.titleFontWeight  ? this.titleFontWeight:  '400' };
-text-align: ${this.titleTextAlign  ? this.titleTextAlign:  'left' };
+${this.renderCssString(titleMap, this.title)};
 }
-
 .firstParagraph {
-flex-basis:  ${this.firstParagraphFlexBasis ? this.firstParagraphFlexBasis : '35.56701030927835%'};
-color: ${this.firstParagraphBackgroundColor ? this.firstParagraphBackgroundColor : '#f5fdff'};
-font-size: ${this.firstParagraphFontSize  ? this.firstParagraphFontSize:  '0.875rem' };
-font-family: ${this.firstParagraphFontFamily  ? this.firstParagraphFontFamily:  'Montserrat' };
-font-weight: ${this.firstParagraphFontWeight  ? this.firstParagraphFontWeight:  '400' };
-text-align: ${this.firstParagraphTextAlign  ? this.firstParagraphTextAlign:  'left' };
+${this.renderCssString(firstParagraphMap, this.firstParagraph)};
 }
-
 .secondParagraph {
-flex-basis:  ${this.secondParagraphFlexBasis ? this.secondParagraphFlexBasis : '35.56701030927835%'};
-color: ${this.secondParagraphBackgroundColor ? this.secondParagraphBackgroundColor : '#f5fdff'};
-font-size: ${this.secondParagraphFontSize  ? this.secondParagraphFontSize:  '0.875rem' };
-font-family: ${this.secondParagraphFontFamily  ? this.secondParagraphFontFamily:  'Montserrat' };
-font-weight: ${this.secondParagraphFontWeight  ? this.secondParagraphFontWeight:  '400' };
-text-align: ${this.secondParagraphTextAlign  ? this.secondParagraphTextAlign:  'left' };
+${this.renderCssString(secondParagraphMap, this.secondParagraph)};
 }
-
 
             </style> 
             <p class="title">
@@ -223,5 +110,5 @@ text-align: ${this.secondParagraphTextAlign  ? this.secondParagraphTextAlign:  '
 
         `;
     }    
-}
+    }
  // NOT GENERATED CODE

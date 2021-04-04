@@ -5,70 +5,66 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { LitElement, html, customElement, property } from 'lit-element';
+var testTestMap = new Map();
+var testMap = new Map();
+testTestMap.set('display', 'flex');
+testTestMap.set('width', '24px');
+testTestMap.set('height', '17px');
+testTestMap.set('gap', '10px');
+testTestMap.set('flex-direction', 'row');
+testTestMap.set('background-color', '#ffffff');
+testTestMap.set('padding-top', '62.5px');
+testTestMap.set('padding-left', '62.5px');
+testTestMap.set('padding-bottom', '62.5px');
+testTestMap.set('padding-right', '62.5px');
+testTestMap.set('justify-content', 'center');
+testTestMap.set('align-items', 'center');
+testMap.set('flex-basis', '100%');
+testMap.set('width', '24px');
+testMap.set('height', '17px');
+testMap.set('color', '#000000');
 let testTest = class testTest extends LitElement {
     constructor() {
         super(...arguments);
-        this.externalStyleSheet = '';
-        this.width = '';
-        this.height = '';
-        this.borderRadius = '';
-        this.gap = '';
-        this.flexDirection = '';
-        this.backgroundColor = '';
-        this.backgroundImage = '';
-        this.backgroundSize = '';
-        this.backgroundRepeat = '';
-        this.paddingTop = '';
-        this.paddingLeft = '';
-        this.paddingBottom = '';
-        this.paddingRight = '';
-        this.justifyContent = '';
-        this.alignItems = '';
-        this.testFlexBasis = '';
-        this.testWidth = '';
-        this.testHeight = '';
-        this.testBorderRadius = '';
-        this.testGap = '';
-        this.testFlexDirection = '';
-        this.testBackgroundColor = '';
-        this.testFontSize = '';
-        this.testFontFamily = '';
-        this.testFontWeight = '';
-        this.testTextAlign = '';
+        this.testTest = '';
+        this.test = '';
         this.testText = '';
+        this.propertyToMap = (cssRules, property) => {
+            if (property) {
+                var rules = property.split(', ');
+                rules.forEach((rule) => {
+                    var key = rule.split(': ')[0];
+                    var value = rule.split(': ')[1];
+                    if (cssRules.has(key)) {
+                        cssRules.delete(key);
+                    }
+                    cssRules.set(key, value);
+                });
+            }
+        };
+        this.renderCssString = (cssRules, property) => {
+            this.propertyToMap(cssRules, property);
+            var cssString = '';
+            for (let [key, value] of cssRules.entries()) {
+                cssString += `${key}: ${value};\n`;
+            }
+            return cssString;
+        };
     }
     render() {
         return html `
-            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
                 padding: 0;
             }
+            
             :host {
-display: flex;
-width: ${this.width ? `calc(${this.width} - 125px)` : '24px'};
-height: ${this.height ? `calc(${this.height} - 125px)` : '17px'};
-gap: ${this.gap ? this.gap : '10px'};
-flex-direction: ${this.flexDirection ? this.flexDirection : 'row'};
-background-color: ${this.backgroundColor ? this.backgroundColor : '#ffffff'};
-padding-top: ${this.paddingTop ? this.paddingTop : '62.5px'};
-padding-left: ${this.paddingLeft ? this.paddingLeft : '62.5px'};
-padding-bottom: ${this.paddingBottom ? this.paddingBottom : '62.5px'};
-padding-right: ${this.paddingRight ? this.paddingRight : '62.5px'};
-justify-content: ${this.justifyContent ? this.justifyContent : 'center'};
-align-items: ${this.alignItems ? this.alignItems : 'center'};
+${this.renderCssString(testTestMap, this.testTest)};
 }
-
 .test {
-flex-basis:  ${this.testFlexBasis ? this.testFlexBasis : '100%'};
-color: ${this.testBackgroundColor ? this.testBackgroundColor : '#000000'};
-font-size: ${this.testFontSize ? this.testFontSize : '0.8805068731307983rem'};
-font-family: ${this.testFontFamily ? this.testFontFamily : 'Roboto'};
-font-weight: ${this.testFontWeight ? this.testFontWeight : '400'};
-text-align: ${this.testTextAlign ? this.testTextAlign : 'left'};
+${this.renderCssString(testMap, this.test)};
 }
-
 
             </style> 
             <p class="test">
@@ -80,85 +76,10 @@ text-align: ${this.testTextAlign ? this.testTextAlign : 'left'};
 };
 __decorate([
     property({ type: String })
-], testTest.prototype, "externalStyleSheet", void 0);
+], testTest.prototype, "testTest", void 0);
 __decorate([
     property({ type: String })
-], testTest.prototype, "width", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "height", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "borderRadius", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "gap", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "flexDirection", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "backgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "backgroundImage", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "backgroundSize", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "backgroundRepeat", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "paddingTop", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "paddingLeft", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "paddingBottom", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "paddingRight", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "justifyContent", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "alignItems", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testFlexBasis", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testWidth", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testHeight", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testBorderRadius", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testGap", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testFlexDirection", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testBackgroundColor", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testFontSize", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testFontFamily", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testFontWeight", void 0);
-__decorate([
-    property({ type: String })
-], testTest.prototype, "testTextAlign", void 0);
+], testTest.prototype, "test", void 0);
 __decorate([
     property({ type: String })
 ], testTest.prototype, "testText", void 0);

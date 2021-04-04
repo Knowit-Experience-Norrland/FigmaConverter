@@ -1,123 +1,72 @@
 import { LitElement, html, customElement, property } from 'lit-element';
+var testTestMap = new Map(); 
+var testMap = new Map(); 
+testTestMap.set('display', 'flex');
+testTestMap.set('width', '24px');
+testTestMap.set('height', '17px');
+testTestMap.set('gap', '10px');
+testTestMap.set('flex-direction', 'row');
+testTestMap.set('background-color', '#ffffff');
+testTestMap.set('padding-top', '62.5px');
+testTestMap.set('padding-left', '62.5px');
+testTestMap.set('padding-bottom', '62.5px');
+testTestMap.set('padding-right', '62.5px');
+testTestMap.set('justify-content', 'center');
+testTestMap.set('align-items', 'center');
+testMap.set('flex-basis', '100%');
+testMap.set('width', '24px');
+testMap.set('height', '17px');
+testMap.set('color', '#000000');
 @customElement('test-test')
 export class testTest extends LitElement { 
 @property({type: String})
-externalStyleSheet = '';
+testTest = '';
 
 @property({type: String})
-width = '';
-
-@property({type: String})
-height = '';
-
-@property({type: String})
-borderRadius = '';
-
-@property({type: String})
-gap = '';
-
-@property({type: String})
-flexDirection = '';
-
-@property({type: String})
-backgroundColor = '';
-
-@property({type: String})
-backgroundImage = '';
-
-@property({type: String})
-backgroundSize = '';
-
-@property({type: String})
-backgroundRepeat = '';
-
-@property({type: String})
-paddingTop = '';
-
-@property({type: String})
-paddingLeft = '';
-
-@property({type: String})
-paddingBottom = '';
-
-@property({type: String})
-paddingRight = '';
-
-@property({type: String})
-justifyContent = '';
-
-@property({type: String})
-alignItems = '';
-
-@property({type: String})
-testFlexBasis = '';
-
-@property({type: String})
-testWidth = '';
-
-@property({type: String})
-testHeight = '';
-
-@property({type: String})
-testBorderRadius = '';
-
-@property({type: String})
-testGap = '';
-
-@property({type: String})
-testFlexDirection = '';
-
-@property({type: String})
-testBackgroundColor = '';
-
-@property({type: String})
-testFontSize = '';
-
-@property({type: String})
-testFontFamily = '';
-
-@property({type: String})
-testFontWeight = '';
-
-@property({type: String})
-testTextAlign = '';
+test = '';
 
 @property({type: String})
 testText = '';
 
 
+
+    propertyToMap = (cssRules: Map<string, string>, property: string) => {
+        if (property) {
+            var rules = property.split(', ');
+            rules.forEach((rule) => {
+                var key = rule.split(': ')[0];
+                var value = rule.split(': ')[1];
+                if (cssRules.has(key)) {
+                    cssRules.delete(key);
+                }
+                cssRules.set(key, value);
+            });
+        }
+    };
+
+    renderCssString = (cssRules: Map<string, string>, property: string): string => {
+        this.propertyToMap(cssRules, property);
+        var cssString = '';
+        for (let [key, value] of cssRules.entries()) {
+            cssString += `${key}: ${value};\n`;
+        }
+        return cssString;
+    };
+
     render(){
         return html`
-            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
                 padding: 0;
             }
+            
             :host {
-display: flex;
-width: ${this.width  ? `calc(${this.width} - 125px)`:  '24px' };
-height: ${this.height  ? `calc(${this.height} - 125px)`:  '17px' };
-gap: ${this.gap  ? this.gap:  '10px' };
-flex-direction: ${this.flexDirection  ? this.flexDirection:  'row' };
-background-color: ${this.backgroundColor  ? this.backgroundColor:  '#ffffff' };
-padding-top: ${this.paddingTop  ? this.paddingTop:  '62.5px' };
-padding-left: ${this.paddingLeft  ? this.paddingLeft:  '62.5px' };
-padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '62.5px' };
-padding-right: ${this.paddingRight  ? this.paddingRight:  '62.5px' };
-justify-content: ${this.justifyContent  ? this.justifyContent:  'center' };
-align-items: ${this.alignItems  ? this.alignItems:  'center' };
+${this.renderCssString(testTestMap, this.testTest)};
 }
-
 .test {
-flex-basis:  ${this.testFlexBasis ? this.testFlexBasis : '100%'};
-color: ${this.testBackgroundColor ? this.testBackgroundColor : '#000000'};
-font-size: ${this.testFontSize  ? this.testFontSize:  '0.8805068731307983rem' };
-font-family: ${this.testFontFamily  ? this.testFontFamily:  'Roboto' };
-font-weight: ${this.testFontWeight  ? this.testFontWeight:  '400' };
-text-align: ${this.testTextAlign  ? this.testTextAlign:  'left' };
+${this.renderCssString(testMap, this.test)};
 }
-
 
             </style> 
             <p class="test">
@@ -127,5 +76,5 @@ text-align: ${this.testTextAlign  ? this.testTextAlign:  'left' };
 
         `;
     }    
-}
+    }
  // NOT GENERATED CODE
