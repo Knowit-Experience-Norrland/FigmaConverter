@@ -4,8 +4,10 @@ var titleMap = new Map();
 var firstParagraphMap = new Map(); 
 var secondParagraphMap = new Map(); 
 aboutMeMap.set('display', 'flex');
-aboutMeMap.set('width', '293px');
-aboutMeMap.set('height', '388px');
+aboutMeMap.set('width',
+                        'calc(320px - 27px)'); 
+aboutMeMap.set('height',
+                        'calc(415px - 27px)'); 
 aboutMeMap.set('gap', '41px');
 aboutMeMap.set('flex-direction', 'column');
 aboutMeMap.set('background-color', '#0c0c0c');
@@ -13,18 +15,24 @@ aboutMeMap.set('padding-top', '13.5px');
 aboutMeMap.set('padding-left', '13.5px');
 aboutMeMap.set('padding-bottom', '13.5px');
 aboutMeMap.set('padding-right', '13.5px');
-titleMap.set('flex-basis', '7.474226804123711%');
-titleMap.set('width', '47px');
-titleMap.set('height', '29px');
+titleMap.set('flex-basis', '6.987951807228916%');
 titleMap.set('color', '#f5fdff');
-firstParagraphMap.set('flex-basis', '35.56701030927835%');
-firstParagraphMap.set('width', '293px');
-firstParagraphMap.set('height', '138.5px');
+titleMap.set('font-size','1.5rem') ;
+titleMap.set('font-family','Montserrat') ;
+titleMap.set('font-weight','400') ;
+titleMap.set('text-align','left') ;
+firstParagraphMap.set('flex-basis', '33.25301204819277%');
 firstParagraphMap.set('color', '#f5fdff');
-secondParagraphMap.set('flex-basis', '35.56701030927835%');
-secondParagraphMap.set('width', '293px');
-secondParagraphMap.set('height', '138.5px');
+firstParagraphMap.set('font-size','0.875rem') ;
+firstParagraphMap.set('font-family','Montserrat') ;
+firstParagraphMap.set('font-weight','400') ;
+firstParagraphMap.set('text-align','left') ;
+secondParagraphMap.set('flex-basis', '33.25301204819277%');
 secondParagraphMap.set('color', '#f5fdff');
+secondParagraphMap.set('font-size','0.875rem') ;
+secondParagraphMap.set('font-family','Montserrat') ;
+secondParagraphMap.set('font-weight','400') ;
+secondParagraphMap.set('text-align','left') ;
 @customElement('about-me')
 export class aboutMe extends LitElement { 
 @property({type: String})
@@ -51,21 +59,36 @@ secondParagraphText = '';
 
 
     propertyToMap = (cssRules: Map<string, string>, property: string) => {
-        if (property) {
-            var rules = property.split(', ');
-            rules.forEach((rule) => {
-                var key = rule.split(': ')[0];
-                var value = rule.split(': ')[1];
-                if (cssRules.has(key)) {
-                    cssRules.delete(key);
-                }
-                cssRules.set(key, value);
-            });
-        }
+        var rules = property.split(';');
+        rules.forEach((rule) => {
+            // removes all whitespaces that is more than one whitespace
+            rule = rule.replace(/ss+/g, ' ');
+            var key = rule.split(': ')[0];
+            var value = rule.split(': ')[1];
+            key = key.trim();
+            if (cssRules.has(key)) {
+                cssRules.delete(key);
+            }
+            cssRules.set(key, value);
+        });
     };
 
     renderCssString = (cssRules: Map<string, string>, property: string): string => {
-        this.propertyToMap(cssRules, property);
+        if (property) {
+            var mapCopy = new Map();
+            for (let [key, value] of cssRules) {
+                mapCopy.set(key, value);
+            }
+
+            this.propertyToMap(mapCopy, property);
+
+            var cssString = '';
+            for (let [key, value] of mapCopy.entries()) {
+                cssString += `${key}: ${value};\n`;
+            }
+            return cssString;
+        }
+
         var cssString = '';
         for (let [key, value] of cssRules.entries()) {
             cssString += `${key}: ${value};\n`;

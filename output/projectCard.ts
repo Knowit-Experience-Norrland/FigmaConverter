@@ -15,9 +15,11 @@ projectCardMap.set('flex-direction', 'row');
 projectCardMap.set('background-color', '#ffffff');
 projectCardMap.set('align-items', 'center');
 textBoxMap.set('display', 'flex');
-textBoxMap.set('flex-basis', '62.5%');
-textBoxMap.set('width', '200px');
-textBoxMap.set('height', '102px');
+textBoxMap.set('flex-basis', '68.75%');
+textBoxMap.set('width',
+                        'calc(69% - 20px)'); 
+textBoxMap.set('height',
+                        'calc(100% - 28px)'); 
 textBoxMap.set('border-radius', ' 0px 15px 15px 0px');
 textBoxMap.set('gap', '8px');
 textBoxMap.set('flex-direction', 'column');
@@ -26,18 +28,24 @@ textBoxMap.set('padding-top', '14px');
 textBoxMap.set('padding-left', '10px');
 textBoxMap.set('padding-bottom', '14px');
 textBoxMap.set('padding-right', '10px');
-titleMap.set('flex-basis', '21.568627450980394%');
-titleMap.set('width', '200px');
-titleMap.set('height', '22px');
+titleMap.set('flex-basis', '16.923076923076923%');
 titleMap.set('color', '#f5fdff');
-descriptionMap.set('flex-basis', '70.58823529411765%');
-descriptionMap.set('width', '200px');
-descriptionMap.set('height', '72px');
+titleMap.set('font-size','1.125rem') ;
+titleMap.set('font-family','Montserrat') ;
+titleMap.set('font-weight','400') ;
+titleMap.set('text-align','left') ;
+descriptionMap.set('flex-basis', '55.38461538461539%');
 descriptionMap.set('color', '#f5fdff');
+descriptionMap.set('font-size','0.75rem') ;
+descriptionMap.set('font-family','Montserrat') ;
+descriptionMap.set('font-weight','400') ;
+descriptionMap.set('text-align','left') ;
 imgBoxMap.set('display', 'flex');
-imgBoxMap.set('flex-basis', '22.5%');
-imgBoxMap.set('width', '72.5px');
-imgBoxMap.set('height', '110px');
+imgBoxMap.set('flex-basis', '28.749999999999996%');
+imgBoxMap.set('width',
+                        'calc(29% - 20px)'); 
+imgBoxMap.set('height',
+                        'calc(100% - 20px)'); 
 imgBoxMap.set('gap', '1.5px');
 imgBoxMap.set('flex-direction', 'column');
 imgBoxMap.set('padding-top', '10px');
@@ -46,22 +54,22 @@ imgBoxMap.set('padding-bottom', '10px');
 imgBoxMap.set('padding-right', '10px');
 imgBoxMap.set('justify-content', 'center');
 imgBoxMap.set('align-items', 'center');
-ImgFigmaMap.set('flex-basis', '49.09090909090909%');
-ImgFigmaMap.set('width', '41.23045349121094px');
-ImgFigmaMap.set('height', '54.055477142333984px');
-ImgFigmaMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/7a5e/68bb/8f069453d630bb766d67b40ce777054e?Expires=1618185600&Signature=e~6TGCt9vf1E~~x7i7jYlE5ytZRAJ5WbK25iREyTJlv2Fw3c2VWFIK5nZNE5S4DjeA7JFCh-HqCig0q~NkRfebRZ3GwOZiI-7EQJpFjuSEyTSMp3TQHLQvZVymp~-wMuhFeYtcUxvLjXPgcaf9ao7K5jj14imkhdjOGijqoU6Vs4~ZD8GK6JfLJLnLWlPMN92SN6sPEfor-9V5V~pYxfZAE5WSqyKhzRnLClat0JC0iagy6W~9X1b0wg7O0~KRB1Vq4W1rx4uVI1MRnCqZSC88fX2kfSiRe3G9utHzhWnp6uHGupgdJpEN6WfDjZjAV7sfbQ2EVsduEx83L-3XGgdw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+ImgFigmaMap.set('flex-basis', '41.53846153846154%');
+ImgFigmaMap.set('width','45%');
+ImgFigmaMap.set('height','42%');
+ImgFigmaMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/7a5e/68bb/8f069453d630bb766d67b40ce777054e?Expires=1618790400&Signature=ThU4gMWtLfIK~2414y79F-GMidjDOv4JH7DZLGCUEYXCIwMd4l37dU0WPor1mPoxTEHgoYOa6THJcT0ETwG0idDhRDhy85NN6-p5P4Dw7aMonrfYRDhPMeEBzb-OaO5aXvQIJey18oum5dmzGf3ThuII3ffFimvv-iJkjtfIpsakVyl41t~A8LvtQYI3hpdh25p9ULqhM2DOhbBF~y7Eht2XXKgZBs6o5a02z5lYAS7K59DdrK-3ZaI9CGQp0T7VTfzAuhwRNo7A5tFo-at58lepMuBo9j3GGSBsQcJSz7pEZTT7UjnjVrsEKpDgDXMnDKF5sGN~pAtvZZpwWHFSpg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgFigmaMap.set('background-size', 'cover');
 ImgFigmaMap.set('background-repeat', 'no-repeat');
-ImgTypescriptMap.set('flex-basis', '31.818181818181817%');
-ImgTypescriptMap.set('width', '35px');
-ImgTypescriptMap.set('height', '35px');
-ImgTypescriptMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/a9e5/ef51/0b44b85b5238036c332fde31edeaf5f9?Expires=1618185600&Signature=Kl7SSdP56wJhJzAZd5fTK96nGUgTm12-BpwP03lVUCXvs16iL0nx~vTN9IQZIC1QLk9~rL70gZgdUkFIGWpbY4XV6i42YWk4fLQObj2i29Ae13oc9VmgUxJKi32x77KgcR2NdefkTSr~tP0kKAhvaj3fJMVALNb2rX9CJTGh0GiX1DwmvYIYMt-jwAGMXCg~Qx10YrhZJqa3mb5~~SLyW6wO56Ol74XhJuW8tUVKG7tpkOw8BVOOcZ5~WnYBqwsQqzhOz0jvamlpBvb0kRzZX34BZsdN9oJljbJmVLJQqYPKIfJdoCpV1PZDUeLd0vBAASPdlt60tsVopY3WcFUmGw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+ImgTypescriptMap.set('flex-basis', '26.923076923076923%');
+ImgTypescriptMap.set('width','38%');
+ImgTypescriptMap.set('height','27%');
+ImgTypescriptMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/a9e5/ef51/0b44b85b5238036c332fde31edeaf5f9?Expires=1618790400&Signature=Vmnfk81MO1Ss5vq1MAzplpJKFkgFrTaBtoaS75gBaQnCfpt2P4eWhqfCXwsar-xY1vCYVlOjFRGuwlcZoAo-rvsMpMXmUwGmbVi9KUNNLYFoJCpyVtQEmZJyWLvDOx~uxND~aG6-8BBjV25AsUpDQS5I5VckF1RDyQ1Qp-Td43R9OZnjzhc6Y58MAaMsriJme~uV7pZLh0LdmbkMs~oEpiT1aTRZ644O7CiPj8ge2Ecjhab04~7m97dTzRUh~PtbZmaEJMUOZO1VoMhmlkYB254zhQuKtJMi1hxbSTk2EOaoK4feHb9slbTk7Jpb7LeGEuiteXOpqrjl0UNwNE7Qyg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgTypescriptMap.set('background-size', 'cover');
 ImgTypescriptMap.set('background-repeat', 'no-repeat');
-ImgLitMap.set('flex-basis', '23.636363636363637%');
-ImgLitMap.set('width', '57px');
-ImgLitMap.set('height', '26px');
-ImgLitMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/5ca4/c0ea/216205032c86f406ef729e730356bf9c?Expires=1618185600&Signature=gvprYE2vFEmZCUi5UPoyhUSAbXDZzaZSN9y7bz9mKmHvgOOfKYjr8sqQJlOmhv2pgMh72IFIBUcSqUvsvcN6qSbCcvimj0uYyLsRt96nF6iAAoYW23P~pEZG3RT6JYGUWsXxYhcSsNoCSKrkZvRKy910prQt0WaNo3OV0dKoeIjhn8EA-vVc0yVuJ6SeJIh88muGBHxMfITisjuu65ALE4FgBLT6igOolWm8FZfP523kJHOgod~VuU6yicG6gWS2aDcAnxMmlT2dnOfDrRnsL2FET8Zamtu7i~wTG0v-6IVWmSC9NkbAMpYxAaEkpjFfjH62LErmpU5IHs7q-9xvgA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+ImgLitMap.set('flex-basis', '20%');
+ImgLitMap.set('width','62%');
+ImgLitMap.set('height','20%');
+ImgLitMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/5ca4/c0ea/216205032c86f406ef729e730356bf9c?Expires=1618790400&Signature=QizLh3juF0pYzecqdfjBph45cANoK3p3WJ5DzYcX7UuBEmW2UsxuRJ5I813g7RHJvhObQTKzHsk35YdZFx9HXn8eKG02xPWv4EJe-FhpJgXrYKb3eonQI8wv8iYa9qioqPUgtWZMQ9dYp9SxARjKlHj0iDCPKgZqRT3QNgDsksk-3q9u4PfKLfmHqcPRi4-PzNzCWlcYDtR1lhCM7xjIN2VJiPJOuLU~IK66J8ETGE0vt8pn-UipKQS0aIN2UuK-jntgwGZEdMFyjB4SMRs-uGjc~YTQVWcsWhiuDsRMIKSUWiSe1pzUsrDoBk7vcQCGAMca~O4OhVld0h2yNG0Wsw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgLitMap.set('background-size', 'cover');
 ImgLitMap.set('background-repeat', 'no-repeat');
 @customElement('project-card')
@@ -99,21 +107,36 @@ descriptionText = '';
 
 
     propertyToMap = (cssRules: Map<string, string>, property: string) => {
-        if (property) {
-            var rules = property.split(', ');
-            rules.forEach((rule) => {
-                var key = rule.split(': ')[0];
-                var value = rule.split(': ')[1];
-                if (cssRules.has(key)) {
-                    cssRules.delete(key);
-                }
-                cssRules.set(key, value);
-            });
-        }
+        var rules = property.split(';');
+        rules.forEach((rule) => {
+            // removes all whitespaces that is more than one whitespace
+            rule = rule.replace(/ss+/g, ' ');
+            var key = rule.split(': ')[0];
+            var value = rule.split(': ')[1];
+            key = key.trim();
+            if (cssRules.has(key)) {
+                cssRules.delete(key);
+            }
+            cssRules.set(key, value);
+        });
     };
 
     renderCssString = (cssRules: Map<string, string>, property: string): string => {
-        this.propertyToMap(cssRules, property);
+        if (property) {
+            var mapCopy = new Map();
+            for (let [key, value] of cssRules) {
+                mapCopy.set(key, value);
+            }
+
+            this.propertyToMap(mapCopy, property);
+
+            var cssString = '';
+            for (let [key, value] of mapCopy.entries()) {
+                cssString += `${key}: ${value};\n`;
+            }
+            return cssString;
+        }
+
         var cssString = '';
         for (let [key, value] of cssRules.entries()) {
             cssString += `${key}: ${value};\n`;

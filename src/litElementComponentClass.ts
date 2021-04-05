@@ -71,8 +71,8 @@ export class LitElementFromFigmaComponent {
         this.setComponentColorFromAPI();
 
         this.cssAttributes = {
-            width: this.setWidth(),
-            height: this.setHeight(),
+            width: `${this.componentFromAPI.absoluteBoundingBox.width}px`,
+            height: `${this.componentFromAPI.absoluteBoundingBox.height}px`,
             borderRadius: this.setBorderRadius(),
             // flex: component.layoutGrow,
             gap: component.itemSpacing

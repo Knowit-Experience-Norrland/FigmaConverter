@@ -8,8 +8,8 @@ import { LitElement, html, customElement, property } from 'lit-element';
 var testTestMap = new Map();
 var testMap = new Map();
 testTestMap.set('display', 'flex');
-testTestMap.set('width', '24px');
-testTestMap.set('height', '17px');
+testTestMap.set('width', 'calc(149px - 125px)');
+testTestMap.set('height', 'calc(142px - 125px)');
 testTestMap.set('gap', '10px');
 testTestMap.set('flex-direction', 'row');
 testTestMap.set('background-color', '#ffffff');
@@ -19,10 +19,12 @@ testTestMap.set('padding-bottom', '62.5px');
 testTestMap.set('padding-right', '62.5px');
 testTestMap.set('justify-content', 'center');
 testTestMap.set('align-items', 'center');
-testMap.set('flex-basis', '100%');
-testMap.set('width', '24px');
-testMap.set('height', '17px');
+testMap.set('flex-basis', '16.10738255033557%');
 testMap.set('color', '#000000');
+testMap.set('font-size', '0.8805068731307983rem');
+testMap.set('font-family', 'Roboto');
+testMap.set('font-weight', '400');
+testMap.set('text-align', 'left');
 let testTest = class testTest extends LitElement {
     constructor() {
         super(...arguments);
@@ -30,20 +32,32 @@ let testTest = class testTest extends LitElement {
         this.test = '';
         this.testText = '';
         this.propertyToMap = (cssRules, property) => {
-            if (property) {
-                var rules = property.split(', ');
-                rules.forEach((rule) => {
-                    var key = rule.split(': ')[0];
-                    var value = rule.split(': ')[1];
-                    if (cssRules.has(key)) {
-                        cssRules.delete(key);
-                    }
-                    cssRules.set(key, value);
-                });
-            }
+            var rules = property.split(';');
+            rules.forEach((rule) => {
+                // removes all whitespaces that is more than one whitespace
+                rule = rule.replace(/ss+/g, ' ');
+                var key = rule.split(': ')[0];
+                var value = rule.split(': ')[1];
+                key = key.trim();
+                if (cssRules.has(key)) {
+                    cssRules.delete(key);
+                }
+                cssRules.set(key, value);
+            });
         };
         this.renderCssString = (cssRules, property) => {
-            this.propertyToMap(cssRules, property);
+            if (property) {
+                var mapCopy = new Map();
+                for (let [key, value] of cssRules) {
+                    mapCopy.set(key, value);
+                }
+                this.propertyToMap(mapCopy, property);
+                var cssString = '';
+                for (let [key, value] of mapCopy.entries()) {
+                    cssString += `${key}: ${value};\n`;
+                }
+                return cssString;
+            }
             var cssString = '';
             for (let [key, value] of cssRules.entries()) {
                 cssString += `${key}: ${value};\n`;

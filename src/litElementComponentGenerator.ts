@@ -3,6 +3,7 @@
  * TODO: could all cssSelectors be put into an array? then that could power the rules generation.
  *
  */
+import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'node:constants';
 import { LitElementFromFigmaComponent } from './litElementComponentClass';
 
 var properties = [];
@@ -46,6 +47,29 @@ const createCssSelectors = (
     return outString;
 };
 
+const setFlexBasis = (element: LitElementFromFigmaComponent, flexUsed: boolean) => {
+    var name = setNameForElement(element);
+    if (element.parentCssAttributes.flexDirection == 'row' && !flexUsed) {
+        flexUsed = true;
+        cssRules.push(
+            `${name}Map.set('flex-basis', '${
+                (parseInt(element.cssAttributes.width) /
+                    parseInt(element.parentCssAttributes.width)) *
+                100
+            }%');\n`
+        );
+    } else if (element.parentCssAttributes.flexDirection == 'column' && !flexUsed) {
+        flexUsed = true;
+        cssRules.push(
+            `${name}Map.set('flex-basis', '${
+                (parseInt(element.cssAttributes.height) /
+                    parseInt(element.parentCssAttributes.height)) *
+                100
+            }%');\n`
+        );
+    }
+};
+
 /**
  * Create css rules for all elements in the component.
  * These rules are put in to maps for easy modifications.
@@ -72,40 +96,59 @@ const createCssRules = (element: LitElementFromFigmaComponent) => {
                     );
                     break;
                 }
-                // if (!(element.type === 'TEXT' && (prop == 'height' || prop == 'width'))) {
-                //     if (element.hasParent && (prop == 'width' || prop == 'height')) {
-                //         // if (element.parentCssAttributes.flexDirection) {
-                //         //     outString += `${element.camelCaseToDash(prop)}: 100%;\n`;
-                //         // } else {
-                //         outString += `${element.camelCaseToDash(
-                //             prop
-                //         )}: \${this.${propertyName}  ? this.${propertyName}:  '${Math.round(
-                //             (parseInt(element.cssAttributes[prop]) /
-                //                 parseInt(element.parentCssAttributes[prop])) *
-                //                 100
-                //         )}%' };\n`;
-                //         // }
-                //     } else if (
-                //         !element.hasParent &&
-                //         (prop == 'width' || prop == 'height') &&
-                //         (element.topBottomOffset || element.leftRightOffset)
-                //     ) {
-                //         var offset = '';
-                //         if (prop == 'width') offset = element.leftRightOffset + 'px';
-                //         if (prop == 'height') offset = element.topBottomOffset + 'px';
-                //         outString += `${element.camelCaseToDash(
-                //             prop
-                //         )}: \${this.${propertyName}  ? \`calc(\${this.${propertyName}} - ${offset})\`:  '${
-                //             element.cssAttributes[prop]
-                //         }' };\n`;
-                //     } else {
 
-                // projectCardMap.set('align-items', 'center');
-                cssRules.push(
-                    `${name}Map.set('${element.camelCaseToDash(prop)}', '${
-                        element.cssAttributes[prop]
-                    }');\n`
-                );
+                if (!(element.type === 'TEXT' && (prop == 'height' || prop == 'width'))) {
+                    if (element.hasParent && (prop == 'width' || prop == 'height')) {
+                        // if (element.parentCssAttributes.flexDirection) {
+                        //     outString += `${element.camelCaseToDash(prop)}: 100%;\n`;
+                        // } else {
+                        if (element.topBottomOffset || element.leftRightOffset) {
+                            var offset = '';
+                            if (prop == 'width') offset = element.leftRightOffset + 'px';
+                            if (prop == 'height') offset = element.topBottomOffset + 'px';
+
+                            cssRules.push(
+                                `${name}Map.set('${element.camelCaseToDash(prop)}',
+                        'calc(${Math.round(
+                            (parseInt(element.cssAttributes[prop]) /
+                                parseInt(element.parentCssAttributes[prop])) *
+                                100
+                        )}% - ${offset})'); \n`
+                            );
+                        } else {
+                            cssRules.push(
+                                `${name}Map.set('${element.camelCaseToDash(
+                                    prop
+                                )}','${Math.round(
+                                    (parseInt(element.cssAttributes[prop]) /
+                                        parseInt(element.parentCssAttributes[prop])) *
+                                        100
+                                )}%');\n`
+                            );
+                        }
+                        // }
+                    } else if (
+                        !element.hasParent &&
+                        (prop == 'width' || prop == 'height') &&
+                        (element.topBottomOffset || element.leftRightOffset)
+                    ) {
+                        var offset = '';
+                        if (prop == 'width') offset = element.leftRightOffset + 'px';
+                        if (prop == 'height') offset = element.topBottomOffset + 'px';
+
+                        cssRules.push(
+                            `${name}Map.set('${element.camelCaseToDash(prop)}',
+                        'calc(${element.cssAttributes[prop]} - ${offset})'); \n`
+                        );
+                    } else {
+                        // projectCardMap.set('align-items', 'center');
+                        cssRules.push(
+                            `${name}Map.set('${element.camelCaseToDash(prop)}', '${
+                                element.cssAttributes[prop]
+                            }');\n`
+                        );
+                    }
+                }
                 // outString += `${element.camelCaseToDash(
                 //     prop
                 // )}: \${this.${propertyName}  ? this.${propertyName}:  '${
@@ -116,23 +159,22 @@ const createCssRules = (element: LitElementFromFigmaComponent) => {
             }
         }
     }
-    // if (
-    //     !(
-    //         Object.keys(element.typography).length === 0 &&
-    //         element.typography.constructor === Object
-    //     )
-    // ) {
-    //     for (var prop in element.typography) {
-    //         if (prop !== 'setName' && prop !== 'styleId') {
-    //             var propertyName = createInputProperty(element, prop, properties);
-    //             outString += `${element.camelCaseToDash(
-    //                 prop
-    //             )}: \${this.${propertyName}  ? this.${propertyName}:  '${
-    //                 element.typography[prop]
-    //             }' };\n`;
-    //         }
-    //     }
-    // }
+    if (
+        !(
+            Object.keys(element.typography).length === 0 &&
+            element.typography.constructor === Object
+        )
+    ) {
+        for (var prop in element.typography) {
+            if (prop !== 'setName' && prop !== 'styleId') {
+                cssRules.push(
+                    `${name}Map.set('${element.camelCaseToDash(prop)}','${
+                        element.typography[prop]
+                    }') ;\n`
+                );
+            }
+        }
+    }
 };
 
 export const litElementComponent = (
@@ -157,21 +199,36 @@ export class ${camelCasedName} extends LitElement { \n`;
     var renderString = `
 
     propertyToMap = (cssRules: Map<string, string>, property: string) => {
-        if (property) {
-            var rules = property.split(', ');
-            rules.forEach((rule) => {
-                var key = rule.split(': ')[0];
-                var value = rule.split(': ')[1];
-                if (cssRules.has(key)) {
-                    cssRules.delete(key);
-                }
-                cssRules.set(key, value);
-            });
-        }
+        var rules = property.split(';');
+        rules.forEach((rule) => {
+            // removes all whitespaces that is more than one whitespace
+            rule = rule.replace(/\s\s+/g, ' ');
+            var key = rule.split(': ')[0];
+            var value = rule.split(': ')[1];
+            key = key.trim();
+            if (cssRules.has(key)) {
+                cssRules.delete(key);
+            }
+            cssRules.set(key, value);
+        });
     };
 
     renderCssString = (cssRules: Map<string, string>, property: string): string => {
-        this.propertyToMap(cssRules, property);
+        if (property) {
+            var mapCopy = new Map();
+            for (let [key, value] of cssRules) {
+                mapCopy.set(key, value);
+            }
+
+            this.propertyToMap(mapCopy, property);
+
+            var cssString = '';
+            for (let [key, value] of mapCopy.entries()) {
+                cssString += \`\${key}: \${value};\\n\`;
+            }
+            return cssString;
+        }
+
         var cssString = '';
         for (let [key, value] of cssRules.entries()) {
             cssString += \`\${key}: \${value};\\n\`;
@@ -251,29 +308,6 @@ const createHTMLElements = (
         }
     }
     return outString;
-};
-
-const setFlexBasis = (element: LitElementFromFigmaComponent, flexUsed: boolean) => {
-    var name = setNameForElement(element);
-    if (element.parentCssAttributes.flexDirection == 'row' && !flexUsed) {
-        flexUsed = true;
-        cssRules.push(
-            `${name}Map.set('flex-basis', '${
-                (parseInt(element.cssAttributes.width) /
-                    parseInt(element.parentCssAttributes.width)) *
-                100
-            }%');\n`
-        );
-    } else if (element.parentCssAttributes.flexDirection == 'column' && !flexUsed) {
-        flexUsed = true;
-        cssRules.push(
-            `${name}Map.set('flex-basis', '${
-                (parseInt(element.cssAttributes.height) /
-                    parseInt(element.parentCssAttributes.height)) *
-                100
-            }%');\n`
-        );
-    }
 };
 
 // For keeping the same aspect ration for with and height if only width is changed
