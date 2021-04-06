@@ -1,29 +1,35 @@
-$color-primary: #f27334; 
-$color-warning: #ff0000; 
-$color-info: #23c2c4; 
-$color-accent: #fd4b1b; 
-$color-accent-light: #f8b834; 
-$color-background-default: #e7ece1; 
-@mixin font-paragraph{
-            font-family: Roboto;
-            font-size: 0.75rem;
+$color-primary: #1f89a6; 
+$color-accent: #14667d; 
+$color-light-accent: #8dffdb; 
+$color-warning-light: #e5582f; 
+$color-warning: #c04f31; 
+$color-dark-gradient-stop: #dc5f02; 
+$color-light-gradient-stop: #f4a402; 
+$color-light: #f5fdff; 
+@mixin font-heading1{
+            font-family: Montserrat;
+            font-size: 3rem;
             font-weight: 400;
+            ;
         }
  
-@mixin font-heading{
+@mixin font-heading3{
             font-family: Montserrat;
-            font-size: 4rem;
+            font-size: 1.125rem;
             font-weight: 400;
+            ;
         }
  
 :root{ 
-    --color-primary: #f27334; 
-    --color-warning: #ff0000; 
-    --color-info: #23c2c4; 
-    --color-accent: #fd4b1b; 
-    --color-accent-light: #f8b834; 
-    --color-background-default: #e7ece1; 
+    --color-primary: #1f89a6; 
+    --color-accent: #14667d; 
+    --color-light-accent: #8dffdb; 
+    --color-warning-light: #e5582f; 
+    --color-warning: #c04f31; 
+    --color-dark-gradient-stop: #dc5f02; 
+    --color-light-gradient-stop: #f4a402; 
+    --color-light: #f5fdff; 
 }
  // NOT GENERATED CODE
 
-$colors-list: $color-accent $color-accent-light $color-primary $color-warning $color-info;
+// $colors-list: $color-accent $color-accent-light $color-primary $color-warning $color-info;

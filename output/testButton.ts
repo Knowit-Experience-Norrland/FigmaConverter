@@ -20,6 +20,15 @@ flexDirection = '';
 backgroundColor = '';
 
 @property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
+
+@property({type: String})
 paddingTop = '';
 
 @property({type: String})
@@ -36,6 +45,9 @@ justifyContent = '';
 
 @property({type: String})
 alignItems = '';
+
+@property({type: String})
+ButtonFlexBasis = '';
 
 @property({type: String})
 ButtonWidth = '';
@@ -68,6 +80,12 @@ ButtonFontWeight = '';
 ButtonLetterSpacing = '';
 
 @property({type: String})
+ButtonTextAlign = '';
+
+@property({type: String})
+ButtonLineHeight = '';
+
+@property({type: String})
 ButtonText = '';
 
 
@@ -80,26 +98,29 @@ ButtonText = '';
             }
             :host {
 display: flex;
-width: ${this.width  ? `calc(${this.width} - 23px)`:  '165px' };
-height: ${this.height  ? `calc(${this.height} - 23px)`:  '59px' };
+width: ${this.width  ? `calc(${this.width} - 20px)`:  '165px' };
+height: ${this.height  ? `calc(${this.height} - 20px)`:  '59px' };
 border-radius: ${this.borderRadius  ? this.borderRadius:  '12px' };
 gap: ${this.gap  ? this.gap:  '10px' };
 flex-direction: ${this.flexDirection  ? this.flexDirection:  'row' };
 background-color: ${this.backgroundColor  ? this.backgroundColor:  '#ffffff' };
-padding-top: ${this.paddingTop  ? this.paddingTop:  '11.5px' };
-padding-left: ${this.paddingLeft  ? this.paddingLeft:  '11.5px' };
-padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '11.5px' };
-padding-right: ${this.paddingRight  ? this.paddingRight:  '11.5px' };
+padding-top: ${this.paddingTop  ? this.paddingTop:  '10px' };
+padding-left: ${this.paddingLeft  ? this.paddingLeft:  '10px' };
+padding-bottom: ${this.paddingBottom  ? this.paddingBottom:  '10px' };
+padding-right: ${this.paddingRight  ? this.paddingRight:  '10px' };
 justify-content: ${this.justifyContent  ? this.justifyContent:  'center' };
 align-items: ${this.alignItems  ? this.alignItems:  'center' };
 }
 
 .Button {
+flex-basis:  ${this.ButtonFlexBasis ? this.ButtonFlexBasis : '100%'};
 color: ${this.ButtonBackgroundColor ? this.ButtonBackgroundColor : '#000000'};
 font-size: ${this.ButtonFontSize  ? this.ButtonFontSize:  '3rem' };
 font-family: ${this.ButtonFontFamily  ? this.ButtonFontFamily:  'Montserrat' };
 font-weight: ${this.ButtonFontWeight  ? this.ButtonFontWeight:  '100' };
 letter-spacing: ${this.ButtonLetterSpacing  ? this.ButtonLetterSpacing:  '0' };
+text-align: ${this.ButtonTextAlign  ? this.ButtonTextAlign:  'center' };
+line-height: ${this.ButtonLineHeight  ? this.ButtonLineHeight:  '3.515625rem' };
 }
 
 

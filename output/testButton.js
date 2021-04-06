@@ -14,12 +14,16 @@ let testButton = class testButton extends LitElement {
         this.gap = '';
         this.flexDirection = '';
         this.backgroundColor = '';
+        this.backgroundImage = '';
+        this.backgroundSize = '';
+        this.backgroundRepeat = '';
         this.paddingTop = '';
         this.paddingLeft = '';
         this.paddingBottom = '';
         this.paddingRight = '';
         this.justifyContent = '';
         this.alignItems = '';
+        this.ButtonFlexBasis = '';
         this.ButtonWidth = '';
         this.ButtonHeight = '';
         this.ButtonBorderRadius = '';
@@ -30,6 +34,8 @@ let testButton = class testButton extends LitElement {
         this.ButtonFontFamily = '';
         this.ButtonFontWeight = '';
         this.ButtonLetterSpacing = '';
+        this.ButtonTextAlign = '';
+        this.ButtonLineHeight = '';
         this.ButtonText = '';
     }
     render() {
@@ -41,26 +47,29 @@ let testButton = class testButton extends LitElement {
             }
             :host {
 display: flex;
-width: ${this.width ? `calc(${this.width} - 23px)` : '165px'};
-height: ${this.height ? `calc(${this.height} - 23px)` : '59px'};
+width: ${this.width ? `calc(${this.width} - 20px)` : '165px'};
+height: ${this.height ? `calc(${this.height} - 20px)` : '59px'};
 border-radius: ${this.borderRadius ? this.borderRadius : '12px'};
 gap: ${this.gap ? this.gap : '10px'};
 flex-direction: ${this.flexDirection ? this.flexDirection : 'row'};
 background-color: ${this.backgroundColor ? this.backgroundColor : '#ffffff'};
-padding-top: ${this.paddingTop ? this.paddingTop : '11.5px'};
-padding-left: ${this.paddingLeft ? this.paddingLeft : '11.5px'};
-padding-bottom: ${this.paddingBottom ? this.paddingBottom : '11.5px'};
-padding-right: ${this.paddingRight ? this.paddingRight : '11.5px'};
+padding-top: ${this.paddingTop ? this.paddingTop : '10px'};
+padding-left: ${this.paddingLeft ? this.paddingLeft : '10px'};
+padding-bottom: ${this.paddingBottom ? this.paddingBottom : '10px'};
+padding-right: ${this.paddingRight ? this.paddingRight : '10px'};
 justify-content: ${this.justifyContent ? this.justifyContent : 'center'};
 align-items: ${this.alignItems ? this.alignItems : 'center'};
 }
 
 .Button {
+flex-basis:  ${this.ButtonFlexBasis ? this.ButtonFlexBasis : '100%'};
 color: ${this.ButtonBackgroundColor ? this.ButtonBackgroundColor : '#000000'};
 font-size: ${this.ButtonFontSize ? this.ButtonFontSize : '3rem'};
 font-family: ${this.ButtonFontFamily ? this.ButtonFontFamily : 'Montserrat'};
 font-weight: ${this.ButtonFontWeight ? this.ButtonFontWeight : '100'};
 letter-spacing: ${this.ButtonLetterSpacing ? this.ButtonLetterSpacing : '0'};
+text-align: ${this.ButtonTextAlign ? this.ButtonTextAlign : 'center'};
+line-height: ${this.ButtonLineHeight ? this.ButtonLineHeight : '3.515625rem'};
 }
 
 
@@ -92,6 +101,15 @@ __decorate([
 ], testButton.prototype, "backgroundColor", void 0);
 __decorate([
     property({ type: String })
+], testButton.prototype, "backgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], testButton.prototype, "backgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], testButton.prototype, "backgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], testButton.prototype, "paddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -108,6 +126,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], testButton.prototype, "alignItems", void 0);
+__decorate([
+    property({ type: String })
+], testButton.prototype, "ButtonFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], testButton.prototype, "ButtonWidth", void 0);
@@ -138,6 +159,12 @@ __decorate([
 __decorate([
     property({ type: String })
 ], testButton.prototype, "ButtonLetterSpacing", void 0);
+__decorate([
+    property({ type: String })
+], testButton.prototype, "ButtonTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], testButton.prototype, "ButtonLineHeight", void 0);
 __decorate([
     property({ type: String })
 ], testButton.prototype, "ButtonText", void 0);

@@ -20,6 +20,15 @@ flexDirection = '';
 backgroundColor = '';
 
 @property({type: String})
+backgroundImage = '';
+
+@property({type: String})
+backgroundSize = '';
+
+@property({type: String})
+backgroundRepeat = '';
+
+@property({type: String})
 paddingTop = '';
 
 @property({type: String})
@@ -36,6 +45,9 @@ justifyContent = '';
 
 @property({type: String})
 alignItems = '';
+
+@property({type: String})
+Frame1FlexBasis = '';
 
 @property({type: String})
 Frame1Width = '';
@@ -56,6 +68,15 @@ Frame1FlexDirection = '';
 Frame1BackgroundColor = '';
 
 @property({type: String})
+Frame1BackgroundImage = '';
+
+@property({type: String})
+Frame1BackgroundSize = '';
+
+@property({type: String})
+Frame1BackgroundRepeat = '';
+
+@property({type: String})
 Frame1PaddingTop = '';
 
 @property({type: String})
@@ -72,6 +93,9 @@ Frame1JustifyContent = '';
 
 @property({type: String})
 Frame1AlignItems = '';
+
+@property({type: String})
+TodaytrainingtimeFlexBasis = '';
 
 @property({type: String})
 TodaytrainingtimeWidth = '';
@@ -104,6 +128,15 @@ TodaytrainingtimeFontWeight = '';
 TodaytrainingtimeLetterSpacing = '';
 
 @property({type: String})
+TodaytrainingtimeTextAlign = '';
+
+@property({type: String})
+TodaytrainingtimeLineHeight = '';
+
+@property({type: String})
+minutesFlexBasis = '';
+
+@property({type: String})
 minutesWidth = '';
 
 @property({type: String})
@@ -134,6 +167,15 @@ minutesFontWeight = '';
 minutesLetterSpacing = '';
 
 @property({type: String})
+minutesTextAlign = '';
+
+@property({type: String})
+minutesLineHeight = '';
+
+@property({type: String})
+Rectangle22FlexBasis = '';
+
+@property({type: String})
 Rectangle22Width = '';
 
 @property({type: String})
@@ -150,6 +192,15 @@ Rectangle22FlexDirection = '';
 
 @property({type: String})
 Rectangle22BackgroundColor = '';
+
+@property({type: String})
+Rectangle22BackgroundImage = '';
+
+@property({type: String})
+Rectangle22BackgroundSize = '';
+
+@property({type: String})
+Rectangle22BackgroundRepeat = '';
 
 @property({type: String})
 Rectangle22PaddingTop = '';
@@ -200,31 +251,37 @@ align-items: ${this.alignItems  ? this.alignItems:  'center' };
 
 .Frame1 {
 display: flex;
+flex-basis:  ${this.Frame1FlexBasis ? this.Frame1FlexBasis : '44.27609427609428%'};
 width: 100%;
-flex-basis:44.27609427609428%;
 height: 100%;
 flex-direction: ${this.Frame1FlexDirection  ? this.Frame1FlexDirection:  'column' };
 }
 
 .Todaytrainingtime {
+flex-basis:  ${this.TodaytrainingtimeFlexBasis ? this.TodaytrainingtimeFlexBasis : '42.857142857142854%'};
 color: ${this.TodaytrainingtimeBackgroundColor ? this.TodaytrainingtimeBackgroundColor : '#ffffff'};
 font-size: ${this.TodaytrainingtimeFontSize  ? this.TodaytrainingtimeFontSize:  '1.5rem' };
 font-family: ${this.TodaytrainingtimeFontFamily  ? this.TodaytrainingtimeFontFamily:  'Open Sans' };
 font-weight: ${this.TodaytrainingtimeFontWeight  ? this.TodaytrainingtimeFontWeight:  '400' };
 letter-spacing: ${this.TodaytrainingtimeLetterSpacing  ? this.TodaytrainingtimeLetterSpacing:  '0' };
+text-align: ${this.TodaytrainingtimeTextAlign  ? this.TodaytrainingtimeTextAlign:  'left' };
+line-height: ${this.TodaytrainingtimeLineHeight  ? this.TodaytrainingtimeLineHeight:  '1.7578125rem' };
 }
 
 .minutes {
+flex-basis:  ${this.minutesFlexBasis ? this.minutesFlexBasis : '57.14285714285714%'};
 color: ${this.minutesBackgroundColor ? this.minutesBackgroundColor : '#ffffff'};
 font-size: ${this.minutesFontSize  ? this.minutesFontSize:  '2rem' };
 font-family: ${this.minutesFontFamily  ? this.minutesFontFamily:  'Open Sans' };
 font-weight: ${this.minutesFontWeight  ? this.minutesFontWeight:  '600' };
 letter-spacing: ${this.minutesLetterSpacing  ? this.minutesLetterSpacing:  '0' };
+text-align: ${this.minutesTextAlign  ? this.minutesTextAlign:  'left' };
+line-height: ${this.minutesLineHeight  ? this.minutesLineHeight:  '2.34375rem' };
 }
 
 .Rectangle22 {
+flex-basis:  ${this.Rectangle22FlexBasis ? this.Rectangle22FlexBasis : '41.582491582491585%'};
 width: 100%;
-flex-basis:41.582491582491585%;
 height: 100%;
 border-radius: ${this.Rectangle22BorderRadius  ? this.Rectangle22BorderRadius:  '28px' };
 background-color: ${this.Rectangle22BackgroundColor  ? this.Rectangle22BackgroundColor:  '#446d52' };

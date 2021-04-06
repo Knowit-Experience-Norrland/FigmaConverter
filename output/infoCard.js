@@ -14,24 +14,32 @@ let infoCard = class infoCard extends LitElement {
         this.gap = '';
         this.flexDirection = '';
         this.backgroundColor = '';
+        this.backgroundImage = '';
+        this.backgroundSize = '';
+        this.backgroundRepeat = '';
         this.paddingTop = '';
         this.paddingLeft = '';
         this.paddingBottom = '';
         this.paddingRight = '';
         this.justifyContent = '';
         this.alignItems = '';
+        this.textBoxFlexBasis = '';
         this.textBoxWidth = '';
         this.textBoxHeight = '';
         this.textBoxBorderRadius = '';
         this.textBoxGap = '';
         this.textBoxFlexDirection = '';
         this.textBoxBackgroundColor = '';
+        this.textBoxBackgroundImage = '';
+        this.textBoxBackgroundSize = '';
+        this.textBoxBackgroundRepeat = '';
         this.textBoxPaddingTop = '';
         this.textBoxPaddingLeft = '';
         this.textBoxPaddingBottom = '';
         this.textBoxPaddingRight = '';
         this.textBoxJustifyContent = '';
         this.textBoxAlignItems = '';
+        this.cardtitleFlexBasis = '';
         this.cardtitleWidth = '';
         this.cardtitleHeight = '';
         this.cardtitleBorderRadius = '';
@@ -42,6 +50,9 @@ let infoCard = class infoCard extends LitElement {
         this.cardtitleFontFamily = '';
         this.cardtitleFontWeight = '';
         this.cardtitleLetterSpacing = '';
+        this.cardtitleTextAlign = '';
+        this.cardtitleLineHeight = '';
+        this.bodytextFlexBasis = '';
         this.bodytextWidth = '';
         this.bodytextHeight = '';
         this.bodytextBorderRadius = '';
@@ -52,18 +63,25 @@ let infoCard = class infoCard extends LitElement {
         this.bodytextFontFamily = '';
         this.bodytextFontWeight = '';
         this.bodytextLetterSpacing = '';
+        this.bodytextTextAlign = '';
+        this.bodytextLineHeight = '';
+        this.imgFlexBasis = '';
         this.imgWidth = '';
         this.imgHeight = '';
         this.imgBorderRadius = '';
         this.imgGap = '';
         this.imgFlexDirection = '';
         this.imgBackgroundColor = '';
+        this.imgBackgroundImage = '';
+        this.imgBackgroundSize = '';
+        this.imgBackgroundRepeat = '';
         this.imgPaddingTop = '';
         this.imgPaddingLeft = '';
         this.imgPaddingBottom = '';
         this.imgPaddingRight = '';
         this.imgJustifyContent = '';
         this.imgAlignItems = '';
+        this.imgTextFlexBasis = '';
         this.imgTextWidth = '';
         this.imgTextHeight = '';
         this.imgTextBorderRadius = '';
@@ -74,6 +92,8 @@ let infoCard = class infoCard extends LitElement {
         this.imgTextFontFamily = '';
         this.imgTextFontWeight = '';
         this.imgTextLetterSpacing = '';
+        this.imgTextTextAlign = '';
+        this.imgTextLineHeight = '';
         this.imgTextFontStyle = '';
         this.cardtitleText = '';
         this.bodytextText = '';
@@ -88,11 +108,11 @@ let infoCard = class infoCard extends LitElement {
             }
             :host {
 display: flex;
-width: ${this.width ? `calc(${this.width} - 90px)` : '975px'};
-height: ${this.height ? `calc(${this.height} - 82px)` : '352px'};
+width: ${this.width ? `calc(${this.width} - 90px)` : '471px'};
+height: ${this.height ? `calc(${this.height} - 82px)` : '452px'};
 border-radius: ${this.borderRadius ? this.borderRadius : '20px'};
 gap: ${this.gap ? this.gap : '56px'};
-flex-direction: ${this.flexDirection ? this.flexDirection : 'row'};
+flex-direction: ${this.flexDirection ? this.flexDirection : 'column'};
 background-color: ${this.backgroundColor ? this.backgroundColor : 'var(--color-background-default)'};
 padding-top: ${this.paddingTop ? this.paddingTop : '41px'};
 padding-left: ${this.paddingLeft ? this.paddingLeft : '45px'};
@@ -104,48 +124,57 @@ align-items: ${this.alignItems ? this.alignItems : 'center'};
 
 .textBox {
 display: flex;
+flex-basis:  ${this.textBoxFlexBasis ? this.textBoxFlexBasis : '34.73451327433628%'};
 width: 100%;
-flex-basis:32.82051282051282%;
 height: 100%;
-gap: ${this.textBoxGap ? this.textBoxGap : '25px'};
+gap: ${this.textBoxGap ? this.textBoxGap : '43px'};
 flex-direction: ${this.textBoxFlexDirection ? this.textBoxFlexDirection : 'column'};
 }
 
 .cardtitle {
+flex-basis:  ${this.cardtitleFlexBasis ? this.cardtitleFlexBasis : '24.840764331210192%'};
 color: ${this.cardtitleBackgroundColor ? this.cardtitleBackgroundColor : '#000000'};
 font-size: ${this.cardtitleFontSize ? this.cardtitleFontSize : '1.997816562652588rem'};
 font-family: ${this.cardtitleFontFamily ? this.cardtitleFontFamily : 'Montserrat'};
 font-weight: ${this.cardtitleFontWeight ? this.cardtitleFontWeight : '500'};
 letter-spacing: ${this.cardtitleLetterSpacing ? this.cardtitleLetterSpacing : '0'};
+text-align: ${this.cardtitleTextAlign ? this.cardtitleTextAlign : 'left'};
+line-height: ${this.cardtitleLineHeight ? this.cardtitleLineHeight : '2.341191291809082rem'};
 }
 
 .bodytext {
+flex-basis:  ${this.bodytextFlexBasis ? this.bodytextFlexBasis : '32.48407643312102%'};
 color: ${this.bodytextBackgroundColor ? this.bodytextBackgroundColor : '#000000'};
 font-size: ${this.bodytextFontSize ? this.bodytextFontSize : '1.3318777084350586rem'};
 font-family: ${this.bodytextFontFamily ? this.bodytextFontFamily : 'Montserrat'};
 font-weight: ${this.bodytextFontWeight ? this.bodytextFontWeight : '400'};
 letter-spacing: ${this.bodytextLetterSpacing ? this.bodytextLetterSpacing : '0'};
+text-align: ${this.bodytextTextAlign ? this.bodytextTextAlign : 'left'};
+line-height: ${this.bodytextLineHeight ? this.bodytextLineHeight : '1.5607942342758179rem'};
 }
 
 .img {
 display: flex;
+flex-basis:  ${this.imgFlexBasis ? this.imgFlexBasis : '52.876106194690266%'};
 width: 100%;
-flex-basis:61.43589743589744%;
 height: 100%;
 border-radius: ${this.imgBorderRadius ? this.imgBorderRadius : '20px'};
 gap: ${this.imgGap ? this.imgGap : '10px'};
 flex-direction: ${this.imgFlexDirection ? this.imgFlexDirection : 'column'};
-background-color: ${this.imgBackgroundColor ? this.imgBackgroundColor : 'var(--color-primary)'};
+background-color: ${this.imgBackgroundColor ? this.imgBackgroundColor : 'var(--color-info)'};
 justify-content: ${this.imgJustifyContent ? this.imgJustifyContent : 'center'};
 align-items: ${this.imgAlignItems ? this.imgAlignItems : 'center'};
 }
 
 .imgText {
+flex-basis:  ${this.imgTextFlexBasis ? this.imgTextFlexBasis : '12.97071129707113%'};
 color: ${this.imgTextBackgroundColor ? this.imgTextBackgroundColor : '#ffffff'};
 font-size: ${this.imgTextFontSize ? this.imgTextFontSize : '1.7290455102920532rem'};
 font-family: ${this.imgTextFontFamily ? this.imgTextFontFamily : 'Times'};
 font-weight: ${this.imgTextFontWeight ? this.imgTextFontWeight : '700'};
 letter-spacing: ${this.imgTextLetterSpacing ? this.imgTextLetterSpacing : '0'};
+text-align: ${this.imgTextTextAlign ? this.imgTextTextAlign : 'left'};
+line-height: ${this.imgTextLineHeight ? this.imgTextLineHeight : '2.0262250900268555rem'};
 font-style: ${this.imgTextFontStyle ? this.imgTextFontStyle : 'italic'};
 }
 
@@ -188,6 +217,15 @@ __decorate([
 ], infoCard.prototype, "backgroundColor", void 0);
 __decorate([
     property({ type: String })
+], infoCard.prototype, "backgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "backgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "backgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], infoCard.prototype, "paddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -204,6 +242,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "alignItems", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "textBoxFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "textBoxWidth", void 0);
@@ -224,6 +265,15 @@ __decorate([
 ], infoCard.prototype, "textBoxBackgroundColor", void 0);
 __decorate([
     property({ type: String })
+], infoCard.prototype, "textBoxBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "textBoxBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "textBoxBackgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], infoCard.prototype, "textBoxPaddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -240,6 +290,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "textBoxAlignItems", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "cardtitleFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "cardtitleWidth", void 0);
@@ -272,6 +325,15 @@ __decorate([
 ], infoCard.prototype, "cardtitleLetterSpacing", void 0);
 __decorate([
     property({ type: String })
+], infoCard.prototype, "cardtitleTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "cardtitleLineHeight", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "bodytextFlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], infoCard.prototype, "bodytextWidth", void 0);
 __decorate([
     property({ type: String })
@@ -302,6 +364,15 @@ __decorate([
 ], infoCard.prototype, "bodytextLetterSpacing", void 0);
 __decorate([
     property({ type: String })
+], infoCard.prototype, "bodytextTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "bodytextLineHeight", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "imgFlexBasis", void 0);
+__decorate([
+    property({ type: String })
 ], infoCard.prototype, "imgWidth", void 0);
 __decorate([
     property({ type: String })
@@ -320,6 +391,15 @@ __decorate([
 ], infoCard.prototype, "imgBackgroundColor", void 0);
 __decorate([
     property({ type: String })
+], infoCard.prototype, "imgBackgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "imgBackgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "imgBackgroundRepeat", void 0);
+__decorate([
+    property({ type: String })
 ], infoCard.prototype, "imgPaddingTop", void 0);
 __decorate([
     property({ type: String })
@@ -336,6 +416,9 @@ __decorate([
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "imgAlignItems", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "imgTextFlexBasis", void 0);
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "imgTextWidth", void 0);
@@ -366,6 +449,12 @@ __decorate([
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "imgTextLetterSpacing", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "imgTextTextAlign", void 0);
+__decorate([
+    property({ type: String })
+], infoCard.prototype, "imgTextLineHeight", void 0);
 __decorate([
     property({ type: String })
 ], infoCard.prototype, "imgTextFontStyle", void 0);

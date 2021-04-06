@@ -14,6 +14,9 @@ let converterNav = class converterNav extends LitElement {
         this.gap = '';
         this.flexDirection = '';
         this.backgroundColor = '';
+        this.backgroundImage = '';
+        this.backgroundSize = '';
+        this.backgroundRepeat = '';
         this.paddingTop = '';
         this.paddingLeft = '';
         this.paddingBottom = '';
@@ -73,6 +76,15 @@ __decorate([
 __decorate([
     property({ type: String })
 ], converterNav.prototype, "backgroundColor", void 0);
+__decorate([
+    property({ type: String })
+], converterNav.prototype, "backgroundImage", void 0);
+__decorate([
+    property({ type: String })
+], converterNav.prototype, "backgroundSize", void 0);
+__decorate([
+    property({ type: String })
+], converterNav.prototype, "backgroundRepeat", void 0);
 __decorate([
     property({ type: String })
 ], converterNav.prototype, "paddingTop", void 0);
