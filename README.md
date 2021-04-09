@@ -3,6 +3,8 @@
 FigmaConverter is a small program that let's you convert Figma components into web-components and Figma styles into SCSS variables and mixins. 
 
 As of now this is a prototype and has flaws.
+Access tokens to Figma are written out in clear text right now. 
+**Don't use this with important work**
 
 
 ## Building Figma Components
@@ -31,6 +33,15 @@ cd FigmaConverter/
 npm install
 ```
 
+## Setup
+FigmaConverter focuses on single documents. To be able to get the information form the document an access token is needed. Run the setup script to fill in the information for the document and the token.
+
+```bash
+npm run setup
+```
+
+When a token is set you'll get the option to change it or keep the old one.
+When you want to add a new document you just run the above script and add a new name and document ID.
 
 
 ## Usage
@@ -38,7 +49,7 @@ npm install
 To run FigmaConverter run the figmaConvert.ts file:
 
 ```bash
-npm run convert
+npm run convert -- DOCUMENT_NAME
 ```
 
 To get the information of your compoents figmaConverter needs the figma document ID and an access token. 

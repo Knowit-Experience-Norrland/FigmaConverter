@@ -1,590 +1,156 @@
 import { LitElement, html, customElement, property } from 'lit-element';
+var topNewsimgMap = new Map(); 
+var imgMap = new Map(); 
+var textBoxMap = new Map(); 
+var titleMap = new Map(); 
+var metaMap = new Map(); 
+var timeMap = new Map(); 
+var coworkersMap = new Map(); 
+var SLOTchannelMap = new Map(); 
+var MedarbetareMap = new Map(); 
+var likesContainerMap = new Map(); 
+var SLOTlikesMap = new Map(); 
+var likesMap = new Map(); 
+var commentsContainerMap = new Map(); 
+var SLOTcommentsMap = new Map(); 
+var commentsMap = new Map(); 
+topNewsimgMap.set('display', 'flex');
+topNewsimgMap.set('width', '395px');
+topNewsimgMap.set('height', '390px');
+topNewsimgMap.set('flex-direction', 'column');
+topNewsimgMap.set('background-color', '#ffffff');
+imgMap.set('flex-basis', '50%');
+imgMap.set('width','100%');
+imgMap.set('height','50%');
+imgMap.set('border-radius', ' 3px 3px 0px 0px');
+imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/8491/4d75/835822ba7ed023436a57574a6578ed9a?Expires=1618790400&Signature=WbjWbcDBF51aVviyFRgZ~D5cbBDh6cfctourm7av-05u51efQzn0ct17YcSapwuwoVsr0VPJiON9TwwMNRPc3TvxjK0MHBSAtoik7Ti7wTGxPX4oZfTzENIa~82r8VyeOoO0NvYgpFxfxOpc8WwHG-PH-CsJJsrQi9unzYHjT5hNdnRztlsE4p1i3stNy6o2TMQkGfOfZGW1VFEGnnqrHriFKQURDXfY~gZeimSnN6bNo5JNqAggJ2WJZo3h05TYHrp7Np~hYp2q44sXJtn1d9aBwOFwY7zMoVRMcvnA6Ikrpf0uaFRKC-dKJUUNUiu3Tn4nFW-uwJhtg7Mdrq7CSg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+imgMap.set('background-size', 'cover');
+imgMap.set('background-repeat', 'no-repeat');
+textBoxMap.set('display', 'flex');
+textBoxMap.set('flex-basis', '50%');
+textBoxMap.set('width',
+                        'calc(100% - 48px)'); 
+textBoxMap.set('height',
+                        'calc(50% - 32px)'); 
+textBoxMap.set('flex-direction', 'column');
+textBoxMap.set('padding-top', '16px');
+textBoxMap.set('padding-left', '24px');
+textBoxMap.set('padding-bottom', '16px');
+textBoxMap.set('padding-right', '24px');
+titleMap.set('flex-basis', '74.35897435897436%');
+titleMap.set('color', '#000000');
+titleMap.set('font-size','1.5rem') ;
+titleMap.set('font-family','Montserrat') ;
+titleMap.set('font-weight','400') ;
+titleMap.set('text-align','left') ;
+metaMap.set('display', 'flex');
+metaMap.set('flex-basis', '9.230769230769232%');
+metaMap.set('width','88%');
+metaMap.set('height','9%');
+metaMap.set('gap', '16px');
+metaMap.set('flex-direction', 'row');
+metaMap.set('align-items', 'center');
+timeMap.set('flex-basis', '19.30835734870317%');
+timeMap.set('color', '#717070');
+timeMap.set('font-size','0.875rem') ;
+timeMap.set('font-family','Montserrat') ;
+timeMap.set('font-weight','400') ;
+timeMap.set('text-align','left') ;
+coworkersMap.set('display', 'flex');
+coworkersMap.set('flex-basis', '32.85302593659942%');
+coworkersMap.set('width','33%');
+coworkersMap.set('height','100%');
+coworkersMap.set('gap', '5.5px');
+coworkersMap.set('flex-direction', 'row');
+coworkersMap.set('align-items', 'center');
+SLOTchannelMap.set('flex-basis', '15.789473684210526%');
+SLOTchannelMap.set('width','16%');
+SLOTchannelMap.set('height','100%');
+SLOTchannelMap.set('background-color', '#c5c5c5');
+MedarbetareMap.set('flex-basis', '79.82456140350878%');
+MedarbetareMap.set('color', '#717070');
+MedarbetareMap.set('font-size','0.875rem') ;
+MedarbetareMap.set('font-family','Montserrat') ;
+MedarbetareMap.set('font-weight','400') ;
+MedarbetareMap.set('text-align','left') ;
+likesContainerMap.set('display', 'flex');
+likesContainerMap.set('flex-basis', '9.221902017291066%');
+likesContainerMap.set('width','9%');
+likesContainerMap.set('height','100%');
+likesContainerMap.set('gap', '5.5px');
+likesContainerMap.set('flex-direction', 'row');
+likesContainerMap.set('align-items', 'center');
+SLOTlikesMap.set('flex-basis', '56.25%');
+SLOTlikesMap.set('width','56%');
+SLOTlikesMap.set('height','100%');
+SLOTlikesMap.set('background-color', '#c5c5c5');
+likesMap.set('flex-basis', '28.125%');
+likesMap.set('font-size','0.875rem') ;
+likesMap.set('font-family','Open Sans') ;
+likesMap.set('font-weight','400') ;
+likesMap.set('text-align','left') ;
+commentsContainerMap.set('display', 'flex');
+commentsContainerMap.set('flex-basis', '9.798270893371757%');
+commentsContainerMap.set('width','10%');
+commentsContainerMap.set('height','100%');
+commentsContainerMap.set('gap', '7px');
+commentsContainerMap.set('flex-direction', 'row');
+commentsContainerMap.set('align-items', 'center');
+SLOTcommentsMap.set('flex-basis', '52.94117647058824%');
+SLOTcommentsMap.set('width','53%');
+SLOTcommentsMap.set('height','100%');
+SLOTcommentsMap.set('background-color', '#c5c5c5');
+commentsMap.set('flex-basis', '26.47058823529412%');
+commentsMap.set('font-size','0.875rem') ;
+commentsMap.set('font-family','Open Sans') ;
+commentsMap.set('font-weight','400') ;
+commentsMap.set('text-align','left') ;
 @customElement('top-newsimg')
 export class topNewsimg extends LitElement { 
 @property({type: String})
-externalStyleSheet = '';
+topNewsimg = '';
 
 @property({type: String})
-width = '';
+img = '';
 
 @property({type: String})
-height = '';
+textBox = '';
 
 @property({type: String})
-borderRadius = '';
+title = '';
 
 @property({type: String})
-gap = '';
+meta = '';
 
 @property({type: String})
-flexDirection = '';
+time = '';
 
 @property({type: String})
-backgroundColor = '';
+coworkers = '';
 
 @property({type: String})
-backgroundImage = '';
+SLOTchannel = '';
 
 @property({type: String})
-backgroundSize = '';
+Medarbetare = '';
 
 @property({type: String})
-backgroundRepeat = '';
+likesContainer = '';
 
 @property({type: String})
-paddingTop = '';
+SLOTlikes = '';
 
 @property({type: String})
-paddingLeft = '';
+likes = '';
 
 @property({type: String})
-paddingBottom = '';
+commentsContainer = '';
 
 @property({type: String})
-paddingRight = '';
+SLOTcomments = '';
 
 @property({type: String})
-justifyContent = '';
-
-@property({type: String})
-alignItems = '';
-
-@property({type: String})
-imgFlexBasis = '';
-
-@property({type: String})
-imgWidth = '';
-
-@property({type: String})
-imgHeight = '';
-
-@property({type: String})
-imgBorderRadius = '';
-
-@property({type: String})
-imgGap = '';
-
-@property({type: String})
-imgFlexDirection = '';
-
-@property({type: String})
-imgBackgroundColor = '';
-
-@property({type: String})
-imgBackgroundImage = '';
-
-@property({type: String})
-imgBackgroundSize = '';
-
-@property({type: String})
-imgBackgroundRepeat = '';
-
-@property({type: String})
-imgPaddingTop = '';
-
-@property({type: String})
-imgPaddingLeft = '';
-
-@property({type: String})
-imgPaddingBottom = '';
-
-@property({type: String})
-imgPaddingRight = '';
-
-@property({type: String})
-imgJustifyContent = '';
-
-@property({type: String})
-imgAlignItems = '';
-
-@property({type: String})
-textBoxFlexBasis = '';
-
-@property({type: String})
-textBoxWidth = '';
-
-@property({type: String})
-textBoxHeight = '';
-
-@property({type: String})
-textBoxBorderRadius = '';
-
-@property({type: String})
-textBoxGap = '';
-
-@property({type: String})
-textBoxFlexDirection = '';
-
-@property({type: String})
-textBoxBackgroundColor = '';
-
-@property({type: String})
-textBoxBackgroundImage = '';
-
-@property({type: String})
-textBoxBackgroundSize = '';
-
-@property({type: String})
-textBoxBackgroundRepeat = '';
-
-@property({type: String})
-textBoxPaddingTop = '';
-
-@property({type: String})
-textBoxPaddingLeft = '';
-
-@property({type: String})
-textBoxPaddingBottom = '';
-
-@property({type: String})
-textBoxPaddingRight = '';
-
-@property({type: String})
-textBoxJustifyContent = '';
-
-@property({type: String})
-textBoxAlignItems = '';
-
-@property({type: String})
-titleFlexBasis = '';
-
-@property({type: String})
-titleWidth = '';
-
-@property({type: String})
-titleHeight = '';
-
-@property({type: String})
-titleBorderRadius = '';
-
-@property({type: String})
-titleGap = '';
-
-@property({type: String})
-titleFlexDirection = '';
-
-@property({type: String})
-titleBackgroundColor = '';
-
-@property({type: String})
-titleFontSize = '';
-
-@property({type: String})
-titleFontFamily = '';
-
-@property({type: String})
-titleFontWeight = '';
-
-@property({type: String})
-titleLetterSpacing = '';
-
-@property({type: String})
-titleTextAlign = '';
-
-@property({type: String})
-titleLineHeight = '';
-
-@property({type: String})
-metaFlexBasis = '';
-
-@property({type: String})
-metaWidth = '';
-
-@property({type: String})
-metaHeight = '';
-
-@property({type: String})
-metaBorderRadius = '';
-
-@property({type: String})
-metaGap = '';
-
-@property({type: String})
-metaFlexDirection = '';
-
-@property({type: String})
-metaBackgroundColor = '';
-
-@property({type: String})
-metaBackgroundImage = '';
-
-@property({type: String})
-metaBackgroundSize = '';
-
-@property({type: String})
-metaBackgroundRepeat = '';
-
-@property({type: String})
-metaPaddingTop = '';
-
-@property({type: String})
-metaPaddingLeft = '';
-
-@property({type: String})
-metaPaddingBottom = '';
-
-@property({type: String})
-metaPaddingRight = '';
-
-@property({type: String})
-metaJustifyContent = '';
-
-@property({type: String})
-metaAlignItems = '';
-
-@property({type: String})
-timeFlexBasis = '';
-
-@property({type: String})
-timeWidth = '';
-
-@property({type: String})
-timeHeight = '';
-
-@property({type: String})
-timeBorderRadius = '';
-
-@property({type: String})
-timeGap = '';
-
-@property({type: String})
-timeFlexDirection = '';
-
-@property({type: String})
-timeBackgroundColor = '';
-
-@property({type: String})
-timeFontSize = '';
-
-@property({type: String})
-timeFontFamily = '';
-
-@property({type: String})
-timeFontWeight = '';
-
-@property({type: String})
-timeLetterSpacing = '';
-
-@property({type: String})
-timeTextAlign = '';
-
-@property({type: String})
-timeLineHeight = '';
-
-@property({type: String})
-coworkersFlexBasis = '';
-
-@property({type: String})
-coworkersWidth = '';
-
-@property({type: String})
-coworkersHeight = '';
-
-@property({type: String})
-coworkersBorderRadius = '';
-
-@property({type: String})
-coworkersGap = '';
-
-@property({type: String})
-coworkersFlexDirection = '';
-
-@property({type: String})
-coworkersBackgroundColor = '';
-
-@property({type: String})
-coworkersBackgroundImage = '';
-
-@property({type: String})
-coworkersBackgroundSize = '';
-
-@property({type: String})
-coworkersBackgroundRepeat = '';
-
-@property({type: String})
-coworkersPaddingTop = '';
-
-@property({type: String})
-coworkersPaddingLeft = '';
-
-@property({type: String})
-coworkersPaddingBottom = '';
-
-@property({type: String})
-coworkersPaddingRight = '';
-
-@property({type: String})
-coworkersJustifyContent = '';
-
-@property({type: String})
-coworkersAlignItems = '';
-
-@property({type: String})
-MedarbetareFlexBasis = '';
-
-@property({type: String})
-MedarbetareWidth = '';
-
-@property({type: String})
-MedarbetareHeight = '';
-
-@property({type: String})
-MedarbetareBorderRadius = '';
-
-@property({type: String})
-MedarbetareGap = '';
-
-@property({type: String})
-MedarbetareFlexDirection = '';
-
-@property({type: String})
-MedarbetareBackgroundColor = '';
-
-@property({type: String})
-MedarbetareFontSize = '';
-
-@property({type: String})
-MedarbetareFontFamily = '';
-
-@property({type: String})
-MedarbetareFontWeight = '';
-
-@property({type: String})
-MedarbetareLetterSpacing = '';
-
-@property({type: String})
-MedarbetareTextAlign = '';
-
-@property({type: String})
-MedarbetareLineHeight = '';
-
-@property({type: String})
-likesContainerFlexBasis = '';
-
-@property({type: String})
-likesContainerWidth = '';
-
-@property({type: String})
-likesContainerHeight = '';
-
-@property({type: String})
-likesContainerBorderRadius = '';
-
-@property({type: String})
-likesContainerGap = '';
-
-@property({type: String})
-likesContainerFlexDirection = '';
-
-@property({type: String})
-likesContainerBackgroundColor = '';
-
-@property({type: String})
-likesContainerBackgroundImage = '';
-
-@property({type: String})
-likesContainerBackgroundSize = '';
-
-@property({type: String})
-likesContainerBackgroundRepeat = '';
-
-@property({type: String})
-likesContainerPaddingTop = '';
-
-@property({type: String})
-likesContainerPaddingLeft = '';
-
-@property({type: String})
-likesContainerPaddingBottom = '';
-
-@property({type: String})
-likesContainerPaddingRight = '';
-
-@property({type: String})
-likesContainerJustifyContent = '';
-
-@property({type: String})
-likesContainerAlignItems = '';
-
-@property({type: String})
-likesFlexBasis = '';
-
-@property({type: String})
-likesWidth = '';
-
-@property({type: String})
-likesHeight = '';
-
-@property({type: String})
-likesBorderRadius = '';
-
-@property({type: String})
-likesGap = '';
-
-@property({type: String})
-likesFlexDirection = '';
-
-@property({type: String})
-likesBackgroundColor = '';
-
-@property({type: String})
-likesBackgroundImage = '';
-
-@property({type: String})
-likesBackgroundSize = '';
-
-@property({type: String})
-likesBackgroundRepeat = '';
-
-@property({type: String})
-likesPaddingTop = '';
-
-@property({type: String})
-likesPaddingLeft = '';
-
-@property({type: String})
-likesPaddingBottom = '';
-
-@property({type: String})
-likesPaddingRight = '';
-
-@property({type: String})
-likesJustifyContent = '';
-
-@property({type: String})
-likesAlignItems = '';
-
-@property({type: String})
-likesFontSize = '';
-
-@property({type: String})
-likesFontFamily = '';
-
-@property({type: String})
-likesFontWeight = '';
-
-@property({type: String})
-likesLetterSpacing = '';
-
-@property({type: String})
-likesTextAlign = '';
-
-@property({type: String})
-likesLineHeight = '';
-
-@property({type: String})
-commentsContainerFlexBasis = '';
-
-@property({type: String})
-commentsContainerWidth = '';
-
-@property({type: String})
-commentsContainerHeight = '';
-
-@property({type: String})
-commentsContainerBorderRadius = '';
-
-@property({type: String})
-commentsContainerGap = '';
-
-@property({type: String})
-commentsContainerFlexDirection = '';
-
-@property({type: String})
-commentsContainerBackgroundColor = '';
-
-@property({type: String})
-commentsContainerBackgroundImage = '';
-
-@property({type: String})
-commentsContainerBackgroundSize = '';
-
-@property({type: String})
-commentsContainerBackgroundRepeat = '';
-
-@property({type: String})
-commentsContainerPaddingTop = '';
-
-@property({type: String})
-commentsContainerPaddingLeft = '';
-
-@property({type: String})
-commentsContainerPaddingBottom = '';
-
-@property({type: String})
-commentsContainerPaddingRight = '';
-
-@property({type: String})
-commentsContainerJustifyContent = '';
-
-@property({type: String})
-commentsContainerAlignItems = '';
-
-@property({type: String})
-commentsFlexBasis = '';
-
-@property({type: String})
-commentsWidth = '';
-
-@property({type: String})
-commentsHeight = '';
-
-@property({type: String})
-commentsBorderRadius = '';
-
-@property({type: String})
-commentsGap = '';
-
-@property({type: String})
-commentsFlexDirection = '';
-
-@property({type: String})
-commentsBackgroundColor = '';
-
-@property({type: String})
-commentsBackgroundImage = '';
-
-@property({type: String})
-commentsBackgroundSize = '';
-
-@property({type: String})
-commentsBackgroundRepeat = '';
-
-@property({type: String})
-commentsPaddingTop = '';
-
-@property({type: String})
-commentsPaddingLeft = '';
-
-@property({type: String})
-commentsPaddingBottom = '';
-
-@property({type: String})
-commentsPaddingRight = '';
-
-@property({type: String})
-commentsJustifyContent = '';
-
-@property({type: String})
-commentsAlignItems = '';
-
-@property({type: String})
-commentsFontSize = '';
-
-@property({type: String})
-commentsFontFamily = '';
-
-@property({type: String})
-commentsFontWeight = '';
-
-@property({type: String})
-commentsLetterSpacing = '';
-
-@property({type: String})
-commentsTextAlign = '';
-
-@property({type: String})
-commentsLineHeight = '';
+comments = '';
 
 @property({type: String})
 titleText = '';
@@ -602,137 +168,98 @@ likesText = '';
 commentsText = '';
 
 
+
+    propertyToMap = (cssRules: Map<string, string>, property: string) => {
+        var rules = property.split(';');
+        rules.forEach((rule) => {
+            // removes all whitespaces that is more than one whitespace
+            rule = rule.replace(/ss+/g, ' ');
+            var key = rule.split(': ')[0];
+            var value = rule.split(': ')[1];
+            key = key.trim();
+            if (cssRules.has(key)) {
+                cssRules.delete(key);
+            }
+            cssRules.set(key, value);
+        });
+    };
+
+    renderCssString = (cssRules: Map<string, string>, property: string): string => {
+        if (property) {
+            var mapCopy = new Map();
+            for (let [key, value] of cssRules) {
+                mapCopy.set(key, value);
+            }
+
+            this.propertyToMap(mapCopy, property);
+
+            var cssString = '';
+            for (let [key, value] of mapCopy.entries()) {
+                cssString += `${key}: ${value};\n`;
+            }
+            return cssString;
+        }
+
+        var cssString = '';
+        for (let [key, value] of cssRules.entries()) {
+            cssString += `${key}: ${value};\n`;
+        }
+        return cssString;
+    };
+
     render(){
         return html`
-            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
                 padding: 0;
             }
+            
             :host {
-display: flex;
-width: ${this.width  ? this.width:  '395px' };
-height: ${this.height  ? this.height:  '390px' };
-flex-direction: ${this.flexDirection  ? this.flexDirection:  'column' };
-background-color: ${this.backgroundColor  ? this.backgroundColor:  '#ffffff' };
+${this.renderCssString(topNewsimgMap, this.topNewsimg)};
 }
-
 .img {
-flex-basis:  ${this.imgFlexBasis ? this.imgFlexBasis : '50%'};
-width: ${this.imgWidth  ? this.imgWidth:  '100%' };
-height: ${this.imgHeight  ? this.imgHeight:  '50%' };
-border-radius: ${this.imgBorderRadius  ? this.imgBorderRadius:  ' 3px 3px 0px 0px' };
-background-image: ${this.imgBackgroundImage  ? this.imgBackgroundImage:  'url(https://s3-alpha-sig.figma.com/img/8491/4d75/835822ba7ed023436a57574a6578ed9a?Expires=1618185600&Signature=LDy6vHPm-QiDFQNELH5W9qwZi-2JwAYbUzLo5noNX-lwTN8WsBkBrFwnqXy5UTGL1Qx5hUXfXfUp60vz-VmI7PRwXn1DrncGypgl6HdGD37aA361J8uSoB79tfy8vANPVSaDH~OOl-UIF6LKrzgf6awDNCm3Ms8xy61KB1-~eOMMoAtXLX40Lt9bKa8Zkz1AHgX9fjZjDO~GCg8ae8gKfi6Jc29KhaGK0t2VUWTdXt8~aY7ZoNAQFkselydKlI4sAz8wCGepnNTEscsD~BhmvXuTxEzTp7G5LF1Qm5sxBrHLdg50x5uR13sCYh6FMs-zXSzkU61An69GFd1aunMuhQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)' };
-background-size: ${this.imgBackgroundSize  ? this.imgBackgroundSize:  'cover' };
-background-repeat: ${this.imgBackgroundRepeat  ? this.imgBackgroundRepeat:  'no-repeat' };
+${this.renderCssString(imgMap, this.img)};
 }
-
 .textBox {
-display: flex;
-flex-basis:  ${this.textBoxFlexBasis ? this.textBoxFlexBasis : '41.794871794871796%'};
-width: ${this.textBoxWidth  ? this.textBoxWidth:  '88%' };
-height: ${this.textBoxHeight  ? this.textBoxHeight:  '42%' };
-flex-direction: ${this.textBoxFlexDirection  ? this.textBoxFlexDirection:  'column' };
-padding-top: ${this.textBoxPaddingTop  ? this.textBoxPaddingTop:  '16px' };
-padding-left: ${this.textBoxPaddingLeft  ? this.textBoxPaddingLeft:  '24px' };
-padding-bottom: ${this.textBoxPaddingBottom  ? this.textBoxPaddingBottom:  '16px' };
-padding-right: ${this.textBoxPaddingRight  ? this.textBoxPaddingRight:  '24px' };
+${this.renderCssString(textBoxMap, this.textBox)};
 }
-
 .title {
-flex-basis:  ${this.titleFlexBasis ? this.titleFlexBasis : '88.95705521472392%'};
-color: ${this.titleBackgroundColor ? this.titleBackgroundColor : '#000000'};
-font-size: ${this.titleFontSize  ? this.titleFontSize:  '1.5rem' };
-font-family: ${this.titleFontFamily  ? this.titleFontFamily:  'Montserrat' };
-font-weight: ${this.titleFontWeight  ? this.titleFontWeight:  '400' };
-letter-spacing: ${this.titleLetterSpacing  ? this.titleLetterSpacing:  '0rem' };
-text-align: ${this.titleTextAlign  ? this.titleTextAlign:  'left' };
-line-height: ${this.titleLineHeight  ? this.titleLineHeight:  '1.8125rem' };
+${this.renderCssString(titleMap, this.title)};
 }
-
 .meta {
-display: flex;
-flex-basis:  ${this.metaFlexBasis ? this.metaFlexBasis : '11.042944785276074%'};
-width: ${this.metaWidth  ? this.metaWidth:  '100%' };
-height: ${this.metaHeight  ? this.metaHeight:  '11%' };
-gap: ${this.metaGap  ? this.metaGap:  '16px' };
-flex-direction: ${this.metaFlexDirection  ? this.metaFlexDirection:  'row' };
-align-items: ${this.metaAlignItems  ? this.metaAlignItems:  'center' };
+${this.renderCssString(metaMap, this.meta)};
 }
-
 .time {
-flex-basis:  ${this.timeFlexBasis ? this.timeFlexBasis : '19.30835734870317%'};
-color: ${this.timeBackgroundColor ? this.timeBackgroundColor : '#717070'};
-font-size: ${this.timeFontSize  ? this.timeFontSize:  '0.875rem' };
-font-family: ${this.timeFontFamily  ? this.timeFontFamily:  'Montserrat' };
-font-weight: ${this.timeFontWeight  ? this.timeFontWeight:  '400' };
-letter-spacing: ${this.timeLetterSpacing  ? this.timeLetterSpacing:  '0rem' };
-text-align: ${this.timeTextAlign  ? this.timeTextAlign:  'left' };
-line-height: ${this.timeLineHeight  ? this.timeLineHeight:  '1.125rem' };
+${this.renderCssString(timeMap, this.time)};
 }
-
 .coworkers {
-display: flex;
-flex-basis:  ${this.coworkersFlexBasis ? this.coworkersFlexBasis : '32.85302593659942%'};
-width: ${this.coworkersWidth  ? this.coworkersWidth:  '33%' };
-height: ${this.coworkersHeight  ? this.coworkersHeight:  '100%' };
-gap: ${this.coworkersGap  ? this.coworkersGap:  '5.5px' };
-flex-direction: ${this.coworkersFlexDirection  ? this.coworkersFlexDirection:  'row' };
-align-items: ${this.coworkersAlignItems  ? this.coworkersAlignItems:  'center' };
+${this.renderCssString(coworkersMap, this.coworkers)};
 }
-
+.SLOTchannel {
+${this.renderCssString(SLOTchannelMap, this.SLOTchannel)};
+}
 .Medarbetare {
-flex-basis:  ${this.MedarbetareFlexBasis ? this.MedarbetareFlexBasis : '79.82456140350878%'};
-color: ${this.MedarbetareBackgroundColor ? this.MedarbetareBackgroundColor : '#717070'};
-font-size: ${this.MedarbetareFontSize  ? this.MedarbetareFontSize:  '0.875rem' };
-font-family: ${this.MedarbetareFontFamily  ? this.MedarbetareFontFamily:  'Montserrat' };
-font-weight: ${this.MedarbetareFontWeight  ? this.MedarbetareFontWeight:  '400' };
-letter-spacing: ${this.MedarbetareLetterSpacing  ? this.MedarbetareLetterSpacing:  '0rem' };
-text-align: ${this.MedarbetareTextAlign  ? this.MedarbetareTextAlign:  'left' };
-line-height: ${this.MedarbetareLineHeight  ? this.MedarbetareLineHeight:  '1.125rem' };
+${this.renderCssString(MedarbetareMap, this.Medarbetare)};
 }
-
 .likesContainer {
-display: flex;
-flex-basis:  ${this.likesContainerFlexBasis ? this.likesContainerFlexBasis : '9.221902017291066%'};
-width: ${this.likesContainerWidth  ? this.likesContainerWidth:  '9%' };
-height: ${this.likesContainerHeight  ? this.likesContainerHeight:  '100%' };
-gap: ${this.likesContainerGap  ? this.likesContainerGap:  '5.5px' };
-flex-direction: ${this.likesContainerFlexDirection  ? this.likesContainerFlexDirection:  'row' };
-align-items: ${this.likesContainerAlignItems  ? this.likesContainerAlignItems:  'center' };
+${this.renderCssString(likesContainerMap, this.likesContainer)};
 }
-
+.SLOTlikes {
+${this.renderCssString(SLOTlikesMap, this.SLOTlikes)};
+}
 .likes {
-flex-basis:  ${this.likesFlexBasis ? this.likesFlexBasis : '28.125%'};
-font-size: ${this.likesFontSize  ? this.likesFontSize:  '0.875rem' };
-font-family: ${this.likesFontFamily  ? this.likesFontFamily:  'Open Sans' };
-font-weight: ${this.likesFontWeight  ? this.likesFontWeight:  '400' };
-letter-spacing: ${this.likesLetterSpacing  ? this.likesLetterSpacing:  '0rem' };
-text-align: ${this.likesTextAlign  ? this.likesTextAlign:  'left' };
-line-height: ${this.likesLineHeight  ? this.likesLineHeight:  '1.125rem' };
+${this.renderCssString(likesMap, this.likes)};
 }
-
 .commentsContainer {
-display: flex;
-flex-basis:  ${this.commentsContainerFlexBasis ? this.commentsContainerFlexBasis : '9.798270893371757%'};
-width: ${this.commentsContainerWidth  ? this.commentsContainerWidth:  '10%' };
-height: ${this.commentsContainerHeight  ? this.commentsContainerHeight:  '100%' };
-gap: ${this.commentsContainerGap  ? this.commentsContainerGap:  '7px' };
-flex-direction: ${this.commentsContainerFlexDirection  ? this.commentsContainerFlexDirection:  'row' };
-align-items: ${this.commentsContainerAlignItems  ? this.commentsContainerAlignItems:  'center' };
+${this.renderCssString(commentsContainerMap, this.commentsContainer)};
 }
-
+.SLOTcomments {
+${this.renderCssString(SLOTcommentsMap, this.SLOTcomments)};
+}
 .comments {
-flex-basis:  ${this.commentsFlexBasis ? this.commentsFlexBasis : '26.47058823529412%'};
-font-size: ${this.commentsFontSize  ? this.commentsFontSize:  '0.875rem' };
-font-family: ${this.commentsFontFamily  ? this.commentsFontFamily:  'Open Sans' };
-font-weight: ${this.commentsFontWeight  ? this.commentsFontWeight:  '400' };
-letter-spacing: ${this.commentsLetterSpacing  ? this.commentsLetterSpacing:  '0rem' };
-text-align: ${this.commentsTextAlign  ? this.commentsTextAlign:  'left' };
-line-height: ${this.commentsLineHeight  ? this.commentsLineHeight:  '1.125rem' };
+${this.renderCssString(commentsMap, this.comments)};
 }
-
 
             </style> 
             <div class="img">
@@ -776,5 +303,5 @@ line-height: ${this.commentsLineHeight  ? this.commentsLineHeight:  '1.125rem' }
 
         `;
     }    
-}
+    }
  // NOT GENERATED CODE
