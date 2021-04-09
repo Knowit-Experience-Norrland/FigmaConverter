@@ -14,20 +14,20 @@ const questions = [
     {
         type: 'input',
         name: 'figma_id',
-        message: "What's your Figma document id?",
-        default: function () {
-            return 'sMOkMK456erPt6sk2jMuCb';
-            // return 'K4odZYkdvmAwB8ZEjoXSrp';
-            // return 'hfpX16KHa01k2i28WwCyHB';
-        },
+        message: "What's your Figma document ID?",
+        // default: function () {
+        //     return 'sMOkMK456erPt6sk2jMuCb';
+        //     // return 'K4odZYkdvmAwB8ZEjoXSrp';
+        //     // return 'hfpX16KHa01k2i28WwCyHB';
+        // },
     },
     {
         type: 'input',
         name: 'access_token',
         message: "What's your Figma access token?",
-        default: function () {
-            return '180395-4a4d13ad-7312-4bf5-9131-fb4542a08900';
-        },
+        // default: function () {
+        //     return '180395-4a4d13ad-7312-4bf5-9131-fb4542a08900';
+        // },
     },
 ];
 

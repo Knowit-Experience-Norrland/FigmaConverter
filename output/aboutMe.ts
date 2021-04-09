@@ -127,7 +127,7 @@ ${this.renderCssString(secondParagraphMap, this.secondParagraph)};
             }
 </p>
 <p class="secondParagraph">
-   ${this.secondParagraphText  ? this.secondParagraphText:  'Ända sedan jag fick min första smartphone så har jag varit på jakt efter nya häftiga applikationer och hämsidor. På senare tid har sökandet gått mer över till skapande och hoppas att kunna få arbeta med detta framöver! '
+   ${this.secondParagraphText  ? this.secondParagraphText:  'Ända sedan jag fick min första smartphone så har jag varit på jakt efter nya häftiga applikationer och hemsidor. På senare tid har sökandet gått mer över till skapande och hoppas att kunna få arbeta med detta framöver! '
             }
 </p>
 
