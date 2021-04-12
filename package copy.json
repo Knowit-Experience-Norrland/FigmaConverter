@@ -5,14 +5,14 @@
     "main": "src/figmaConverter.js",
     "scripts": {
         "setup": "npx ts-node src/setup.ts",
-        "convert": "npx ts-node src/figmaConverter.ts"
+        "convert": "npx ts-node src/figmaConverter.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "axios": "^0.21.1",
-        "dotenv": "^8.2.0",
         "inquirer": "^8.0.0",
         "lit-element": "^2.4.0"
     },

@@ -1,323 +1,93 @@
 import { LitElement, html, customElement, property } from 'lit-element';
+var nameTagMap = new Map(); 
+var imgMap = new Map(); 
+var textBoxMap = new Map(); 
+var titleBoxMap = new Map(); 
+var nameMap = new Map(); 
+var subBoxMap = new Map(); 
+var descriptionMap = new Map(); 
+nameTagMap.set('display', 'flex');
+nameTagMap.set('width', '480px');
+nameTagMap.set('height', '116px');
+nameTagMap.set('flex-direction', 'row');
+imgMap.set('flex-basis', '24.166666666666668%');
+imgMap.set('width','24%');
+imgMap.set('height','100%');
+imgMap.set('border-radius', '50%');
+imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/eef5/7561/45407980a3de4d17ad939880d89ad77b?Expires=1619395200&Signature=FXbrlMq6-SIy9ak~sxteSu95URBtX~5ngRX-Vo5I0kv~SoFDKNSnV~3nPZSA0hUhSXZyBIChq0rm8Co2rxBoMsekrYFvZEra4nKsIfsvZT~jtIvrzgNxVfFABIhEfTgMtOUk4tcxu-hfI7Lo5aptvSdrV0nIk0m2DqgKVD2Y6GXQq~W4yNy75GxHooWv0fYMfIMr3ewIEqgMKfCp9Llq1KGi1~vGdcvBdPCTs0SUoiWSBB8RjojappcJvLwcUnFdCq8AWH5umOcyDlzj89gz7CeMdYaBo3cupiJ8N48W5CBK-MhqO5kr3yTDDzA2FREmEkoI4CXCwATQZWJfm6Uwzg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+imgMap.set('background-size', 'cover');
+imgMap.set('background-repeat', 'no-repeat');
+textBoxMap.set('display', 'flex');
+textBoxMap.set('flex-basis', '75.83333333333333%');
+textBoxMap.set('width','76%');
+textBoxMap.set('height','100%');
+textBoxMap.set('flex-direction', 'column');
+textBoxMap.set('justify-content', 'flex-end');
+titleBoxMap.set('display', 'flex');
+titleBoxMap.set('flex-basis', '46.55172413793103%');
+titleBoxMap.set('width',
+                        'calc(100% - 175px)'); 
+titleBoxMap.set('height',
+                        'calc(47% - 20px)'); 
+titleBoxMap.set('border-radius', ' 0px 30px 30px 0px');
+titleBoxMap.set('gap', '10px');
+titleBoxMap.set('flex-direction', 'row');
+titleBoxMap.set('background-color', '#3d697c');
+titleBoxMap.set('padding-top', '10px');
+titleBoxMap.set('padding-left', '70px');
+titleBoxMap.set('padding-bottom', '10px');
+titleBoxMap.set('padding-right', '105px');
+titleBoxMap.set('justify-content', 'center');
+titleBoxMap.set('align-items', 'center');
+nameMap.set('flex-basis', '44.230769230769226%');
+nameMap.set('color', '#ffffff');
+nameMap.set('font-size','2.1622514724731445rem') ;
+nameMap.set('font-family','Roboto') ;
+nameMap.set('font-weight','400') ;
+nameMap.set('text-align','left') ;
+subBoxMap.set('display', 'flex');
+subBoxMap.set('flex-basis', '31.03448275862069%');
+subBoxMap.set('width',
+                        'calc(80% - 98px)'); 
+subBoxMap.set('height',
+                        'calc(31% - 22px)'); 
+subBoxMap.set('border-radius', ' 0px 20px 20px 0px');
+subBoxMap.set('flex-direction', 'row');
+subBoxMap.set('background-color', '#598ea4');
+subBoxMap.set('padding-top', '11px');
+subBoxMap.set('padding-left', '70px');
+subBoxMap.set('padding-bottom', '11px');
+subBoxMap.set('padding-right', '28px');
+subBoxMap.set('justify-content', 'center');
+subBoxMap.set('align-items', 'center');
+descriptionMap.set('flex-basis', '56.655290102389074%');
+descriptionMap.set('color', '#ffffff');
+descriptionMap.set('font-size','0.75rem') ;
+descriptionMap.set('font-family','Roboto') ;
+descriptionMap.set('font-weight','400') ;
+descriptionMap.set('text-align','left') ;
 @customElement('name-tag')
 export class nameTag extends LitElement { 
 @property({type: String})
-externalStyleSheet = '';
+nameTag = '';
 
 @property({type: String})
-width = '';
+img = '';
 
 @property({type: String})
-height = '';
+textBox = '';
 
 @property({type: String})
-borderRadius = '';
+titleBox = '';
 
 @property({type: String})
-gap = '';
+name = '';
 
 @property({type: String})
-flexDirection = '';
+subBox = '';
 
 @property({type: String})
-backgroundColor = '';
-
-@property({type: String})
-backgroundImage = '';
-
-@property({type: String})
-backgroundSize = '';
-
-@property({type: String})
-backgroundRepeat = '';
-
-@property({type: String})
-paddingTop = '';
-
-@property({type: String})
-paddingLeft = '';
-
-@property({type: String})
-paddingBottom = '';
-
-@property({type: String})
-paddingRight = '';
-
-@property({type: String})
-justifyContent = '';
-
-@property({type: String})
-alignItems = '';
-
-@property({type: String})
-imgFlexBasis = '';
-
-@property({type: String})
-imgWidth = '';
-
-@property({type: String})
-imgHeight = '';
-
-@property({type: String})
-imgBorderRadius = '';
-
-@property({type: String})
-imgGap = '';
-
-@property({type: String})
-imgFlexDirection = '';
-
-@property({type: String})
-imgBackgroundColor = '';
-
-@property({type: String})
-imgBackgroundImage = '';
-
-@property({type: String})
-imgBackgroundSize = '';
-
-@property({type: String})
-imgBackgroundRepeat = '';
-
-@property({type: String})
-imgPaddingTop = '';
-
-@property({type: String})
-imgPaddingLeft = '';
-
-@property({type: String})
-imgPaddingBottom = '';
-
-@property({type: String})
-imgPaddingRight = '';
-
-@property({type: String})
-imgJustifyContent = '';
-
-@property({type: String})
-imgAlignItems = '';
-
-@property({type: String})
-textBoxFlexBasis = '';
-
-@property({type: String})
-textBoxWidth = '';
-
-@property({type: String})
-textBoxHeight = '';
-
-@property({type: String})
-textBoxBorderRadius = '';
-
-@property({type: String})
-textBoxGap = '';
-
-@property({type: String})
-textBoxFlexDirection = '';
-
-@property({type: String})
-textBoxBackgroundColor = '';
-
-@property({type: String})
-textBoxBackgroundImage = '';
-
-@property({type: String})
-textBoxBackgroundSize = '';
-
-@property({type: String})
-textBoxBackgroundRepeat = '';
-
-@property({type: String})
-textBoxPaddingTop = '';
-
-@property({type: String})
-textBoxPaddingLeft = '';
-
-@property({type: String})
-textBoxPaddingBottom = '';
-
-@property({type: String})
-textBoxPaddingRight = '';
-
-@property({type: String})
-textBoxJustifyContent = '';
-
-@property({type: String})
-textBoxAlignItems = '';
-
-@property({type: String})
-titleBoxFlexBasis = '';
-
-@property({type: String})
-titleBoxWidth = '';
-
-@property({type: String})
-titleBoxHeight = '';
-
-@property({type: String})
-titleBoxBorderRadius = '';
-
-@property({type: String})
-titleBoxGap = '';
-
-@property({type: String})
-titleBoxFlexDirection = '';
-
-@property({type: String})
-titleBoxBackgroundColor = '';
-
-@property({type: String})
-titleBoxBackgroundImage = '';
-
-@property({type: String})
-titleBoxBackgroundSize = '';
-
-@property({type: String})
-titleBoxBackgroundRepeat = '';
-
-@property({type: String})
-titleBoxPaddingTop = '';
-
-@property({type: String})
-titleBoxPaddingLeft = '';
-
-@property({type: String})
-titleBoxPaddingBottom = '';
-
-@property({type: String})
-titleBoxPaddingRight = '';
-
-@property({type: String})
-titleBoxJustifyContent = '';
-
-@property({type: String})
-titleBoxAlignItems = '';
-
-@property({type: String})
-nameFlexBasis = '';
-
-@property({type: String})
-nameWidth = '';
-
-@property({type: String})
-nameHeight = '';
-
-@property({type: String})
-nameBorderRadius = '';
-
-@property({type: String})
-nameGap = '';
-
-@property({type: String})
-nameFlexDirection = '';
-
-@property({type: String})
-nameBackgroundColor = '';
-
-@property({type: String})
-nameFontSize = '';
-
-@property({type: String})
-nameFontFamily = '';
-
-@property({type: String})
-nameFontWeight = '';
-
-@property({type: String})
-nameLetterSpacing = '';
-
-@property({type: String})
-nameTextAlign = '';
-
-@property({type: String})
-nameLineHeight = '';
-
-@property({type: String})
-subBoxFlexBasis = '';
-
-@property({type: String})
-subBoxWidth = '';
-
-@property({type: String})
-subBoxHeight = '';
-
-@property({type: String})
-subBoxBorderRadius = '';
-
-@property({type: String})
-subBoxGap = '';
-
-@property({type: String})
-subBoxFlexDirection = '';
-
-@property({type: String})
-subBoxBackgroundColor = '';
-
-@property({type: String})
-subBoxBackgroundImage = '';
-
-@property({type: String})
-subBoxBackgroundSize = '';
-
-@property({type: String})
-subBoxBackgroundRepeat = '';
-
-@property({type: String})
-subBoxPaddingTop = '';
-
-@property({type: String})
-subBoxPaddingLeft = '';
-
-@property({type: String})
-subBoxPaddingBottom = '';
-
-@property({type: String})
-subBoxPaddingRight = '';
-
-@property({type: String})
-subBoxJustifyContent = '';
-
-@property({type: String})
-subBoxAlignItems = '';
-
-@property({type: String})
-descriptionFlexBasis = '';
-
-@property({type: String})
-descriptionWidth = '';
-
-@property({type: String})
-descriptionHeight = '';
-
-@property({type: String})
-descriptionBorderRadius = '';
-
-@property({type: String})
-descriptionGap = '';
-
-@property({type: String})
-descriptionFlexDirection = '';
-
-@property({type: String})
-descriptionBackgroundColor = '';
-
-@property({type: String})
-descriptionFontSize = '';
-
-@property({type: String})
-descriptionFontFamily = '';
-
-@property({type: String})
-descriptionFontWeight = '';
-
-@property({type: String})
-descriptionLetterSpacing = '';
-
-@property({type: String})
-descriptionTextAlign = '';
-
-@property({type: String})
-descriptionLineHeight = '';
+description = '';
 
 @property({type: String})
 nameText = '';
@@ -326,95 +96,74 @@ nameText = '';
 descriptionText = '';
 
 
+
+    propertyToMap = (cssRules: Map<string, string>, property: string) => {
+        var rules = property.split(';');
+        rules.forEach((rule) => {
+            // removes all whitespaces that is more than one whitespace
+            rule = rule.replace(/ss+/g, ' ');
+            var key = rule.split(': ')[0];
+            var value = rule.split(': ')[1];
+            key = key.trim();
+            if (cssRules.has(key)) {
+                cssRules.delete(key);
+            }
+            cssRules.set(key, value);
+        });
+    };
+
+    renderCssString = (cssRules: Map<string, string>, property: string): string => {
+        if (property) {
+            var mapCopy = new Map();
+            for (let [key, value] of cssRules) {
+                mapCopy.set(key, value);
+            }
+
+            this.propertyToMap(mapCopy, property);
+
+            var cssString = '';
+            for (let [key, value] of mapCopy.entries()) {
+                cssString += `${key}: ${value};\n`;
+            }
+            return cssString;
+        }
+
+        var cssString = '';
+        for (let [key, value] of cssRules.entries()) {
+            cssString += `${key}: ${value};\n`;
+        }
+        return cssString;
+    };
+
     render(){
         return html`
-            <link rel="stylesheet" href="${this.externalStyleSheet}" />
             <style> 
             * {
                 margin: 0;
                 padding: 0;
             }
+            
             :host {
-display: flex;
-width: ${this.width  ? this.width:  '480px' };
-height: ${this.height  ? this.height:  '116px' };
-flex-direction: ${this.flexDirection  ? this.flexDirection:  'row' };
+${this.renderCssString(nameTagMap, this.nameTag)};
 }
-
 .img {
-flex-basis:  ${this.imgFlexBasis ? this.imgFlexBasis : '24.166666666666668%'};
-width: ${this.imgWidth  ? this.imgWidth:  '24%' };
-height: ${this.imgHeight  ? this.imgHeight:  '100%' };
-border-radius: ${this.imgBorderRadius  ? this.imgBorderRadius:  '50%' };
-background-image: ${this.imgBackgroundImage  ? this.imgBackgroundImage:  'url(https://s3-alpha-sig.figma.com/img/eef5/7561/45407980a3de4d17ad939880d89ad77b?Expires=1618185600&Signature=Oz7k1a~yixlsidvMPs9nSKA0YnWGE9bUErdTZsBv~ORk7h4~Akd8Flr7tSplpk2hhOxcNgTyWeVNz7poU0nrrnByatFDjrP7shwqbJTv98L6cktFSyi~tpWZCzwvYndF7h66XdgBZPJuKleLJDaoluZ6irX~xWRMuYm1hdT4zgL9Zd~zeD5BtqNwiiLTJX3dLXKiIRBQqQV8V4ZHWJu4fruXUUwDqAPjq3ro6Lrtgt4a1NMRH2EAOroXGHcxTMt2fS~joL3izSjB8PXJaG2hn0jJxpUTkm3BHJA73KP8osCwj0ME19wzwUCqGMSBdIw9lD4jYGodpLs40QD6BN0QFg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)' };
-background-size: ${this.imgBackgroundSize  ? this.imgBackgroundSize:  'cover' };
-background-repeat: ${this.imgBackgroundRepeat  ? this.imgBackgroundRepeat:  'no-repeat' };
+${this.renderCssString(imgMap, this.img)};
 }
-
 .textBox {
-display: flex;
-flex-basis:  ${this.textBoxFlexBasis ? this.textBoxFlexBasis : '75.83333333333333%'};
-width: ${this.textBoxWidth  ? this.textBoxWidth:  '76%' };
-height: ${this.textBoxHeight  ? this.textBoxHeight:  '100%' };
-flex-direction: ${this.textBoxFlexDirection  ? this.textBoxFlexDirection:  'column' };
-justify-content: ${this.textBoxJustifyContent  ? this.textBoxJustifyContent:  'flex-end' };
+${this.renderCssString(textBoxMap, this.textBox)};
 }
-
 .titleBox {
-display: flex;
-flex-basis:  ${this.titleBoxFlexBasis ? this.titleBoxFlexBasis : '29.310344827586203%'};
-width: ${this.titleBoxWidth  ? this.titleBoxWidth:  '52%' };
-height: ${this.titleBoxHeight  ? this.titleBoxHeight:  '29%' };
-border-radius: ${this.titleBoxBorderRadius  ? this.titleBoxBorderRadius:  ' 0px 30px 30px 0px' };
-gap: ${this.titleBoxGap  ? this.titleBoxGap:  '10px' };
-flex-direction: ${this.titleBoxFlexDirection  ? this.titleBoxFlexDirection:  'row' };
-background-color: ${this.titleBoxBackgroundColor  ? this.titleBoxBackgroundColor:  '#3d697c' };
-padding-top: ${this.titleBoxPaddingTop  ? this.titleBoxPaddingTop:  '10px' };
-padding-left: ${this.titleBoxPaddingLeft  ? this.titleBoxPaddingLeft:  '70px' };
-padding-bottom: ${this.titleBoxPaddingBottom  ? this.titleBoxPaddingBottom:  '10px' };
-padding-right: ${this.titleBoxPaddingRight  ? this.titleBoxPaddingRight:  '105px' };
-justify-content: ${this.titleBoxJustifyContent  ? this.titleBoxJustifyContent:  'center' };
-align-items: ${this.titleBoxAlignItems  ? this.titleBoxAlignItems:  'center' };
+${this.renderCssString(titleBoxMap, this.titleBox)};
 }
-
 .name {
-flex-basis:  ${this.nameFlexBasis ? this.nameFlexBasis : '85.18518518518519%'};
-color: ${this.nameBackgroundColor ? this.nameBackgroundColor : '#ffffff'};
-font-size: ${this.nameFontSize  ? this.nameFontSize:  '2.1622514724731445rem' };
-font-family: ${this.nameFontFamily  ? this.nameFontFamily:  'Roboto' };
-font-weight: ${this.nameFontWeight  ? this.nameFontWeight:  '400' };
-letter-spacing: ${this.nameLetterSpacing  ? this.nameLetterSpacing:  '0rem' };
-text-align: ${this.nameTextAlign  ? this.nameTextAlign:  'left' };
-line-height: ${this.nameLineHeight  ? this.nameLineHeight:  '2.533888339996338rem' };
+${this.renderCssString(nameMap, this.name)};
 }
-
 .subBox {
-display: flex;
-flex-basis:  ${this.subBoxFlexBasis ? this.subBoxFlexBasis : '12.068965517241379%'};
-width: ${this.subBoxWidth  ? this.subBoxWidth:  '54%' };
-height: ${this.subBoxHeight  ? this.subBoxHeight:  '12%' };
-border-radius: ${this.subBoxBorderRadius  ? this.subBoxBorderRadius:  ' 0px 20px 20px 0px' };
-flex-direction: ${this.subBoxFlexDirection  ? this.subBoxFlexDirection:  'row' };
-background-color: ${this.subBoxBackgroundColor  ? this.subBoxBackgroundColor:  '#598ea4' };
-padding-top: ${this.subBoxPaddingTop  ? this.subBoxPaddingTop:  '11px' };
-padding-left: ${this.subBoxPaddingLeft  ? this.subBoxPaddingLeft:  '70px' };
-padding-bottom: ${this.subBoxPaddingBottom  ? this.subBoxPaddingBottom:  '11px' };
-padding-right: ${this.subBoxPaddingRight  ? this.subBoxPaddingRight:  '28px' };
-justify-content: ${this.subBoxJustifyContent  ? this.subBoxJustifyContent:  'center' };
-align-items: ${this.subBoxAlignItems  ? this.subBoxAlignItems:  'center' };
+${this.renderCssString(subBoxMap, this.subBox)};
 }
-
 .description {
-flex-basis:  ${this.descriptionFlexBasis ? this.descriptionFlexBasis : '85.12820512820512%'};
-color: ${this.descriptionBackgroundColor ? this.descriptionBackgroundColor : '#ffffff'};
-font-size: ${this.descriptionFontSize  ? this.descriptionFontSize:  '0.75rem' };
-font-family: ${this.descriptionFontFamily  ? this.descriptionFontFamily:  'Roboto' };
-font-weight: ${this.descriptionFontWeight  ? this.descriptionFontWeight:  '400' };
-letter-spacing: ${this.descriptionLetterSpacing  ? this.descriptionLetterSpacing:  '0rem' };
-text-align: ${this.descriptionTextAlign  ? this.descriptionTextAlign:  'left' };
-line-height: ${this.descriptionLineHeight  ? this.descriptionLineHeight:  '0.87890625rem' };
+${this.renderCssString(descriptionMap, this.description)};
 }
-
 
             </style> 
             <div class="img">
@@ -422,13 +171,13 @@ line-height: ${this.descriptionLineHeight  ? this.descriptionLineHeight:  '0.878
 <div class="textBox">
 <div class="titleBox">
 <p class="name">
-   ${this.nameText  ? this.nameText:  'Albin Frick'
+   ${this.nameText  ? this.nameText:  `Albin Frick`
             }
 </p>
 </div>
 <div class="subBox">
 <p class="description">
-   ${this.descriptionText  ? this.descriptionText:  ' M.Sc in Interaction and Design'
+   ${this.descriptionText  ? this.descriptionText:  ` M.Sc in Interaction and Design`
             }
 </p>
 </div>
@@ -436,5 +185,5 @@ line-height: ${this.descriptionLineHeight  ? this.descriptionLineHeight:  '0.878
 
         `;
     }    
-}
+    }
  // NOT GENERATED CODE

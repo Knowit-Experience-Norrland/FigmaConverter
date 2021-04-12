@@ -82,7 +82,7 @@ ${this.renderCssString(testMap, this.test)};
 
             </style> 
             <p class="test">
-   ${this.testText ? this.testText : 'test'}
+   ${this.testText ? this.testText : `test`}
 </p>
 
         `;

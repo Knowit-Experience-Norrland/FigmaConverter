@@ -2,7 +2,7 @@ import * as fs from 'fs';
 
 const breakPointMessage = '// NOT GENERATED CODE';
 
-const readFromFile = (file: string) => {
+export const readFromFile = (file: string) => {
     if (fs.existsSync(file)) {
         const data = fs.readFileSync(file, { encoding: 'utf8', flag: 'r' });
         return (

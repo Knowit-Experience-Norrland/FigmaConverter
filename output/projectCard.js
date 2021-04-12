@@ -9,20 +9,23 @@ var projectCardMap = new Map();
 var textBoxMap = new Map();
 var titleMap = new Map();
 var descriptionMap = new Map();
+var textBoxOpenMap = new Map();
+var openTitleMap = new Map();
+var openDescriptionMap = new Map();
 var imgBoxMap = new Map();
 var ImgFigmaMap = new Map();
 var ImgTypescriptMap = new Map();
 var ImgLitMap = new Map();
 projectCardMap.set('display', 'flex');
-projectCardMap.set('width', '320px');
+projectCardMap.set('width', '556px');
 projectCardMap.set('height', '130px');
 projectCardMap.set('gap', '7.5px');
 projectCardMap.set('flex-direction', 'row');
 projectCardMap.set('background-color', '#ffffff');
 projectCardMap.set('align-items', 'center');
 textBoxMap.set('display', 'flex');
-textBoxMap.set('flex-basis', '68.75%');
-textBoxMap.set('width', 'calc(69% - 20px)');
+textBoxMap.set('flex-basis', '39.568345323741006%');
+textBoxMap.set('width', 'calc(40% - 20px)');
 textBoxMap.set('height', 'calc(100% - 28px)');
 textBoxMap.set('border-radius', ' 0px 15px 15px 0px');
 textBoxMap.set('gap', '8px');
@@ -44,34 +47,52 @@ descriptionMap.set('font-size', '0.75rem');
 descriptionMap.set('font-family', 'Montserrat');
 descriptionMap.set('font-weight', '400');
 descriptionMap.set('text-align', 'left');
+textBoxOpenMap.set('display', 'flex');
+textBoxOpenMap.set('flex-basis', '35.97122302158273%');
+textBoxOpenMap.set('width', 'calc(36% - 20px)');
+textBoxOpenMap.set('height', 'calc(100% - 20px)');
+textBoxOpenMap.set('gap', '10px');
+textBoxOpenMap.set('flex-direction', 'column');
+textBoxOpenMap.set('padding-top', '10px');
+textBoxOpenMap.set('padding-left', '10px');
+textBoxOpenMap.set('padding-bottom', '10px');
+textBoxOpenMap.set('padding-right', '10px');
+openTitleMap.set('flex-basis', '16.923076923076923%');
+openTitleMap.set('color', '#050505');
+openTitleMap.set('font-size', '1.125rem');
+openTitleMap.set('font-family', 'Montserrat');
+openTitleMap.set('font-weight', '600');
+openTitleMap.set('text-align', 'left');
+openDescriptionMap.set('flex-basis', '57.692307692307686%');
+openDescriptionMap.set('color', '#000000');
+openDescriptionMap.set('font-size', '0.75rem');
+openDescriptionMap.set('font-family', 'Montserrat');
+openDescriptionMap.set('font-weight', '400');
+openDescriptionMap.set('text-align', 'left');
 imgBoxMap.set('display', 'flex');
-imgBoxMap.set('flex-basis', '28.749999999999996%');
-imgBoxMap.set('width', 'calc(29% - 20px)');
-imgBoxMap.set('height', 'calc(100% - 20px)');
+imgBoxMap.set('flex-basis', '21.762589928057555%');
+imgBoxMap.set('width', '22%');
+imgBoxMap.set('height', '100%');
 imgBoxMap.set('gap', '1.5px');
 imgBoxMap.set('flex-direction', 'column');
-imgBoxMap.set('padding-top', '10px');
-imgBoxMap.set('padding-left', '10px');
-imgBoxMap.set('padding-bottom', '10px');
-imgBoxMap.set('padding-right', '10px');
 imgBoxMap.set('justify-content', 'center');
 imgBoxMap.set('align-items', 'center');
 ImgFigmaMap.set('flex-basis', '41.53846153846154%');
-ImgFigmaMap.set('width', '45%');
+ImgFigmaMap.set('width', '34%');
 ImgFigmaMap.set('height', '42%');
-ImgFigmaMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/7a5e/68bb/8f069453d630bb766d67b40ce777054e?Expires=1618790400&Signature=ThU4gMWtLfIK~2414y79F-GMidjDOv4JH7DZLGCUEYXCIwMd4l37dU0WPor1mPoxTEHgoYOa6THJcT0ETwG0idDhRDhy85NN6-p5P4Dw7aMonrfYRDhPMeEBzb-OaO5aXvQIJey18oum5dmzGf3ThuII3ffFimvv-iJkjtfIpsakVyl41t~A8LvtQYI3hpdh25p9ULqhM2DOhbBF~y7Eht2XXKgZBs6o5a02z5lYAS7K59DdrK-3ZaI9CGQp0T7VTfzAuhwRNo7A5tFo-at58lepMuBo9j3GGSBsQcJSz7pEZTT7UjnjVrsEKpDgDXMnDKF5sGN~pAtvZZpwWHFSpg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+ImgFigmaMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/7a5e/68bb/8f069453d630bb766d67b40ce777054e?Expires=1619395200&Signature=cht8mv5Tlsd7GRFl2MN0Wkp6UAG~ziuZthfe~EBvqhwcZnS269JbJxRQlnAwoMMD4xsq7-qi9PHJ~Wx3tIUr6V3TLKA47Hu74RcqVvYzNqHzr-TiiegeQ1Ti4Ikc~WaCFFzQ3t053yNrrhWzXfXroTAwnlDbQMIxAgl9Qt8xBGKAf6z299pKfb1VuGrjSO8TpZ9AWjrpf5ePwj8O2Toc7K2drA6XLJoXIyYtilhkpn8C4JKSofJeD381cmx7u3rHFR7RzN7sVNZjp2NmQrtJMYPtUWX4iZcGrmPXfJaSYKuzdEzFqIoAUqRnlOAHOIo7mvzLYwPEIkEYxUurO07VtQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgFigmaMap.set('background-size', 'cover');
 ImgFigmaMap.set('background-repeat', 'no-repeat');
 ImgTypescriptMap.set('flex-basis', '26.923076923076923%');
-ImgTypescriptMap.set('width', '38%');
+ImgTypescriptMap.set('width', '29%');
 ImgTypescriptMap.set('height', '27%');
-ImgTypescriptMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/a9e5/ef51/0b44b85b5238036c332fde31edeaf5f9?Expires=1618790400&Signature=Vmnfk81MO1Ss5vq1MAzplpJKFkgFrTaBtoaS75gBaQnCfpt2P4eWhqfCXwsar-xY1vCYVlOjFRGuwlcZoAo-rvsMpMXmUwGmbVi9KUNNLYFoJCpyVtQEmZJyWLvDOx~uxND~aG6-8BBjV25AsUpDQS5I5VckF1RDyQ1Qp-Td43R9OZnjzhc6Y58MAaMsriJme~uV7pZLh0LdmbkMs~oEpiT1aTRZ644O7CiPj8ge2Ecjhab04~7m97dTzRUh~PtbZmaEJMUOZO1VoMhmlkYB254zhQuKtJMi1hxbSTk2EOaoK4feHb9slbTk7Jpb7LeGEuiteXOpqrjl0UNwNE7Qyg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+ImgTypescriptMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/a9e5/ef51/0b44b85b5238036c332fde31edeaf5f9?Expires=1619395200&Signature=eDbMKZ8zS7Khar5F0-DWAr-Ywal~iY8laCkH86i3SFpLU27d7p0kOC-0v1U67i0BClllrHpFiwvySgl3qpYP5-lmvbyyRHUiXGutL5yGggUtsUOoepv1kcE6slPsP-8btD8JP1qZJYRvJBr3IWSOb-1wnWfMn0~ev4e1IO9x3abujpkl7NVN8t3E0y3ls3qXz4JdfNQWHPti6Z6HapUVLgjP3vJIO6XlE7EIYo3noSCK2v9-4V65IAk5AQ4EprjuQm6sQSgEDruFWWzH5jLnZfwFHqsBG0Cie7jMuJhRp6KbHmkmufKHDlJzcggvfwq780H8T9PW10W3l38wQipOCw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgTypescriptMap.set('background-size', 'cover');
 ImgTypescriptMap.set('background-repeat', 'no-repeat');
 ImgLitMap.set('flex-basis', '20%');
-ImgLitMap.set('width', '62%');
+ImgLitMap.set('width', '47%');
 ImgLitMap.set('height', '20%');
-ImgLitMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/5ca4/c0ea/216205032c86f406ef729e730356bf9c?Expires=1618790400&Signature=QizLh3juF0pYzecqdfjBph45cANoK3p3WJ5DzYcX7UuBEmW2UsxuRJ5I813g7RHJvhObQTKzHsk35YdZFx9HXn8eKG02xPWv4EJe-FhpJgXrYKb3eonQI8wv8iYa9qioqPUgtWZMQ9dYp9SxARjKlHj0iDCPKgZqRT3QNgDsksk-3q9u4PfKLfmHqcPRi4-PzNzCWlcYDtR1lhCM7xjIN2VJiPJOuLU~IK66J8ETGE0vt8pn-UipKQS0aIN2UuK-jntgwGZEdMFyjB4SMRs-uGjc~YTQVWcsWhiuDsRMIKSUWiSe1pzUsrDoBk7vcQCGAMca~O4OhVld0h2yNG0Wsw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+ImgLitMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/5ca4/c0ea/216205032c86f406ef729e730356bf9c?Expires=1619395200&Signature=JFv9qYXYNnjmzZ619EOwZ0eeR87Dsk735-TH4DOdhXCRECeOTPJjHY97h7nZ1RDjVVHRvy5ZIvbkwB8mK9ZyctvuKnXITnNjU3R7Wn8D209OlftqCbgV-eODPTbcrh8c9Aj40Lc4qZmCCv6eCHiI03qpAjMoZAi4njCxLieuFu~RtU1iCD35L5uAOQrjdk7S-EH8HTxQOmqQsbGd5sesFJZI1iL5EFkwyeom8u1B3KmeADuV6ev7JvZ6nc6JPfRQmrM1S-kRG10sAURPZZBqxv9lirwlvGlY7o7WqR-MNdvbW0XZJU7rJuwXYb~KsEHktlRLy2rsBD3cgVdRaeA8pA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 ImgLitMap.set('background-size', 'cover');
 ImgLitMap.set('background-repeat', 'no-repeat');
 let projectCard = class projectCard extends LitElement {
@@ -81,12 +102,17 @@ let projectCard = class projectCard extends LitElement {
         this.textBox = '';
         this.title = '';
         this.description = '';
+        this.textBoxOpen = '';
+        this.openTitle = '';
+        this.openDescription = '';
         this.imgBox = '';
         this.ImgFigma = '';
         this.ImgTypescript = '';
         this.ImgLit = '';
         this.titleText = '';
         this.descriptionText = '';
+        this.openTitleText = '';
+        this.openDescriptionText = '';
         this.propertyToMap = (cssRules, property) => {
             var rules = property.split(';');
             rules.forEach((rule) => {
@@ -141,6 +167,15 @@ ${this.renderCssString(titleMap, this.title)};
 .description {
 ${this.renderCssString(descriptionMap, this.description)};
 }
+.textBoxOpen {
+${this.renderCssString(textBoxOpenMap, this.textBoxOpen)};
+}
+.openTitle {
+${this.renderCssString(openTitleMap, this.openTitle)};
+}
+.openDescription {
+${this.renderCssString(openDescriptionMap, this.openDescription)};
+}
 .imgBox {
 ${this.renderCssString(imgBoxMap, this.imgBox)};
 }
@@ -157,10 +192,18 @@ ${this.renderCssString(ImgLitMap, this.ImgLit)};
             </style> 
             <div class="textBox">
 <p class="title">
-   ${this.titleText ? this.titleText : 'FigmaConverter'}
+   ${this.titleText ? this.titleText : `FigmaConverter`}
 </p>
 <p class="description">
-   ${this.descriptionText ? this.descriptionText : 'Ett verktyg som jag utvecklade under mitt examensarbete'}
+   ${this.descriptionText ? this.descriptionText : `Ett verktyg som jag utvecklade under mitt examensarbete`}
+</p>
+</div>
+<div class="textBoxOpen">
+<p class="openTitle">
+   ${this.openTitleText ? this.openTitleText : `FigmaConverter`}
+</p>
+<p class="openDescription">
+   ${this.openDescriptionText ? this.openDescriptionText : `Under mitt exjobb så fick jag möjligheten att bygga ett verktyg som byggde upp web-komponeter med hjälp av figmas API. `}
 </p>
 </div>
 <div class="imgBox">
@@ -189,6 +232,15 @@ __decorate([
 ], projectCard.prototype, "description", void 0);
 __decorate([
     property({ type: String })
+], projectCard.prototype, "textBoxOpen", void 0);
+__decorate([
+    property({ type: String })
+], projectCard.prototype, "openTitle", void 0);
+__decorate([
+    property({ type: String })
+], projectCard.prototype, "openDescription", void 0);
+__decorate([
+    property({ type: String })
 ], projectCard.prototype, "imgBox", void 0);
 __decorate([
     property({ type: String })
@@ -205,6 +257,12 @@ __decorate([
 __decorate([
     property({ type: String })
 ], projectCard.prototype, "descriptionText", void 0);
+__decorate([
+    property({ type: String })
+], projectCard.prototype, "openTitleText", void 0);
+__decorate([
+    property({ type: String })
+], projectCard.prototype, "openDescriptionText", void 0);
 projectCard = __decorate([
     customElement('project-card')
 ], projectCard);

@@ -10,111 +10,85 @@ import * as inquirer from 'inquirer';
 
 // https://www.figma.com/file/K4odZYkdvmAwB8ZEjoXSrp/Component-testing?node-id=0%3A1&viewport=578%2C610%2C2.3166487216949463
 // hfpX16KHa01k2i28WwCyHB
-const questions = [
-    {
-        type: 'input',
-        name: 'figma_id',
-        message: "What's your Figma document ID?",
-        // default: function () {
-        //     return 'sMOkMK456erPt6sk2jMuCb';
-        //     // return 'K4odZYkdvmAwB8ZEjoXSrp';
-        //     // return 'hfpX16KHa01k2i28WwCyHB';
-        // },
+require('dotenv').config();
+
+var documentID = process.env[process.argv[2]];
+
+axios({
+    method: 'get',
+    url: `https://api.figma.com/v1/files/${documentID}/images`,
+    headers: {
+        'X-Figma-Token': process.env.API_KEY,
     },
-    {
-        type: 'input',
-        name: 'access_token',
-        message: "What's your Figma access token?",
-        // default: function () {
-        //     return '180395-4a4d13ad-7312-4bf5-9131-fb4542a08900';
-        // },
-    },
-];
-
-inquirer.prompt(questions).then((answers) => {
-    axios({
-        method: 'get',
-        url: `https://api.figma.com/v1/files/${answers.figma_id}/images`,
-        headers: {
-            'X-Figma-Token': answers.access_token,
-        },
-    })
-        .then((res) => {
-            const images = res.data.meta.images;
-            axios({
-                method: 'get',
-                url: `https://api.figma.com/v1/files/${answers.figma_id}/`,
-                headers: { 'X-Figma-Token': answers.access_token },
-            })
-                .then((res) => {
-                    var comps = [];
-                    for (var i = 0; i < res.data.document.children.length; i++) {
-                        comps = [
-                            ...comps,
-                            ...res.data.document.children[i].children.filter(
-                                (c: PurpleChild) => c.type == 'COMPONENT'
-                            ),
-                        ];
-                    }
-                    // var comps = res.data.document.children[0].children.filter(
-                    //     (c: PurpleChild) => c.type == 'COMPONENT'
-                    // );
-                    // var comp_sets = res.data.document.children[0].children.filter(
-                    //     (c: PurpleChild) => c.type == 'COMPONENT_SET'
-                    // )[0];
-                    // if (!comp_sets.children === undefined) comp_sets = comp_sets.children;
-
-                    // comps = comps.concat(comp_sets);
-                    const canvas = res.data.document.children[0];
-                    const stylesData = res.data.styles;
-
-                    var elementsWithTextStyle = canvas.children
-                        .filter((c: PurpleChild) => c.styles)
-                        .filter((c: PurpleChild) => c.styles.text);
-                    var textObjects = elementsWithTextStyle.map(
-                        (text: PurpleChild) => new Typography(text)
-                    );
-                    textObjects.forEach((text: Typography) => {
-                        text.setName(stylesData[text.styleId].name);
-                    });
-
-                    var elementsWithColorStyle = canvas.children
-                        .filter((c: PurpleChild) => c.styles)
-                        .filter((c: PurpleChild) => c.styles.fill);
-
-                    // var colorObjects = elementsWithColorStyle.map(
-                    //     (color: PurpleChild) => new Color(color)
-                    // );
-
-                    var colorObjects = elementsWithColorStyle.map(
-                        (element: PurpleChild) =>
-                            new Color(element.fills[0].color, element.styles.fill)
-                    );
-                    colorObjects.forEach((color: Color) => {
-                        color.setName(stylesData[color.styleId].name);
-                    });
-
-                    createVariableFile(colorObjects, textObjects);
-
-                    var compFileNames = createComponentsFiles(
-                        colorObjects,
-                        comps,
-                        images
-                    );
-                    createIndexFile(compFileNames);
-                })
-                .catch((err) => console.log(err));
+})
+    .then((res) => {
+        const images = res.data.meta.images;
+        axios({
+            method: 'get',
+            url: `https://api.figma.com/v1/files/${documentID}/`,
+            headers: { 'X-Figma-Token': process.env.API_KEY },
         })
-        .catch((err) => {
-            console.log(err);
-            console.log(
-                'status: ' +
-                    err.response.data.status +
-                    '\nMessage: ' +
-                    err.response.data.err
-            );
-        });
-});
+            .then((res) => {
+                var comps = [];
+                for (var i = 0; i < res.data.document.children.length; i++) {
+                    comps = [
+                        ...comps,
+                        ...res.data.document.children[i].children.filter(
+                            (c: PurpleChild) => c.type == 'COMPONENT'
+                        ),
+                    ];
+                }
+                // var comps = res.data.document.children[0].children.filter(
+                //     (c: PurpleChild) => c.type == 'COMPONENT'
+                // );
+                // var comp_sets = res.data.document.children[0].children.filter(
+                //     (c: PurpleChild) => c.type == 'COMPONENT_SET'
+                // )[0];
+                // if (!comp_sets.children === undefined) comp_sets = comp_sets.children;
+
+                // comps = comps.concat(comp_sets);
+                const canvas = res.data.document.children[0];
+                const stylesData = res.data.styles;
+
+                var elementsWithTextStyle = canvas.children
+                    .filter((c: PurpleChild) => c.styles)
+                    .filter((c: PurpleChild) => c.styles.text);
+                var textObjects = elementsWithTextStyle.map(
+                    (text: PurpleChild) => new Typography(text)
+                );
+                textObjects.forEach((text: Typography) => {
+                    text.setName(stylesData[text.styleId].name);
+                });
+
+                var elementsWithColorStyle = canvas.children
+                    .filter((c: PurpleChild) => c.styles)
+                    .filter((c: PurpleChild) => c.styles.fill);
+
+                // var colorObjects = elementsWithColorStyle.map(
+                //     (color: PurpleChild) => new Color(color)
+                // );
+
+                var colorObjects = elementsWithColorStyle.map(
+                    (element: PurpleChild) =>
+                        new Color(element.fills[0].color, element.styles.fill)
+                );
+                colorObjects.forEach((color: Color) => {
+                    color.setName(stylesData[color.styleId].name);
+                });
+
+                createVariableFile(colorObjects, textObjects);
+
+                var compFileNames = createComponentsFiles(colorObjects, comps, images);
+                createIndexFile(compFileNames);
+            })
+            .catch((err) => console.log(err));
+    })
+    .catch((err) => {
+        console.log(err);
+        console.log(
+            'status: ' + err.response.data.status + '\nMessage: ' + err.response.data.err
+        );
+    });
 
 const createVariableFile = (colorObjects, textObjects) => {
     let colorSCSSVariableString = '';

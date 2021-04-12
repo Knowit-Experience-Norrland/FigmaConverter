@@ -279,9 +279,9 @@ const createHTMLElements = (
             outString += `<p class="${element.name.replace(
                 /\s/g,
                 ''
-            )}">\n   \${this.${propertyName}  ? this.${propertyName}:  '${
+            )}">\n   \${this.${propertyName}  ? this.${propertyName}:  \`${
                 element.characters
-            }'
+            }\`
             }\n`;
         } else {
             outString += `<div class="${element.name.replace(/\s/g, '')}">\n`;
