@@ -2,16 +2,14 @@
 
 FigmaConverter is a small program that let's you convert Figma components into web-components and Figma styles into SCSS variables and mixins. 
 
-As of now this is a prototype and has flaws.
-Access tokens to Figma are written out in clear text right now. 
-**Don't use this with important work**
 
 
 ## Building Figma Components
-The FigmaConverter uses the components feature from Figma. To get layouts and whitespace correct FigmaConveter also uses the auto-layout feature (which is very similar to *display: flex*). Because of the nature of the program the components from Figma that you what to be converted must be placed on the canvas by itself. Not in another frame.
+The FigmaConverter uses the components feature from Figma. To get layouts and whitespace correct FigmaConveter also uses the auto-layout feature (which is very similar to *display: flex*). The components that you want to convert must be placed on the canvas itself. (not on in another frame).
 
 ### Naming (?)
-FigmaConverter uses the names of the elements in Figma as variable names. Therefore it's important to name each element correctly. Becuase of a dependency in web-components the naming of the component must be named in the form of **name-name**. Example: "test-component".
+FigmaConverter uses the names of the elements in Figma as variable names. Therefore it's important to check that each name is correct. Because of a dependency in web-components the components must be named with two lower cased words with a dash between them.  
+Example: "test-component".
 
 <img src="RM-images/testComp.png" width="500" />
 
@@ -34,14 +32,29 @@ npm install
 ```
 
 ## Setup
-FigmaConverter focuses on single documents. To be able to get the information form the document an access token is needed. Run the setup script to fill in the information for the document and the token.
+FigmaConverter focuses on single documents. To be able to get the information form the document an access token is needed. Run the setup script to fill in the information for the Figma document.
 
 ```bash
 npm run setup
 ```
 
-When a token is set you'll get the option to change it or keep the old one.
-When you want to add a new document you just run the above script and add a new name and document ID.
+Three questions are asked: 
+
+* What is the documents name? 
+* What's your Figma document ID?
+* What's your Figma access token?
+
+The document ID can be found in the url to your Figma document (see image below).
+
+<img src="RM-images/findingID.png" width="500" />
+
+The access token can be generated the settings in Figma.
+
+<img src="RM-images/accessToken.png" width="500" />
+
+The configuration is set to an .env-file and read by the figmaConverter.ts-file.  
+
+The setup can be run multiple times and to add more than one document. After the first run you'll be asked if you want to change your access token.
 
 
 ## Usage
@@ -52,17 +65,9 @@ To run FigmaConverter run the figmaConvert.ts file:
 npm run convert -- DOCUMENT_NAME
 ```
 
-To get the information of your compoents figmaConverter needs the figma document ID and an access token. 
+<!-- To get the information of your compoents figmaConverter needs the figma document ID and an access token. --> 
 
-<img src="RM-images/cliIDToken.png" width="500" />
-
-The document ID can be found in the url to your Figma document (see image below).
-
-<img src="RM-images/findingID.png" width="500" />
-
-The access token can be generated the settings in Figma.
-
-<img src="RM-images/accessToken.png" width="500" />
+<!-- <img src="RM-images/cliIDToken.png" width="500" /> -->
 
 
 When the program has run it will result in some new files in the ***output/*** folder. These are TypeScript files that contains [litElements](https://lit-element.polymer-project.org/) for each Figma component.

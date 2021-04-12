@@ -54,7 +54,7 @@ imgBoxMap.set('padding-right', '10px');
 imgMap.set('flex-basis', '83.87096774193549%');
 imgMap.set('width', '84%');
 imgMap.set('height', '84%');
-imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/3aa8/f2ea/d29dd308201f67d7ee0d13780262c402?Expires=1618790400&Signature=J-FQ6U90ax2cPiegJXoRU5MOcAA7zBldkgSdAdBxK824geQdDHrED9Vr5hZcewCRdyxdgWoE5wpzVa3nbiQnfInyz6agx9EfwspjOr7Y~UOKFQTUaG9thoGzUoSgQrBAJIFllfe9U8NhHs~aRZQPbOcyhKfuekdcc1DttN5GqOOtgbRS1~poIwhKzoEKxxVToO7QScNR0bUqjo~sCyeniWzr25PXeO2fxGtys13FEao8MBgQ5~VIabJw9xFcGRQwgRFkE0ztGeHfTPvNUQ856OEqmcEDfUPbxCnpL~Ebzx1nBQuuNXF1FOcsrnfwDbNkwdilGhyCebfX2n4IA3ZOFg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/3aa8/f2ea/d29dd308201f67d7ee0d13780262c402?Expires=1619395200&Signature=DaspnUzcPBQsUM7ud0ycYBTGptMhol6W6NeMa-3~2WDDtKcgEG931vP2CliiDto4cc18tQeu3~iFcSPWloH2sF-o-6WqIJrq2OwmAmnhpCkvvgLnZXpfhmxPeiXJgen-v-aKIQHtkoQRpOY67RtgucPbROM0u1JaS3tGRAPsWicDyGuyvV11UBK7g4-IKS7sMJPKl~2r8vf4toGzBtgUmHfdZna3nbM~Ekaby~C8zwUPtwyGcLA0wQlEoMtruskJ3G5yq1zdFlKOtaMAOT9MzbV~zovTLWlMzt8PUtgR9hodhA-MQOgXsXbaFzlCgC2RnUWOGeFdvQxHNRTY~kh4ng__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 imgMap.set('background-size', 'cover');
 imgMap.set('background-repeat', 'no-repeat');
 let hikeCard = class hikeCard extends LitElement {
@@ -132,10 +132,10 @@ ${this.renderCssString(imgMap, this.img)};
             </style> 
             <div class="textBox">
 <p class="title">
-   ${this.titleText ? this.titleText : 'Hiking'}
+   ${this.titleText ? this.titleText : `Hiking`}
 </p>
 <p class="description">
-   ${this.descriptionText ? this.descriptionText : 'For the one’s that like natue'}
+   ${this.descriptionText ? this.descriptionText : `For the one’s that like natue`}
 </p>
 </div>
 <div class="imgBox">

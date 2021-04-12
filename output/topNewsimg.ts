@@ -23,7 +23,7 @@ imgMap.set('flex-basis', '50%');
 imgMap.set('width','100%');
 imgMap.set('height','50%');
 imgMap.set('border-radius', ' 3px 3px 0px 0px');
-imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/8491/4d75/835822ba7ed023436a57574a6578ed9a?Expires=1618790400&Signature=WbjWbcDBF51aVviyFRgZ~D5cbBDh6cfctourm7av-05u51efQzn0ct17YcSapwuwoVsr0VPJiON9TwwMNRPc3TvxjK0MHBSAtoik7Ti7wTGxPX4oZfTzENIa~82r8VyeOoO0NvYgpFxfxOpc8WwHG-PH-CsJJsrQi9unzYHjT5hNdnRztlsE4p1i3stNy6o2TMQkGfOfZGW1VFEGnnqrHriFKQURDXfY~gZeimSnN6bNo5JNqAggJ2WJZo3h05TYHrp7Np~hYp2q44sXJtn1d9aBwOFwY7zMoVRMcvnA6Ikrpf0uaFRKC-dKJUUNUiu3Tn4nFW-uwJhtg7Mdrq7CSg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/8491/4d75/835822ba7ed023436a57574a6578ed9a?Expires=1619395200&Signature=NjsS-bNhxDKkgg-4woyd5o6GFuaGnkjQetPPs0H6eUPtmLeFRuDYTSVzuTaG8mf-xcp9hr4zO-CJbbzXbPPPNURc5ea-xlRyUYAMWv8zN74zTh9H4JgetHiYwTLR47CEMMu-8lTtiMU1WnVnfLDEGHtjxEcwEKfP2pHpFUqqNwElWBF3UI6ovlFfrhcz72qCKHyoBXZKThyb4df7wdbNa4sx-exicmVyDOCHdzK3G6ECvLJGcK4jbiNG7jwtj9ZEENqvWFHoskozdcd2NqCyM0cf7Zycmhs44YaER8kCptULq9IMYZEbq5EXkGUWRECdjeQhu02cww~umWyR83Gntg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 imgMap.set('background-size', 'cover');
 imgMap.set('background-repeat', 'no-repeat');
 textBoxMap.set('display', 'flex');
@@ -266,19 +266,19 @@ ${this.renderCssString(commentsMap, this.comments)};
 </div>
 <div class="textBox">
 <p class="title">
-   ${this.titleText  ? this.titleText:  'Kan ny teknik lösa informationsutmaning – det ska sommarens internship undersöka'
+   ${this.titleText  ? this.titleText:  `Kan ny teknik lösa informationsutmaning – det ska sommarens internship undersöka`
             }
 </p>
 <div class="meta">
 <p class="time">
-   ${this.timeText  ? this.timeText:  'Idag 15:53'
+   ${this.timeText  ? this.timeText:  `Idag 15:53`
             }
 </p>
 <div class="coworkers">
 <slot name="channel">
 </slot>
 <p class="Medarbetare">
-   ${this.MedarbetareText  ? this.MedarbetareText:  'Medarbetare'
+   ${this.MedarbetareText  ? this.MedarbetareText:  `Medarbetare`
             }
 </p>
 </div>
@@ -286,7 +286,7 @@ ${this.renderCssString(commentsMap, this.comments)};
 <slot name="likes">
 </slot>
 <p class="likes">
-   ${this.likesText  ? this.likesText:  '1'
+   ${this.likesText  ? this.likesText:  `1`
             }
 </p>
 </div>
@@ -294,7 +294,7 @@ ${this.renderCssString(commentsMap, this.comments)};
 <slot name="comments">
 </slot>
 <p class="comments">
-   ${this.commentsText  ? this.commentsText:  '0'
+   ${this.commentsText  ? this.commentsText:  `0`
             }
 </p>
 </div>

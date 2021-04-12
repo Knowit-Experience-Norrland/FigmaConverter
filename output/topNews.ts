@@ -277,19 +277,19 @@ ${this.renderCssString(commentsMap, this.comments)};
 </div>
 <div class="textBox">
 <p class="title">
-   ${this.titleText  ? this.titleText:  'Kan ny teknik lösa informationsutmaning – det ska sommarens internship undersöka'
+   ${this.titleText  ? this.titleText:  `Kan ny teknik lösa informationsutmaning – det ska sommarens internship undersöka`
             }
 </p>
 <div class="meta">
 <p class="time">
-   ${this.timeText  ? this.timeText:  'Idag 15:53'
+   ${this.timeText  ? this.timeText:  `Idag 15:53`
             }
 </p>
 <div class="coworkers">
 <slot name="channel">
 </slot>
 <p class="Medarbetare">
-   ${this.MedarbetareText  ? this.MedarbetareText:  'Medarbetare'
+   ${this.MedarbetareText  ? this.MedarbetareText:  `Medarbetare`
             }
 </p>
 </div>
@@ -297,7 +297,7 @@ ${this.renderCssString(commentsMap, this.comments)};
 <slot name="likes">
 </slot>
 <p class="likes">
-   ${this.likesText  ? this.likesText:  '1'
+   ${this.likesText  ? this.likesText:  `1`
             }
 </p>
 </div>
@@ -305,7 +305,7 @@ ${this.renderCssString(commentsMap, this.comments)};
 <slot name="comments">
 </slot>
 <p class="comments">
-   ${this.commentsText  ? this.commentsText:  '0'
+   ${this.commentsText  ? this.commentsText:  `0`
             }
 </p>
 </div>

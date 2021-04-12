@@ -20,7 +20,7 @@ imgMap.set('flex-basis', '24.166666666666668%');
 imgMap.set('width', '24%');
 imgMap.set('height', '100%');
 imgMap.set('border-radius', '50%');
-imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/eef5/7561/45407980a3de4d17ad939880d89ad77b?Expires=1618790400&Signature=WHs0EquQp5Mi5lLFAfHSuallWX~zikWQ-y-7~ReihI40pBAFIGPZCkQWB2MaVFiEDqWTzlb4fr-qRWS~9NDJhBZ~CY30VxysljBi0iZMhvTE6eh5YSgkbT-TSPoQdDlJkDhfpy9LBOr7PBXDZUVmMn6wrNY34evi2P7KjltyVUB63uVC-sFNASj3911fwT0sgMBBUYU~sG~QXUpSn45b9~bJkA0sgmmdcJhWnQsfhv7270MSVmVgLn0yxPYud0lq1fYlgQTPhUZT4Ax~whfLTWUgBDTAyChhlEGeLbhXtQd2cfznYwPMVqj23YE8YRUjJ7LE1qkGbBMbGsmkCo78Cw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
+imgMap.set('background-image', 'url(https://s3-alpha-sig.figma.com/img/eef5/7561/45407980a3de4d17ad939880d89ad77b?Expires=1619395200&Signature=FXbrlMq6-SIy9ak~sxteSu95URBtX~5ngRX-Vo5I0kv~SoFDKNSnV~3nPZSA0hUhSXZyBIChq0rm8Co2rxBoMsekrYFvZEra4nKsIfsvZT~jtIvrzgNxVfFABIhEfTgMtOUk4tcxu-hfI7Lo5aptvSdrV0nIk0m2DqgKVD2Y6GXQq~W4yNy75GxHooWv0fYMfIMr3ewIEqgMKfCp9Llq1KGi1~vGdcvBdPCTs0SUoiWSBB8RjojappcJvLwcUnFdCq8AWH5umOcyDlzj89gz7CeMdYaBo3cupiJ8N48W5CBK-MhqO5kr3yTDDzA2FREmEkoI4CXCwATQZWJfm6Uwzg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA)');
 imgMap.set('background-size', 'cover');
 imgMap.set('background-repeat', 'no-repeat');
 textBoxMap.set('display', 'flex');
@@ -150,12 +150,12 @@ ${this.renderCssString(descriptionMap, this.description)};
 <div class="textBox">
 <div class="titleBox">
 <p class="name">
-   ${this.nameText ? this.nameText : 'Albin Frick'}
+   ${this.nameText ? this.nameText : `Albin Frick`}
 </p>
 </div>
 <div class="subBox">
 <p class="description">
-   ${this.descriptionText ? this.descriptionText : ' M.Sc in Interaction and Design'}
+   ${this.descriptionText ? this.descriptionText : ` M.Sc in Interaction and Design`}
 </p>
 </div>
 </div>
