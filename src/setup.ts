@@ -1,16 +1,26 @@
 import * as inquirer from 'inquirer';
-
 import * as fs from 'fs';
 
-const readEnvFile = () => {
+/**
+ * Reads the .env file and returns the contents of the file as a string.
+ *
+ * @return {*}  {string}
+ */
+const readEnvFile = (): string => {
     if (fs.existsSync('.env')) {
         const data = fs.readFileSync('.env', { encoding: 'utf8', flag: 'r' });
         return data;
     }
 };
 
-const replaceEnvFile = (stringToAppend: string) => {
-    fs.writeFile('.env', stringToAppend, function (err) {
+/**
+ * Creates an .env file or replaces the existing .env
+ * file with the envFileString contents
+ *
+ * @param {string} envFileString
+ */
+const replaceEnvFile = (envFileString: string) => {
+    fs.writeFile('.env', envFileString, function (err) {
         if (err) {
             return console.error(err);
         }
@@ -45,12 +55,12 @@ if (oldEnv.includes('API_KEY')) {
             {
                 type: 'input',
                 name: 'docID',
-                message: "What's your Figma document ID?",
+                message: 'What is your Figma document ID?',
             },
             {
                 type: 'input',
                 name: 'access_token',
-                message: "What's your Figma access token?",
+                message: 'What is your Figma access token?',
             },
         ]);
     } else {

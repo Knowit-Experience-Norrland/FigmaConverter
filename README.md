@@ -1,7 +1,6 @@
 # FigmaConverter
 
-FigmaConverter is a small program that let's you convert Figma components into web-components and Figma styles into SCSS variables and mixins. 
-
+FigmaConverter is a small program that let's you convert Figma components into [web-components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) and Figma text/color styles into SCSS variables and mixins. 
 
 
 ## Building Figma Components
@@ -13,7 +12,7 @@ Example: "test-component".
 
 <img src="RM-images/testComp.png" width="500" />
 
-Keep in mind that texts should be renamed as below. If this is not done the variable name become to long and therefore not be usable.
+Keep in mind that texts should be renamed as below. If this is not done the variable name become very long and may crash the components styling making unusable.
 
 <img src="RM-images/names.png" width="300" />
 
@@ -39,16 +38,17 @@ npm run setup
 ```
 
 Three questions are asked: 
+<!-- * What is the documents name? --> 
+<!-- * What's your Figma document ID? -->
+<!-- * What's your Figma access token? -->
 
-* What is the documents name? 
-* What's your Figma document ID?
-* What's your Figma access token?
+<img src="RM-images/setupCLI.png" width="500" />
 
 The document ID can be found in the url to your Figma document (see image below).
 
 <img src="RM-images/findingID.png" width="500" />
 
-The access token can be generated the settings in Figma.
+The access token can be generated under the settings tab in Figma.
 
 <img src="RM-images/accessToken.png" width="500" />
 
@@ -70,13 +70,26 @@ npm run convert -- DOCUMENT_NAME
 <!-- <img src="RM-images/cliIDToken.png" width="500" /> -->
 
 
-When the program has run it will result in some new files in the ***output/*** folder. These are TypeScript files that contains [litElements](https://lit-element.polymer-project.org/) for each Figma component.
+When the program has run it will result in some new files in the ***output/*** folder. These are TypeScript files that contains [litElements](https://lit-element.polymer-project.org/) for each Figma component. 
+
+These components-files can be used directly as is but will most likely be converted to .js-files. To do this with every .ts-file in the output-folder:
+
+```bash
+cd output/
+tsc 
+```
 
 ### Distribute
 
 With these litElement files an additional package.json file i created this can be use to distribute the components to [NPM](https://www.npmjs.com/).
 
-Login to your npm account and use below to publish to npm.
+To [publish to npm](https://zellwk.com/blog/publish-to-npm/) you can login to your npm account. 
+
+```bash
+npm login
+```
+
+Follow the instructions and then use:
 
 ```bash
 npm publish
@@ -91,7 +104,7 @@ npm link
 
 Then navigate to your local project and type 
 ```bash
-npm link YOUR-COMPONENT-NAME
+npm link YOUR-PACKAGE-NAME
 ```
 
 ## Using the Components
@@ -99,7 +112,7 @@ npm link YOUR-COMPONENT-NAME
 The generated LitElement components are as a base a web-component therefore the components can be used in native HTML5 and in any framework. To use the components import them in a JavaScript-file:
 
 ```JavaScript
-import 'YOUR-COMPONENTS-NAME'
+import 'YOUR-PACKAGE-NAME'
 ```
 
 Then use the components in HTML:
@@ -149,7 +162,7 @@ Often components are built as a template where the content is different for each
 ### Images 
 As of now the images that are used is implemented as URL's from Figmas API.  
 ***IMPORTANT***  
-These URL's are only available in 14days. To use these images permanent as of now is to set them as the background-image of the element. 
+These URL's are only available for 14 days. To use these images permanent as of now is to set them as the background-image of the element. 
 
 ```HTML
   <test-component 
@@ -158,17 +171,18 @@ These URL's are only available in 14days. To use these images permanent as of no
   </test-component>
 ```
 
-### Dependencies
+### Slots
+Slots can be used to insert elements into your web-component. To use slots 
+
+## Dependencies
 * LitElement
 * Any sort of bundler that handles open imports, eg. import 'litElement'
   * Some examples are [Webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), [Rollup](https://rollupjs.org/guide/en/).
 
-The system now relies on CSS *gap* (previously grid-gap) -- This does not currently work in Safari
+The system now relies on CSS *gap* (previously grid-gap) -- This does not currently work in Safari.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -1,5 +1,11 @@
 import { PurpleChild } from './apiTypes';
 
+/**
+ * This class stores information for the typography for an element.
+ *
+ * @export
+ * @class Typography
+ */
 export default class Typography {
     styleId: string;
     name: string;
@@ -11,6 +17,12 @@ export default class Typography {
     textAlign: string;
     // lineHeight: string;
 
+    /**
+     * Creates an instance of Typography.
+     * Sets each value from the element itself.
+     * @param {PurpleChild} styleElement
+     * @memberof Typography
+     */
     constructor(styleElement: PurpleChild) {
         if (styleElement.style) {
             const style = styleElement.style;
@@ -40,10 +52,11 @@ export default class Typography {
         return `${pixelSize / 16}rem`;
     }
 
-    toCSS(): string {
-        return;
-    }
-
+    /**
+     * Creates a string containing a SCSS mixin for the element's typography.
+     * @return {*}  {string}
+     * @memberof Typography
+     */
     getTextMixin(): string {
         return `@mixin font-${this.name}{
             ${this.fontFamily ? `font-family: ${this.fontFamily}` : ''};
@@ -51,10 +64,5 @@ export default class Typography {
             ${this.fontWeight ? `font-weight: ${this.fontWeight}` : ''};
             ${this.letterSpacing ? `letter-spacing: ${this.letterSpacing}` : ''};
         }\n`;
-        // text-align: ${this.textAlign};
-
-        // font-size: ${this.fontSize};
-        // font-weight: ${this.fontWeight};
-        // letter-spacing: ${this.letterSpacing};
     }
 }
