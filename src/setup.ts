@@ -94,7 +94,6 @@ if (oldEnv) {
 
             newEnv = `API_KEY=${answers.access_token}\n${oldEnv}\n${answers.docName}=${answers.docID}`;
         } else if (answers.tokenBool) {
-            console.debug('helo');
             newEnv = `API_KEY=${answers.access_token}\n${answers.docName}=${answers.docID}`;
         } else {
             newEnv = oldEnv + `\n${answers.docName}=${answers.docID}`;
