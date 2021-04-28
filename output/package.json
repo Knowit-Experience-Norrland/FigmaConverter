@@ -1,11 +1,12 @@
 {
-    "name": "componentsFromNPM",
+    "name": "figmaLit",
     "version": "1.0.1",
     "description": "this is package of litElements created by figma",
     "main": "index.js",
     "module": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "localLink": "tsc && npm link"
     },
     "author": "Albin Frick",
     "license": "ISC",

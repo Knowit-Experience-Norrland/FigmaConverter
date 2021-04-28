@@ -1,34 +1,24 @@
-$color-primary: #1f89a6; 
-$color-accent: #14667d; 
-$color-light-accent: #8dffdb; 
-$color-warning-light: #e5582f; 
-$color-warning: #c04f31; 
-$color-dark-gradient-stop: #dc5f02; 
-$color-light-gradient-stop: #f4a402; 
-$color-light: #f5fdff; 
+$color-test: #2f7d81; 
+$color-bright: #2dbfc6; 
+$color-red: #c62d36; 
 @mixin font-heading1{
             font-family: Montserrat;
-            font-size: 3rem;
-            font-weight: 400;
+            font-size: 2.25rem;
+            font-weight: 500;
             ;
         }
  
-@mixin font-heading3{
+@mixin font-paragraph{
             font-family: Montserrat;
-            font-size: 1.125rem;
-            font-weight: 400;
+            font-size: 0.875rem;
+            font-weight: 300;
             ;
         }
  
 :root{ 
-    --color-primary: #1f89a6; 
-    --color-accent: #14667d; 
-    --color-light-accent: #8dffdb; 
-    --color-warning-light: #e5582f; 
-    --color-warning: #c04f31; 
-    --color-dark-gradient-stop: #dc5f02; 
-    --color-light-gradient-stop: #f4a402; 
-    --color-light: #f5fdff; 
+    --color-test: #2f7d81; 
+    --color-bright: #2dbfc6; 
+    --color-red: #c62d36; 
 }
  // NOT GENERATED CODE
 

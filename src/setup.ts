@@ -29,8 +29,10 @@ const replaceEnvFile = (envFileString: string) => {
 
 var oldEnv = readEnvFile();
 var hasAPI_KEY = false;
-if (oldEnv.includes('API_KEY')) {
-    hasAPI_KEY = true;
+if (oldEnv) {
+    if (oldEnv.includes('API_KEY')) {
+        hasAPI_KEY = true;
+    }
 }
 
 (async () => {
@@ -92,9 +94,7 @@ if (oldEnv.includes('API_KEY')) {
 
             newEnv = `API_KEY=${answers.access_token}\n${oldEnv}\n${answers.docName}=${answers.docID}`;
         } else if (answers.tokenBool) {
-            newEnv =
-                oldEnv +
-                `API_KEY=${answers.access_token}\n${answers.docName}=${answers.docID}`;
+            newEnv = `API_KEY=${answers.access_token}\n${answers.docName}=${answers.docID}`;
         } else {
             newEnv = oldEnv + `\n${answers.docName}=${answers.docID}`;
         }

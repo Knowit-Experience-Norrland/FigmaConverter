@@ -3,7 +3,8 @@
  * TODO: could all cssSelectors be put into an array? then that could power the rules generation.
  *
  */
-import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'node:constants';
+import { parse } from 'dotenv/types';
+import { RSA_NO_PADDING } from 'node:constants';
 import { LitElementFromFigmaComponent } from './litElementComponentClass';
 
 var properties = [];
@@ -51,23 +52,70 @@ const setFlexBasis = (element: LitElementFromFigmaComponent, flexUsed: boolean) 
     var name = setNameForElement(element);
     if (element.parentCssAttributes.flexDirection == 'row' && !flexUsed) {
         flexUsed = true;
-        cssRules.push(
-            `${name}Map.set('flex-basis', '${
-                (parseInt(element.cssAttributes.width) /
-                    parseInt(element.parentCssAttributes.width)) *
-                100
-            }%');\n`
-        );
+        if (element.leftRightOffset) {
+            cssRules.push(
+                `${name}Map.set('flex-basis', '${
+                    (parseInt(element.cssAttributes.width) /
+                        (parseInt(element.parentCssAttributes.width) -
+                            element.leftRightOffset)) *
+                    100
+                }%');\n`
+            );
+        } else {
+            cssRules.push(
+                `${name}Map.set('flex-basis', '${
+                    (parseInt(element.cssAttributes.width) /
+                        parseInt(element.parentCssAttributes.width)) *
+                    100
+                }%');\n`
+            );
+        }
     } else if (element.parentCssAttributes.flexDirection == 'column' && !flexUsed) {
         flexUsed = true;
-        cssRules.push(
-            `${name}Map.set('flex-basis', '${
-                (parseInt(element.cssAttributes.height) /
-                    parseInt(element.parentCssAttributes.height)) *
-                100
-            }%');\n`
-        );
+        if (element.topBottomOffset) {
+            cssRules.push(
+                `${name}Map.set('flex-basis', '${
+                    (parseInt(element.cssAttributes.height) /
+                        (parseInt(element.parentCssAttributes.height) -
+                            element.topBottomOffset)) *
+                    100
+                }%');\n`
+            );
+        } else {
+            cssRules.push(
+                `${name}Map.set('flex-basis', '${
+                    (parseInt(element.cssAttributes.height) /
+                        parseInt(element.parentCssAttributes.height)) *
+                    100
+                }%');\n`
+            );
+        }
     }
+};
+const findParentOffset = (
+    element: LitElementFromFigmaComponent,
+    prop: 'height' | 'width'
+): number => {
+    var parent = element.parentCssAttributes;
+    var offset = 0;
+    if (
+        parent.paddingTop ||
+        parent.paddingRight ||
+        parent.paddingBottom ||
+        parent.paddingLeft
+    ) {
+        if (prop === 'width')
+            offset = parseInt(parent.paddingRight) + parseInt(parent.paddingLeft);
+        else {
+            offset = parseInt(parent.paddingTop) + parseInt(parent.paddingBottom);
+        }
+        return offset;
+
+        // return prop === 'width'
+        //     ? parseInt(parent.paddingRight) + parseInt(parent.paddingLeft)
+        //     : parseInt(parent.paddingTop) + parseInt(parent.paddingBottom);
+    }
+    return 1;
 };
 
 /**
@@ -80,13 +128,14 @@ const setFlexBasis = (element: LitElementFromFigmaComponent, flexUsed: boolean) 
 const createCssRules = (element: LitElementFromFigmaComponent) => {
     var flexUsed = false;
     var name = setNameForElement(element);
+    cssRules.push(`${name}Map.set('box-sizing', 'border-box');\n`);
     if (element.cssAttributes.flexDirection)
         cssRules.push(`${name}Map.set('display', 'flex');\n`);
-    if (element.hasParent) {
-        if (element.parentCssAttributes.flexDirection) {
-            cssRules.push(setFlexBasis(element, flexUsed));
-        }
-    }
+    // if (element.hasParent) {
+    //     if (element.parentCssAttributes.flexDirection && element.type !== 'TEXT') {
+    //         cssRules.push(setFlexBasis(element, flexUsed));
+    //     }
+    // }
     for (var prop in element.cssAttributes) {
         if (Object.prototype.hasOwnProperty.call(element.cssAttributes, prop)) {
             if (element.cssAttributes[prop] && element.cssAttributes[prop] !== '0') {
@@ -100,47 +149,58 @@ const createCssRules = (element: LitElementFromFigmaComponent) => {
                 if (!(element.type === 'TEXT' && (prop == 'height' || prop == 'width'))) {
                     if (element.hasParent && (prop == 'width' || prop == 'height')) {
                         // if (element.parentCssAttributes.flexDirection) {
-                        //     outString += `${element.camelCaseToDash(prop)}: 100%;\n`;
-                        // } else {
-                        if (element.topBottomOffset || element.leftRightOffset) {
-                            var offset = '';
-                            if (prop == 'width') offset = element.leftRightOffset + 'px';
-                            if (prop == 'height') offset = element.topBottomOffset + 'px';
-
-                            cssRules.push(
-                                `${name}Map.set('${element.camelCaseToDash(prop)}',
-                        'calc(${Math.round(
-                            (parseInt(element.cssAttributes[prop]) /
-                                parseInt(element.parentCssAttributes[prop])) *
-                                100
-                        )}% - ${offset})'); \n`
-                            );
-                        } else {
-                            cssRules.push(
-                                `${name}Map.set('${element.camelCaseToDash(
-                                    prop
-                                )}','${Math.round(
-                                    (parseInt(element.cssAttributes[prop]) /
-                                        parseInt(element.parentCssAttributes[prop])) *
-                                        100
-                                )}%');\n`
-                            );
-                        }
+                        //     cssRules.push(
+                        //         `${name}Map.set('${element.camelCaseToDash(
+                        //             prop
+                        //         )}','100%');\n`
+                        //     );
                         // }
-                    } else if (
-                        !element.hasParent &&
-                        (prop == 'width' || prop == 'height') &&
-                        (element.topBottomOffset || element.leftRightOffset)
-                    ) {
-                        var offset = '';
-                        if (prop == 'width') offset = element.leftRightOffset + 'px';
-                        if (prop == 'height') offset = element.topBottomOffset + 'px';
+                        // else {
+                        // if (element.topBottomOffset || element.leftRightOffset) {
+                        //     var offset = '';
+                        //     if (prop == 'width') offset = element.leftRightOffset + 'px';
+                        //     if (prop == 'height') offset = element.topBottomOffset + 'px';
+
+                        //     cssRules.push(
+                        //         `${name}Map.set('${element.camelCaseToDash(prop)}',
+                        // 'calc(${Math.round(
+                        //     (parseInt(element.cssAttributes[prop]) /
+                        //         parseInt(element.parentCssAttributes[prop])) *
+                        //         100
+                        // )}% - ${offset})'); \n`
+                        //     );
+                        // }
+                        // else {
+                        var denominator = findParentOffset(element, prop);
 
                         cssRules.push(
-                            `${name}Map.set('${element.camelCaseToDash(prop)}',
-                        'calc(${element.cssAttributes[prop]} - ${offset})'); \n`
+                            `${name}Map.set('${element.camelCaseToDash(
+                                prop
+                            )}','${Math.round(
+                                (parseInt(element.cssAttributes[prop]) /
+                                    (parseInt(element.parentCssAttributes[prop]) -
+                                        denominator)) *
+                                    100
+                            )}%');\n`
                         );
-                    } else {
+                        // }
+                        // }
+                    }
+                    // else if (
+                    //     !element.hasParent &&
+                    //     (prop == 'width' || prop == 'height') &&
+                    //     (element.topBottomOffset || element.leftRightOffset)
+                    // ) {
+                    //     var offset = '';
+                    //     if (prop == 'width') offset = element.leftRightOffset + 'px';
+                    //     if (prop == 'height') offset = element.topBottomOffset + 'px';
+
+                    //     cssRules.push(
+                    //         `${name}Map.set('${element.camelCaseToDash(prop)}',
+                    //     'calc(${element.cssAttributes[prop]} - ${offset})'); \n`
+                    //     );
+                    // }
+                    else {
                         // projectCardMap.set('align-items', 'center');
                         cssRules.push(
                             `${name}Map.set('${element.camelCaseToDash(prop)}', '${
@@ -242,6 +302,10 @@ export class ${camelCasedName} extends LitElement { \n`;
             * {
                 margin: 0;
                 padding: 0;
+                box-sizing: inherit;
+            }
+            html{
+                box-sizing: border-box;
             }
             
             ${createCssSelectors(component, '')}
