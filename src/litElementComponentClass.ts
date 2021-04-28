@@ -3,6 +3,14 @@ import { rgbToHex, torgbString } from './colors';
 import axios from 'axios';
 import Color from './newColors';
 import Typography from './texts';
+
+
+/**
+ * Interface of for all cssAttributes for a component
+ * TODO: add more attributes
+ *
+ * @interface cssAttributes
+ */
 interface cssAttributes {
     width: string;
     height: string;
@@ -21,6 +29,13 @@ interface cssAttributes {
     justifyContent: string;
     alignItems: string;
 }
+
+/**
+ *Class that creates a LitElement from Figmas API
+ *
+ * @export
+ * @class LitElementFromFigmaComponent
+ */
 export class LitElementFromFigmaComponent {
     private componentFromAPI;
     private colorObjects;
@@ -173,12 +188,26 @@ export class LitElementFromFigmaComponent {
                 (color: Color) => color.styleId === this.componentFromAPI.styles.fills
             )[0];
         } else {
-            if (this.componentFromAPI.fills.length > 0)
-                if (this.componentFromAPI.fills[0].visible !== false)
-                    if (this.componentFromAPI.fills[0].type !== 'IMAGE')
-                        if (this.componentFromAPI.fills[0].type !== 'GRADIENT_LINEAR')
+            if (this.componentFromAPI.fills.length > 0) {
+                if (this.componentFromAPI.fills[0].visible !== false) {
+                    if (this.componentFromAPI.fills[0].type !== 'IMAGE') {
+                        if (this.componentFromAPI.fills[0].type !== 'GRADIENT_LINEAR') {
                             // The application does not yet support gradients. The above if-statement can be removed when gradient support is added
-                            this.color = new Color(this.componentFromAPI.fills[0].color);
+
+                            if (this.componentFromAPI.fills[0].opacity) {
+                                this.componentFromAPI.fills[0].color.a = this.componentFromAPI.fills[0].opacity;
+                                this.color = new Color(
+                                    this.componentFromAPI.fills[0].color
+                                );
+                            } else {
+                                this.color = new Color(
+                                    this.componentFromAPI.fills[0].color
+                                );
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
