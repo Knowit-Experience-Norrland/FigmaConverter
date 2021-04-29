@@ -1,12 +1,10 @@
 import axios from 'axios';
-import { appendArrayToFile, appendStringToFile } from './fileManipulation';
+import { appendStringToFile } from './fileManipulation';
 import { LitElementFromFigmaComponent } from './litElementComponentClass';
 import { litElementComponent } from './litElementComponentGenerator';
 import { PurpleChild } from './apiTypes';
-// import { Color } from './colors';
-import Color from './newColors';
+import Color from './colors';
 import Typography from './texts';
-import * as inquirer from 'inquirer';
 
 // https://www.figma.com/file/K4odZYkdvmAwB8ZEjoXSrp/Component-testing?node-id=0%3A1&viewport=578%2C610%2C2.3166487216949463
 // hfpX16KHa01k2i28WwCyHB
@@ -30,6 +28,7 @@ axios({
         })
             .then((res) => {
                 var comps = [];
+                // Collects all components for all pages in document.
                 for (var i = 0; i < res.data.document.children.length; i++) {
                     comps = [
                         ...comps,
@@ -38,15 +37,7 @@ axios({
                         ),
                     ];
                 }
-                // var comps = res.data.document.children[0].children.filter(
-                //     (c: PurpleChild) => c.type == 'COMPONENT'
-                // );
-                // var comp_sets = res.data.document.children[0].children.filter(
-                //     (c: PurpleChild) => c.type == 'COMPONENT_SET'
-                // )[0];
-                // if (!comp_sets.children === undefined) comp_sets = comp_sets.children;
 
-                // comps = comps.concat(comp_sets);
                 const canvas = res.data.document.children[0];
                 const stylesData = res.data.styles;
 
@@ -123,10 +114,7 @@ const createComponentsFiles = (colorObjects, comps, images): string[] => {
             colorObjects,
             images
         );
-        const litElementComponentString = litElementComponent(
-            litElement.name,
-            litElement
-        );
+        const litElementComponentString = litElementComponent(litElement);
 
         const fileName = litElement.name.includes('-')
             ? litElement.stringToCamelCase(litElement.name, '-')

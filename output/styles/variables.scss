@@ -1,6 +1,7 @@
 $color-test: #2f7d81; 
 $color-bright: #2dbfc6; 
 $color-red: #c62d36; 
+$color-yellow: #f2b942; 
 @mixin font-heading1{
             font-family: Montserrat;
             font-size: 2.25rem;
@@ -19,6 +20,7 @@ $color-red: #c62d36;
     --color-test: #2f7d81; 
     --color-bright: #2dbfc6; 
     --color-red: #c62d36; 
+    --color-yellow: #f2b942; 
 }
  // NOT GENERATED CODE
 

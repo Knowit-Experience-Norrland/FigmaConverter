@@ -29,6 +29,8 @@ const replaceEnvFile = (envFileString: string) => {
 
 var oldEnv = readEnvFile();
 var hasAPI_KEY = false;
+
+// Checks if the .env file has an API-key
 if (oldEnv) {
     if (oldEnv.includes('API_KEY')) {
         hasAPI_KEY = true;
@@ -84,6 +86,7 @@ if (oldEnv) {
 })()
     .then((answers) => {
         var newEnv = '';
+        // Sets new string to fill .env-file
         if (hasAPI_KEY && answers.tokenBool) {
             // break the textblock into an array of lines
             var lines = oldEnv.split('\n');
@@ -91,7 +94,6 @@ if (oldEnv) {
             lines.splice(0, 1);
             // join the array back into a single string
             oldEnv = lines.join('\n');
-
             newEnv = `API_KEY=${answers.access_token}\n${oldEnv}\n${answers.docName}=${answers.docID}`;
         } else if (answers.tokenBool) {
             newEnv = `API_KEY=${answers.access_token}\n${answers.docName}=${answers.docID}`;
@@ -104,38 +106,3 @@ if (oldEnv) {
         );
     })
     .catch(console.error);
-
-// const questions = [
-//     {
-//         type: 'list',
-//         name: 'tokenBool',
-//         message: 'Do you want to add a access token?',
-//         choices: ['yes', 'no'],
-//     },
-//     {
-//         type: 'input',
-//         name: 'docName',
-//         message: 'What is the document name?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'docID',
-//         message: "What's your Figma document ID?",
-//     },
-//     {
-//         type: 'input',
-//         name: 'access_token',
-//         message: "What's your Figma access token?",
-//     },
-// ];
-
-// inquirer.prompt(questions).then((answers) => {
-// var oldEnv = readEnvFile();
-// console.log(oldEnv);
-// if (oldEnv.includes('API_KEY')) console.log('contains key');
-// var newEnv =
-//     oldEnv + `API_KEY=${answers.access_token}\n${answers.docName}=${answers.docID}`;
-// replaceEnvFile(newEnv);
-
-// console.log('To convert your components run:\nnpm run convert -- ' + answers.docName);
-// });

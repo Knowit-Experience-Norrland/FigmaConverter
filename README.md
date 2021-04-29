@@ -3,10 +3,10 @@
 FigmaConverter is a small program that let's you convert Figma components into [web-components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) and Figma text/color styles into SCSS variables and mixins. 
 
 
-## Building Figma Components
+## Building Figma Components (Designing)
 The FigmaConverter uses the components feature from Figma. To get layouts and whitespace correct FigmaConveter also uses the auto-layout feature (which is very similar to *display: flex*). The components that you want to convert must be placed on the canvas itself. (not on in another frame).
 
-### Naming (?)
+### Naming elements
 FigmaConverter uses the names of the elements in Figma as variable names. Therefore it’s important to check that each name is correct. Because of a dependency in web-components, the components must be named with two lowercased words with a dash between them.  
 Example: “test-component.”
 
@@ -17,7 +17,8 @@ Keep in mind that texts should be renamed as below. If this is not done the vari
 
 <img src="RM-images/names.png" width="300" />
 
-## Installation
+
+## Installation (Developing)
 
 Clone the repository from GitHub to install figmaConverter.
 
@@ -31,6 +32,7 @@ cd FigmaConverter/
 npm install
 ```
 
+
 ## Setup
 FigmaConverter focuses on single documents. To be able to get the information from the document an access token is needed. Run the setup script to fill in the information for the Figma document.
 
@@ -42,6 +44,8 @@ Three questions are asked:
 <!-- * What is the documents name? --> 
 <!-- * What's your Figma document ID? -->
 <!-- * What's your Figma access token? -->
+
+The document name is what you will refer to when running the program. This could be anything that you'll associate with your document.  
 
 <img src="RM-images/setupCLI.png" width="500" />
 
@@ -56,6 +60,7 @@ The access token can be generated under the settings tab in Figma.
 The configuration is set to a .env-file and read by the figmaConverter.ts-file.  
 
 The setup can be run multiple times and to add more than one document. After the first run, you’ll be asked if you want to change your access token.
+
 
 ## Usage
 

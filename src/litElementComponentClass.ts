@@ -1,9 +1,5 @@
-import { PurpleChild, StrokeAlign } from './apiTypes';
-import { rgbToHex, torgbString } from './colors';
-import axios from 'axios';
-import Color from './newColors';
+import Color from './colors';
 import Typography from './texts';
-
 
 /**
  * Interface of for all cssAttributes for a component
@@ -31,7 +27,7 @@ interface cssAttributes {
 }
 
 /**
- *Class that creates a LitElement from Figmas API
+ * Class that creates a LitElement from Figmas API.
  *
  * @export
  * @class LitElementFromFigmaComponent
@@ -60,19 +56,18 @@ export class LitElementFromFigmaComponent {
      * TODO:
      * Typing for images
      */
-
     images: any;
 
-    // fix for placing smaller than container
-    //  "primaryAxisSizingMode": "FIXED",
-    //                         "counterAxisAlignItems": "CENTER",
-    //                         "primaryAxisAlignItems": "CENTER",
-    // primaryAxisAlignItems == justify-content?
-    // counterAxisAlignItems == align-items?
-
+    /**
+     * Creates an instance of LitElementFromFigmaComponent.
+     * @param {*} component
+     * @param {*} colorObjects
+     * @param {*} images
+     * @param {cssAttributes} [parentCssAttributes]
+     * @memberof LitElementFromFigmaComponent
+     */
     constructor(component, colorObjects, images, parentCssAttributes?: cssAttributes) {
         this.images = images;
-
         this.componentFromAPI = component;
         this.colorObjects = colorObjects;
         this.name = component.name;
@@ -131,6 +126,14 @@ export class LitElementFromFigmaComponent {
         }
     }
 
+    /**
+     *
+     * Translates Figmas axis response to flex values.
+     * @private
+     * @param {string} axisInput
+     * @return {*}  {(string | undefined)}
+     * @memberof LitElementFromFigmaComponent
+     */
     private setAlignment(axisInput: string): string | undefined {
         if (axisInput) {
             if (axisInput === 'MIN') return 'flex-start';
@@ -142,35 +145,13 @@ export class LitElementFromFigmaComponent {
         return axisInput;
     }
 
-    private setWidth(): string {
-        var toRemove = 0;
-        if (this.componentFromAPI.paddingLeft)
-            toRemove += this.componentFromAPI.paddingLeft;
-        if (this.componentFromAPI.paddingRight)
-            toRemove += this.componentFromAPI.paddingRight;
-        return `${this.componentFromAPI.absoluteBoundingBox.width - toRemove}px`;
-    }
-
-    private setHeight(): string {
-        var toRemove = 0;
-        if (this.componentFromAPI.paddingTop)
-            toRemove += this.componentFromAPI.paddingTop;
-        if (this.componentFromAPI.paddingBottom)
-            toRemove += this.componentFromAPI.paddingBottom;
-        return `${this.componentFromAPI.absoluteBoundingBox.height - toRemove}px`;
-    }
-    private setBackgroundColor(): string {
-        if (this.componentFromAPI.fills.type !== 'IMAGE') {
-            if (this.color) {
-                if (this.color.styleId) {
-                    return this.color.cssVariableName;
-                } else {
-                    return this.color.rgbaOrHex();
-                }
-            }
-        }
-    }
-
+    /**
+     * Returns the image URL from Figma.
+     * These urls are fetched before hand.
+     * @private
+     * @return {*}  {string}
+     * @memberof LitElementFromFigmaComponent
+     */
     private setBackgroundImage(): string {
         if (this.componentFromAPI.fills.length > 0) {
             if (this.componentFromAPI.fills[0].type === 'IMAGE') {
@@ -182,6 +163,16 @@ export class LitElementFromFigmaComponent {
         return '';
     }
 
+    /**
+     *
+     * If the color of the element belongs to a style, that variable is set as background.
+     * Otherwise the color from the element is set.
+     *
+     * (the elements colors a value is always 1 for some reason.
+     *  That's why the a value is set to the elements opacity.)
+     * @private
+     * @memberof LitElementFromFigmaComponent
+     */
     private setComponentColorFromAPI() {
         if (this.componentFromAPI.styles) {
             this.color = this.colorObjects.filter(
@@ -211,10 +202,36 @@ export class LitElementFromFigmaComponent {
         }
     }
 
+    /**
+     *
+     * Determines if a variable or color code should be set as background.
+     * @private
+     * @return {*}  {string}
+     * @memberof LitElementFromFigmaComponent
+     */
+    private setBackgroundColor(): string {
+        if (this.componentFromAPI.fills.type !== 'IMAGE') {
+            if (this.color) {
+                return this.color.styleId
+                    ? this.color.cssVariableName
+                    : this.color.rgbaOrHex();
+            }
+        }
+    }
+
+    /**
+     *
+     * returns a single value string if all corner radii are the same.
+     * returns a string with values for all four corners if not.
+     * @private
+     * @return {*}  {string}
+     * @memberof LitElementFromFigmaComponent
+     */
     private setBorderRadius(): string {
         if (this.componentFromAPI.type === 'ELLIPSE') return '50%';
         var tempString: string | string[];
-        // checks is all values in the cornerRadii array is the same and determines if the border-radius should be one or four values.
+        // checks is all values in the cornerRadii array is the same and determines
+        // if the border-radius should be one or four values.
         if (this.componentFromAPI.rectangleCornerRadii) {
             tempString = this.componentFromAPI.rectangleCornerRadii.every(
                 (val: string, i, arr: string[]) => val === arr[0]
@@ -238,12 +255,26 @@ export class LitElementFromFigmaComponent {
         }
     }
 
+    /**
+     *
+     * Convert string to camel case.
+     * @param {string} string
+     * @param {string} splitString
+     * @memberof LitElementFromFigmaComponent
+     */
     stringToCamelCase = (string: string, splitString: string): string => {
         var temp = string.split(splitString);
         temp[1] = temp[1].charAt(0).toUpperCase() + temp[1].slice(1);
         return temp.join('');
     };
 
+    /**
+     *
+     * Converts camel cased string to dashed string.
+     * helloWorld -> hello-world
+     * @param {string} string
+     * @memberof LitElementFromFigmaComponent
+     */
     camelCaseToDash = (string: string): string => {
         var dashedString = '';
         var temp = [...string];
