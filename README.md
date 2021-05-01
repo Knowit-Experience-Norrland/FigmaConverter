@@ -24,7 +24,7 @@ Keep in mind that texts should be renamed as below. If this is not done the vari
 Clone the repository from GitHub to install figmaConverter.
 
 ```bash
-git clone https://github.com/AlbinFrick/FigmaConverter.git 
+git clone https://github.com/Knowit-Experience-Norrland/FigmaConverter.git
 ```
 
 Change directory and run npm install to install all necessary packages to run the program.
