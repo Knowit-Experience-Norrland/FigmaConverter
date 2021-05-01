@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "src/figmaConverter.js",
+    "module": "src/figmaConverter.js",
     "scripts": {
         "setup": "npx ts-node src/setup.ts",
         "convert": "npx ts-node src/figmaConverter.ts"

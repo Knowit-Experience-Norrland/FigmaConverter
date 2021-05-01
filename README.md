@@ -18,6 +18,7 @@ Keep in mind that texts should be renamed as below. If this is not done the vari
 <img src="RM-images/names.png" width="300" />
 
 
+
 ## Installation (Developing)
 
 Clone the repository from GitHub to install figmaConverter.
@@ -31,6 +32,14 @@ Change directory and run npm install to install all necessary packages to run th
 cd FigmaConverter/
 npm install
 ```
+
+
+## Dependencies
+* LitElement
+* Any sort of bundler that handles open imports, eg. import 'litElement'
+  * Some examples are [Webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), [Rollup](https://rollupjs.org/guide/en/).
+
+The system now relies on CSS *gap* (previously grid-gap) -- Which does not currently work in Safari.
 
 
 ## Setup
@@ -53,7 +62,10 @@ The document ID can be found in the URL to your Figma document (see image below)
 
 <img src="RM-images/findingID.png" width="500" />
 
-The access token can be generated under the settings tab in Figma.
+The access token can be generated under the account settings tab in Figma.
+
+
+<img src="RM-images/figmaSettings.png" width="300" />
 
 <img src="RM-images/accessToken.png" width="500" />
 
@@ -199,16 +211,10 @@ To use the slot in your project you can add any element in the component with th
 ```
 
 
-## Dependencies
-* LitElement
-* Any sort of bundler that handles open imports, eg. import 'litElement'
-  * Some examples are [Webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), [Rollup](https://rollupjs.org/guide/en/).
-
-The system now relies on CSS *gap* (previously grid-gap) -- Which does not currently work in Safari.
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
 

@@ -1,6 +1,6 @@
 {
-    "name": "figmaLit",
-    "version": "1.0.1",
+    "name": "level-card",
+    "version": "1.0.7",
     "description": "this is package of litElements created by figma",
     "main": "index.js",
     "module": "index.js",
@@ -15,5 +15,10 @@
     },
     "devDependencies": {
         "typescript": "^4.2.2"
-    }
+    },
+    "keywords": [
+        "LitElement",
+        "web-components",
+        "figmaConverter"
+    ]
 }
