@@ -121,7 +121,36 @@ tsc -w
 ### Test and Distribute components 
 The way that the generated LitElement are structured they are very suitable to use a [NPM](https://www.npmjs.com/)-package. Inside the **/output** folder there is a package.json file. This file contains instructions on the package, such as the name of the package.   
 
+Example package.json file:
 
+```json
+{
+    "name": "component-package",
+    "version": "1.0.0",
+    "description": "this is package of litelements created by figma",
+    "main": "index.js",
+    "module": "index.js",
+    "scripts": {
+        "test": "echo \"error: no test specified\" && exit 1",
+        "locallink": "tsc && npm link"
+    },
+    "author": "author authorson",
+    "license": "isc",
+    "dependencies": {
+        "lit-element": "^2.4.0"
+    },
+    "devdependencies": {
+        "typescript": "^4.2.2"
+    },
+    "keywords": [
+        "litelement",
+        "web-components",
+        "figmaconverter"
+    ]
+}
+
+
+```
 
 <img src="RM-images/packageScreenshot.png" width="500" />
 
