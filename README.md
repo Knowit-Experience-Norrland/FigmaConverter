@@ -123,7 +123,7 @@ The way that the generated LitElement are structured they are very suitable to u
 
 Example package.json file:
 
-```json
+```yaml
 {
     "name": "component-package",
     "version": "1.0.0",
