@@ -5,18 +5,25 @@ FigmaConverter is a small program that let's you convert Figma components into [
 *Note that this is still a prototype, and should not be used for production yet* 
 
 ## Building Figma Components (Designing)
-The FigmaConverter uses the components feature from Figma. To get layouts and whitespace correct FigmaConveter also uses the auto-layout feature (which is very similar to *display: flex*). The components that you want to convert must be placed on the canvas itself. (not on in another frame).
+<!-- The FigmaConverter uses the components feature from Figma. To get layouts and whitespace correct FigmaConveter also uses the auto-layout feature (which is very similar to *display: flex*). The components that you want to convert must be placed on the canvas itself. (not on in another frame). -->
 
-### Naming elements
-FigmaConverter uses the names of the elements in Figma as variable names. Therefore it’s important to check that each name is correct. Because of a dependency in web-components, the components must be named with two lowercased words with a dash between them.  
+To use your Figma components with FigmaConverter they needs to be built using the [**Auto-layout**](https://help.figma.com/hc/en-us/articles/360040451373-Create-dynamic-designs-with-Auto-layout) feature. This needs to be used for **all elements** in the component. The components that you want to convert also needs to be placed in on the canvas itself (not in another frame).
+
+### Naming Components 
+Because of a dependency in web-components, the components must be named with two lowercased words with a dash between them.  
 Example: “test-component.”
 
 
-<img src="RM-images/testComp.png" width="500" />
 
-Keep in mind that texts should be renamed as below. If this is not done the variable name becomes very long and may crash the styling of the component making it unusable.
+ Element names for the component | Screenshot of the component 
+:-------------------------:|:-------------------------:
+ <img src="RM-images/names.png" width="300" /> | <img src="RM-images/testComp.png" width="500" />
 
-<img src="RM-images/names.png" width="300" />
+### Naming Elements
+FigmaConverter uses the names of the elements as variable names. These variable names cannot be more than **25 characters** and cannot be identical in the same component.
+
+
+
 
 
 
@@ -90,17 +97,49 @@ npm run convert -- DOCUMENT_NAME
 
 When the program has run it will result in some new files in the ***output/*** folder. These are TypeScript files that contain [litElements](https://lit-element.polymer-project.org/) for each Figma component. 
 
-These components files can be used directly as is but will most likely be converted to .js-files. To do this with every .ts-file in the output folder:
+To compile these files to .js-files, making them runnable in the browser, we can use TypeScript compiler (tsc).
+
+If not already installed, install typescript globally: 
+
+```bash
+npm install -g typescript
+```
+
+Then compile the typescript files:
 
 ```bash
 cd output/
 tsc 
 ```
 
-### Distribute
+If you want to test the components multiple times you can make the typescript compiler watch the output folder. Thereby running the compiler very time there is a change in a typescript file. This can be done with:
 
-With these litElement files, an additional package.json file is created. This can be used to distribute the components to [NPM](https://www.npmjs.com/).
+```bash
+tsc -w 
+```
 
+### Test and Distribute components 
+The way that the generated LitElement are structured they are very suitable to use a [NPM](https://www.npmjs.com/)-package. Inside the **/output** folder there is a package.json file. This file contains instructions on the package, such as the name of the package.   
+
+
+
+<img src="RM-images/packageScreenshot.png" width="500" />
+
+<!-- With these litElement files, an additional package.json file is created. This can be used to distribute the components to [NPM](https://www.npmjs.com/). -->
+
+#### Test locally
+If you wish to test your components locally before you publish them navigate to your ***output/*** folder and type.
+
+```bash
+npm link 
+```
+
+Then navigate to your local project and type (where the package name is found in **/output/package.json**): 
+```bash
+npm link YOUR-PACKAGE-NAME
+```
+
+#### Publish to NPM
 To [publish to npm](https://zellwk.com/blog/publish-to-npm/) you can log in to your npm account. 
 
 ```bash
@@ -113,21 +152,10 @@ Follow the instructions and then use:
 npm publish
 ```
 
-#### Test
-If you wish to test your components locally before you publish them navigate to your ***output/*** folder and type.
-
-```bash
-npm link 
-```
-
-Then navigate to your local project and type 
-```bash
-npm link YOUR-PACKAGE-NAME
-```
 
 ## Using the Components
 
-The generated LitElement components are as a base a web-component therefore the components can be used in native HTML5 and in any framework. To use the components import them in a JavaScript-file:
+The generated LitElement components are as a base a web-component therefore the components can be used in native HTML5 and in any framework (such as react and angular). To use the components import them in a JavaScript-file:
 
 ```JavaScript
 import 'YOUR-PACKAGE-NAME'
@@ -167,6 +195,24 @@ If you wish to style your components after they've been made you can do that by 
   >
   </test-component>
 ```
+
+If you wish to style the parent element you can use the *style*-attribute 
+```HTML
+  <test-component 
+    style="background-color: red;" 
+  >
+  </test-component>
+```
+or the name of the component as camel case:  
+
+```HTML
+  <test-component 
+    testComponent="background-color: red;" 
+  >
+  </test-component>
+```
+
+These two examples will do the same thing.
 
 ### Texts 
 Often components are built as a template where the content is different for each instance of the components. To change the text for a component the name of the element is targeted with the addition of the keyword “Text.” Example:
@@ -210,6 +256,7 @@ To use the slot in your project you can add any element in the component with th
     <button slot="slotName">Button</button>
   </test-component>
 ```
+
 
 
 ## Contributing

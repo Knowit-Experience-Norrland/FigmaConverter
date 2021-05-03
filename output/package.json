@@ -1,14 +1,14 @@
 {
-    "name": "level-card",
-    "version": "1.0.7",
-    "description": "this is package of litElements created by figma",
+    "name": "component-package",
+    "version": "1.0.0",
+    "description": "This is package of litElements created by figma",
     "main": "index.js",
     "module": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "localLink": "tsc && npm link"
     },
-    "author": "Albin Frick",
+    "author": "Author Authorson",
     "license": "ISC",
     "dependencies": {
         "lit-element": "^2.4.0"
