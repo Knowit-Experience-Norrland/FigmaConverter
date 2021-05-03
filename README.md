@@ -152,8 +152,6 @@ Example package.json file:
 
 ```
 
-<img src="RM-images/packageScreenshot.png" width="500" />
-
 <!-- With these litElement files, an additional package.json file is created. This can be used to distribute the components to [NPM](https://www.npmjs.com/). -->
 
 #### Test locally
