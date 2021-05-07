@@ -7,7 +7,7 @@ FigmaConverter is a small program that let's you convert Figma components into [
 ## Building Figma Components (Designing)
 <!-- The FigmaConverter uses the components feature from Figma. To get layouts and whitespace correct FigmaConveter also uses the auto-layout feature (which is very similar to *display: flex*). The components that you want to convert must be placed on the canvas itself. (not on in another frame). -->
 
-To use your Figma components with FigmaConverter they needs to be built using the [**Auto-layout**](https://help.figma.com/hc/en-us/articles/360040451373-Create-dynamic-designs-with-Auto-layout) feature. This needs to be used for **all elements** in the component. The components that you want to convert also needs to be placed in on the canvas itself (not in another frame).
+To use your Figma components with FigmaConverter they need to be built using the [**Auto-layout**](https://help.figma.com/hc/en-us/articles/360040451373-Create-dynamic-designs-with-Auto-layout) feature. This needs to be used for **all elements** in the component. The components that you want to convert also needs to be placed in on the canvas itself (not in another frame).
 
 ### Naming Components 
 Because of a dependency in web-components, the components must be named with two lowercased words with a dash between them.  
@@ -203,6 +203,8 @@ Then use the components in HTML:
 </body>
 </html>
 ```
+
+If the component is using a color/text style it must be imported in the .scss-file.
 
 
 ### Styling

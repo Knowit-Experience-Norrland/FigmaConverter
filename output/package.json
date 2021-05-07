@@ -1,6 +1,6 @@
 {
-    "name": "styling",
-    "version": "1.0.0",
+    "name": "level-card",
+    "version": "1.0.9",
     "description": "this is package of litelements created by figma",
     "main": "index.js",
     "module": "index.js",
