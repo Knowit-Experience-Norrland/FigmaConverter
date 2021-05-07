@@ -1,24 +1,24 @@
 {
-    "name": "component-package",
+    "name": "styling",
     "version": "1.0.0",
-    "description": "This is package of litElements created by figma",
+    "description": "this is package of litelements created by figma",
     "main": "index.js",
     "module": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "localLink": "tsc && npm link"
+        "test": "echo \"error: no test specified\" && exit 1",
+        "locallink": "tsc && npm link"
     },
-    "author": "Author Authorson",
-    "license": "ISC",
+    "author": "author authorson",
+    "license": "isc",
     "dependencies": {
         "lit-element": "^2.4.0"
     },
-    "devDependencies": {
+    "devdependencies": {
         "typescript": "^4.2.2"
     },
     "keywords": [
-        "LitElement",
+        "litelement",
         "web-components",
-        "figmaConverter"
+        "figmaconverter"
     ]
 }

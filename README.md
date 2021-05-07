@@ -241,8 +241,60 @@ or the name of the component as camel case:
 
 These two examples will do the same thing.
 
+### Figma Styles, Variables, and Texts
+Color, text and effect styles are a great feature in Figma. A little to great to not take advantage of. FigmaConverter uses the **color** and **text** styles (effects coming in the future). The styles are translated into the SCSS variables.
+
+#### Using the Variables
+Either copy the variables file in **/output/styles/** and use it in your project. To use the variables from a NPM-package import it from the package in your SCSS file with:
+
+```SCSS
+@import '~YOUR-PACKAGE-NAME/styles/variables';
+```
+
+Then you can use your color styles as variables with with the keyword ***color*** before the color style name.
+
+The text styles are implemented as a mixin and can be used as such. With the keyword ***font*** before the figma text style name.
+
+```SCSS
+@import '~YOUR-PACKAGE-NAME/styles/variables';
+
+h1{
+  @include font-my-text;
+  color: $color-my-color;
+}
+```
+
+#### Setting up Figma styles
+To use a style first set them in Figma.
+To [create a style](https://help.figma.com/hc/en-us/articles/360038746534-Create-styles-for-colors-text-effects-and-layout-grids) choose your color or text style normally on a text or shape.
+
+Click the four dots and then the plus sign on the text/color.  
+This let's you create style. 
+
+***IMPORTANT:*** as of now the styles that are created must be placed on the canvas itself. Otherwise FigmaConverter cannot find it. 
+
+Create a shape/text and put it on the ***canvas*** not in another frame.  
+Choose a color :
+
+<img src="RM-images/createColorStyle1.png" width="300" />
+
+Click on the four dots and the plus sign:
+
+<img src="RM-images/createColorStyle2.png" width="300" />
+
+Add your color/text style name:
+
+<img src="RM-images/createColorStyle3.png" width="300" />
+
+Click on the canvas too see the color/text styles:
+
+<img src="RM-images/colorAndText.png" width="200" />
+
+
+
 ### Texts 
-Often components are built as a template where the content is different for each instance of the components. To change the text for a component the name of the element is targeted with the addition of the keyword “Text.” Example:
+Often components are built as a template where the content is different for each instance of the component. To change the text of a component the name of the element is targeted with the addition of the keyword “Text.” Example:
+If the element is named *title*.
 
 ```HTML
   <test-component 
@@ -250,6 +302,7 @@ Often components are built as a template where the content is different for each
   >
   </test-component>
 ```
+
 
 ### Images 
 As of now the images that are used are implemented as URLs from Figmas API.  

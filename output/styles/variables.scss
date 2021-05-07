@@ -1,10 +1,22 @@
-$color-mjuk: #6f93c8; 
-$color-mjuk-dark: #526b92; 
-$color-profile: #c26a57; 
+$color-my-color: #e54d4d; 
+$color-my-second-style: #4c3030; 
+@mixin font-my-text{
+            font-family: Roboto;
+            font-size: 3.125rem;
+            font-weight: 400;
+            ;
+        }
+ 
+@mixin font-font{
+            font-family: Times;
+            font-size: 3rem;
+            font-weight: 700;
+            ;
+        }
+ 
 :root{ 
-    --color-mjuk: #6f93c8; 
-    --color-mjuk-dark: #526b92; 
-    --color-profile: #c26a57; 
+    --color-my-color: #e54d4d; 
+    --color-my-second-style: #4c3030; 
 }
  // NOT GENERATED CODE
 
