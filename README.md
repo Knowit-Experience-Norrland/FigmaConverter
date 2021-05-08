@@ -9,6 +9,11 @@ FigmaConverter is a small program that let's you convert Figma components into [
 
 To use your Figma components with FigmaConverter they need to be built using the [**Auto-layout**](https://help.figma.com/hc/en-us/articles/360040451373-Create-dynamic-designs-with-Auto-layout) feature. This needs to be used for **all elements** in the component. The components that you want to convert also needs to be placed in on the canvas itself (not in another frame).
 
+The Auto-layout feature can be found in the right panel.  
+For the most effective use of this feature please use the red marked button for further positioning.
+
+<img src="RM-images/al.png" width="300" />
+
 ### Naming Components 
 Because of a dependency in web-components, the components must be named with two lowercased words with a dash between them.  
 Example: “test-component.”
