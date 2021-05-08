@@ -248,7 +248,7 @@ or the name of the component as camel case:
 
 These two examples will do the same thing.
 
-### Figma Styles, Variables, and Texts
+### Figma Styles, Variables, and Mixins
 Color, text and effect styles are a great feature in Figma. A little to great to not take advantage of. FigmaConverter uses the **color** and **text** styles (effects coming in the future). The styles are translated into the SCSS variables.
 
 #### Using the Variables
