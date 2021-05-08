@@ -36,6 +36,12 @@ if (oldEnv) {
         hasAPI_KEY = true;
     }
 }
+var questions = {
+    doChangeAT: 'Do you want to change your access-token?',
+    docName: 'Choose a name for the document:',
+    docID: 'What is the ID for this Figma document?',
+    access_token: 'What is your Figma access token?',
+};
 
 (async () => {
     var ans1 = { tokenBool: true };
@@ -44,7 +50,7 @@ if (oldEnv) {
             {
                 type: 'confirm',
                 name: 'tokenBool',
-                message: 'Do you want to change your access-token?',
+                message: questions.doChangeAT,
             },
         ]);
     }
@@ -54,17 +60,17 @@ if (oldEnv) {
             {
                 type: 'input',
                 name: 'docName',
-                message: 'What is the document name?',
+                message: questions.docName,
             },
             {
                 type: 'input',
                 name: 'docID',
-                message: 'What is your Figma document ID?',
+                message: questions.docID,
             },
             {
                 type: 'input',
                 name: 'access_token',
-                message: 'What is your Figma access token?',
+                message: questions.access_token,
             },
         ]);
     } else {
@@ -72,12 +78,12 @@ if (oldEnv) {
             {
                 type: 'input',
                 name: 'docName',
-                message: 'What is the document name?',
+                message: questions.docName,
             },
             {
                 type: 'input',
                 name: 'docID',
-                message: "What's your Figma document ID?",
+                message: questions.docID,
             },
         ]);
     }
