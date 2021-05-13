@@ -92,7 +92,7 @@ The setup can be run multiple times and to add more than one document. After the
 To run FigmaConverter run the figmaConvert.ts file:
 
 ```bash
-npm run convert -- DOCUMENT_NAME
+npm run convert --doc=DOCUMENT_NAME
 ```
 
 <!-- To get the information of your compoents figmaConverter needs the figma document ID and an access token. --> 
@@ -100,28 +100,30 @@ npm run convert -- DOCUMENT_NAME
 <!-- <img src="RM-images/cliIDToken.png" width="500" /> -->
 
 
-When the program has run it will result in some new files in the ***output/*** folder. These are TypeScript files that contain [litElements](https://lit-element.polymer-project.org/) for each Figma component. 
+When the program has run it will result in some new files in the ***output/*** folder. These are TypeScript files that contain [litElements](https://lit-element.polymer-project.org/) for each Figma component. These TypeScript files are automatically compiled to JavaScript files ready to use.
 
-To compile these files to .js-files, making them runnable in the browser, we can use TypeScript compiler (tsc).
+<!-- To compile these files to .js-files, making them runnable in the browser, we can use TypeScript compiler (tsc). 
 
-If not already installed, install typescript globally: 
+  If not already installed, install typescript globally: 
 
-```bash
-npm install -g typescript
-```
+  ```bash
+  npm install -g typescript
+  ```
 
-Then compile the typescript files:
+  Then compile the typescript files:
 
-```bash
-cd output/
-tsc 
-```
+  ```bash
+  cd output/
+  tsc 
+  ```
 
-If you want to test the components multiple times you can make the typescript compiler watch the output folder. Thereby running the compiler very time there is a change in a typescript file. This can be done with:
 
-```bash
-tsc -w 
-```
+  If you want to test the components multiple times you can make the typescript compiler watch the output folder. Thereby running the compiler very time there is a change in a typescript file. This can be done with:
+
+  ```bash
+  tsc -w 
+  ```
+-->
 
 ### Test and Distribute components 
 The way that the generated LitElement are structured they are very suitable to use a [NPM](https://www.npmjs.com/)-package. Inside the **/output** folder there is a package.json file. This file contains instructions on the package, such as the name of the package.   
