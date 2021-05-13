@@ -1,6 +1,13 @@
 $color-mjuk: #6f93c8; 
 $color-mjuk-dark: #526b92; 
 $color-profile: #c26a57; 
+@mixin font-paragraph{
+            font-family: Roboto;
+            font-size: 1rem;
+            font-weight: 400;
+            ;
+        }
+ 
 :root{ 
     --color-mjuk: #6f93c8; 
     --color-mjuk-dark: #526b92; 

@@ -108,7 +108,7 @@ var questions = {
         }
         replaceEnvFile(newEnv);
         console.log(
-            'To convert your components run:\nnpm run convert -- ' + answers.docName
+            'To convert your components run:\nnpm run convert --doc=' + answers.docName
         );
     })
     .catch(console.error);

@@ -6,7 +6,8 @@
     "module": "src/figmaConverter.js",
     "scripts": {
         "setup": "npx ts-node src/setup.ts",
-        "convert": "npx ts-node src/figmaConverter.ts"
+        "convert": "npx ts-node src/figmaConverter.ts $npm_config_doc && npm run tsCompile",
+        "tsCompile": "cd output/ && tsc"
     },
     "keywords": [],
     "author": "",
