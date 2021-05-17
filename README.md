@@ -11,7 +11,7 @@ To use your Figma components with FigmaConverter they need to be built using the
 
 The Auto-layout feature can be found in the right panel.  
 
-<img src="RM-images/firstAL.png" width="300" />
+<img src="RM-images/firstAL.png" width="200" />
 
 
 For the most effective use of this feature please use the red marked button for further positioning.
