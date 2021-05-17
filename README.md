@@ -10,6 +10,10 @@ FigmaConverter is a small program that let's you convert Figma components into [
 To use your Figma components with FigmaConverter they need to be built using the [**Auto-layout**](https://help.figma.com/hc/en-us/articles/360040451373-Create-dynamic-designs-with-Auto-layout) feature. This needs to be used for **all elements** in the component. The components that you want to convert also needs to be placed in on the canvas itself (not in another frame).
 
 The Auto-layout feature can be found in the right panel.  
+
+<img src="RM-images/firstAL.png" width="300" />
+
+
 For the most effective use of this feature please use the red marked button for further positioning.
 
 <img src="RM-images/al.png" width="300" />
@@ -23,6 +27,7 @@ Example: “test-component.”
  Element names for the component | Screenshot of the component 
 :-------------------------:|:-------------------------:
  <img src="RM-images/names.png" width="300" /> | <img src="RM-images/testComp.png" width="500" />
+
 
 ### Naming Elements
 FigmaConverter uses the names of the elements as variable names. These variable names cannot be more than **25 characters** and cannot be identical in the same component.
@@ -80,11 +85,14 @@ The access token can be generated under the account settings tab in Figma.
 
 <img src="RM-images/figmaSettings.png" width="300" />
 
+Type in a name for the token and press enter to create a token.
+
 <img src="RM-images/accessToken.png" width="500" />
 
 The configuration is set to a .env-file and read by the figmaConverter.ts-file.  
 
 The setup can be run multiple times and to add more than one document. After the first run, you’ll be asked if you want to change your access token.
+
 
 
 ## Usage
@@ -195,7 +203,7 @@ The generated LitElement components are as a base a web-component therefore the 
 import 'YOUR-PACKAGE-NAME'
 ```
 
-Then use the components in HTML:
+Then use the components in HTML with the same name as in Figma: 
 
 ```HTML
 <!DOCTYPE html>
@@ -216,6 +224,12 @@ If the component is using a color/text style it must be imported in the .scss-fi
 
 ### Styling
 If you wish to style your components after they've been made you can do that by targeting the name of the element you wish to change and then writing CSS to a string.
+
+All examples below are styling or altering the components form the image below.
+
+ Element names for the component | Screenshot of the component 
+:-------------------------:|:-------------------------:
+ <img src="RM-images/names.png" width="300" /> | <img src="RM-images/testComp.png" width="500" />
 
 
 ```HTML
@@ -250,54 +264,7 @@ or the name of the component as camel case:
 
 These two examples will do the same thing.
 
-### Figma Styles, Variables, and Mixins
-Color, text and effect styles are a great feature in Figma. A little to great to not take advantage of. FigmaConverter uses the **color** and **text** styles (effects coming in the future). The styles are translated into the SCSS variables.
 
-#### Using the Variables
-Either copy the variables file in **/output/styles/** and use it in your project. To use the variables from a NPM-package import it from the package in your SCSS file with:
-
-```SCSS
-@import '~YOUR-PACKAGE-NAME/styles/variables';
-```
-
-Then you can use your color styles as variables with with the keyword ***color*** before the color style name.
-
-The text styles are implemented as a mixin and can be used as such. With the keyword ***font*** before the figma text style name.
-
-```SCSS
-@import '~YOUR-PACKAGE-NAME/styles/variables';
-
-h1{
-  @include font-my-text;
-  color: $color-my-color;
-}
-```
-
-#### Setting up Figma styles
-To use a style first set them in Figma.
-To [create a style](https://help.figma.com/hc/en-us/articles/360038746534-Create-styles-for-colors-text-effects-and-layout-grids) choose your color or text style normally on a text or shape.
-
-Click the four dots and then the plus sign on the text/color.  
-This let's you create style. 
-
-***IMPORTANT:*** as of now the styles that are created must be placed on the canvas itself. Otherwise FigmaConverter cannot find it. 
-
-Create a shape/text and put it on the ***canvas*** not in another frame.  
-Choose a color :
-
-<img src="RM-images/createColorStyle1.png" width="300" />
-
-Click on the four dots and the plus sign:
-
-<img src="RM-images/createColorStyle2.png" width="300" />
-
-Add your color/text style name:
-
-<img src="RM-images/createColorStyle3.png" width="300" />
-
-Click on the canvas too see the color/text styles:
-
-<img src="RM-images/colorAndText.png" width="200" />
 
 
 
@@ -325,6 +292,65 @@ These URLs are only available for 14 days. To use these images permanently as of
   </test-component>
 ```
 
+### Figma Styles, Variables, and Mixins
+Color, text and effect styles are a great feature in Figma. A little to great to not take advantage of. FigmaConverter uses the **color** and **text** styles (effects coming in the future). The styles are translated into the SCSS variables.
+
+#### Setting up Figma styles
+To use a style first set them in Figma.
+To [create a style](https://help.figma.com/hc/en-us/articles/360038746534-Create-styles-for-colors-text-effects-and-layout-grids) choose your color or text style normally on a text or shape.
+
+Click the four dots and then the plus sign on the text/color.  
+This let's you create style. 
+
+***IMPORTANT:*** as of now the styles that are created must be placed on the canvas itself. Otherwise FigmaConverter cannot find it. 
+
+Create a shape/text and put it on the ***canvas*** not in another frame.  
+Choose a color :
+
+<img src="RM-images/createColorStyle1.png" width="300" />
+
+Click on the four dots and the plus sign:
+
+<img src="RM-images/createColorStyle2.png" width="300" />
+
+Add your color/text style name:
+
+<img src="RM-images/createColorStyle3.png" width="300" />
+
+Click on the canvas too see the color/text styles:
+
+<img src="RM-images/colorAndText.png" width="200" />
+
+#### Using the Variables
+Either copy the variables file in **/output/styles/** and use it in your project. To use the variables from a NPM-package import it from the package in your SCSS file with:
+
+```SCSS
+@import '~YOUR-PACKAGE-NAME/styles/variables';
+```
+
+Then you can use your color styles as **variables** with with the keyword ***color*** before the color style name.
+
+```SCSS
+@import '~YOUR-PACKAGE-NAME/styles/variables';
+
+div{
+  color: $color-my-color;
+}
+```
+
+The text styles are implemented as a **mixin** and can be used as such. With the keyword ***font*** before the figma text style name.
+
+```SCSS
+@import '~YOUR-PACKAGE-NAME/styles/variables';
+
+h1{
+  @include font-my-text;
+}
+```
+
+
+
+
 ### Slots
 Slots can be used to insert elements into your web-component. To use a slot with figmaConverter you first need to mark where you want the slot to be. This can be done with any element in Figma but needs to have the keyword "SLOT" before the name.
 
@@ -345,6 +371,8 @@ To use the slot in your project you can add any element in the component with th
     <button slot="slotName">Button</button>
   </test-component>
 ```
+
+
 
 
 

@@ -1,3 +1,3 @@
-import './levelCard.js' 
+import './myComponent.js' 
 
  // NOT GENERATED CODE
